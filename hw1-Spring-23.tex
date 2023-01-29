@@ -1,0 +1,245 @@
+\documentclass[11pt]{article}
+
+\usepackage{fullpage,times}%charter}
+\usepackage{color}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+%% macros
+\newcommand{\ax}[1]{\texttt{AX}(#1)}
+\newcommand{\ex}[1]{\texttt{EX}(#1)}
+\newcommand{\af}[1]{\texttt{AF}(#1)}
+\newcommand{\ef}[1]{\texttt{EF}(#1)}
+\newcommand{\ag}[1]{\texttt{AG}(#1)}
+\newcommand{\eg}[1]{\texttt{EG}(#1)}
+\newcommand{\au}[2]{\texttt{A}(#1\ \texttt{U}\ #2)}
+\newcommand{\eu}[2]{\texttt{E}(#1\ \texttt{U}\ #2)}
+\newcommand{\sem}[1]{[\!\![#1]\!\!]}
+
+\newcommand{\sol}[1]{{\color{blue}#1}}
+
+\begin{document}
+
+\hrule
+\smallskip
+
+\noindent
+You can review the latex source for this assignment-file to
+learn and use latex to prepare your homework submission. You will see
+the use of macros (to write uniformly formatted text), different
+text-styles (emphasized, bold-font), different environments (figures,
+enumerations).
+
+It is not required that you use exactly this latex source to prepare
+your submission. 
+\smallskip
+\hrule
+
+
+\begin{center}
+{\Large\bf Homework 1 (CTL): ComS/CprE/SE 412, ComS 512}
+
+\medskip
+
+Due-date: Feb 7 at 11:59PM.
+
+\medskip
+
+
+\end{center}
+
+\noindent
+\textbf{
+Submit online on Canvas two files: the source file in latex format and
+the pdf file generated from latex. Name your files:
+$\langle\mbox{your-net-id}\rangle$-hw1.$\langle\mbox{tex/pdf}\rangle$.
+}
+
+\hrule
+\noindent
+\smallskip
+
+\emph{ Homework must be individual's original work. Collaborations and
+  discussions of any form with any students or other faculty members
+  or soliciting solutions on online forums are not allowed. Please
+  review the academic dishonesty policy on our syllabus. If you have
+  any questions/doubts/concerns, post your questions/doubts/concerns
+  on Piazza and ask TA/Instructor.}
+
+\smallskip
+\hrule
+
+\begin{enumerate}
+
+\item
+Consider the following Kripke structure, with $p\in L(s_0) \cap L(s_2)$ and
+$q\in L(s_2)$.
+\begin{center}
+    \begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (s0) at (0,0) {$s_0$};
+    \node (s1) at (2,0) {$s_1$};
+    \node (s2) at (4,0) {$s_2$};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=black,very thick}]
+    \path [->] (s0) edge[bend left=30] (s1);
+    \path [->] (s1) edge[bend left=30] (s0);
+    \path [->] (s1) edge[bend left=30] (s2);
+    \path [->] (s2) edge[bend left=30] (s1);
+    \path [->] (s2) edge[loop above] (s2);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+Identify the set of states that satisfy each of the following:
+\begin{enumerate}
+\item $\ex{q}$
+
+  
+\item $\ax{p}$
+  
+\item $\ax{q}$
+
+\item $\ag{p}$
+  
+\item $\eg{p}$
+
+\item $\af{p}$
+
+\item $\ag{\ex{p}}$
+  
+\item $\ag{\af{p}}$
+  
+\end{enumerate}
+\hfill(16 pts)
+
+\item Express the following statements as CTL formula:\hfill (4+4+6 pts)
+\begin{enumerate}
+
+\item
+Along all paths \textbf{withdraw-money} is never true after
+\textbf{invalid-login}.
+
+\textbf{Answer}: AG (\textbf{invalid-login} $\Rightarrow$ AXAG  \textbf{withdraw-money})
+
+\item
+Along all execution sequences of an elevator behavior, if the elevator
+door is \textbf{open} then the door remains \textbf{open} until a
+\textbf{request-to-move} is sent to the elevator.
+
+\textbf{Answer}: AG ((\textbf{open} $\Rightarrow$ AG  \textbf{open}) U \textbf{request-to-move})
+
+\item 
+Whenever proposition \textbf{request-site-update} is true in a state,
+it is followed in zero or more steps by a state where proposition
+\textbf{updating-site} is true, which in turn is followed in one or
+more steps by a state where \textbf{update-complete} is true.
+
+\textbf{Answer}: AG ( \textbf{request-site-update} $\Rightarrow $AF \textbf{updating-site} ) $\Rightarrow$ AXAF \textbf{update-complete})
+
+
+\end{enumerate}
+
+
+\item To disprove that two CTL formula are equivalent, you are
+  required to draw a Kripke structure and identify a state in that
+  structure, which satisfies one of the formula and does not satisfy
+  the other. For instance, in order to disprove that
+  $\ex{p}\ \land\ \ex{q}$ and $\ex{p\ \land\ q}$ are equivalent, we can
+  draw the following the Kripke structure:
+
+  \begin{center}
+  \begin{tabular}{cc}
+  \begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (s0) at (0,0) {$s_0$};
+    \node (s1) at (-1,-1) {$s_1$};
+    \node (s2) at (1,-1) {$s_2$};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=black,very thick}]
+    \path [->] (s0) edge (s1);
+    \path [->] (s0) edge  (s2);
+    \path [->] (s1) edge[loop below] (s1);
+    \path [->] (s2) edge[loop below] (s2);
+\end{scope}
+  \end{tikzpicture}
+  &
+  %%
+  \begin{tabular}{l}
+    $L(s_1) = \{p\}$, $L(s_2) = \{q\}$
+    \end{tabular}
+  \end{tabular}
+\end{center}
+We present the labels for the relevant states in the Kripke structure
+and state that $s_0$ satisfies $\ex{p}\ \land\ \ex{q}$ and $s_0$ does
+not satisfy $\ex{p \land q}$. This is because there exists a path from
+$s_0$ where in the very next state $s_1$ the proposition $p$ is true;
+thus conforming that $s_0$ satisfies $\ex{p}$ (similarly, one can justify
+the satisfiability of $\ex{q}$ at state $s_0$). On the other hand,
+there exists no path from $s_0$, where in the very next state both $p$
+and $q$ are satisfied. 
+\smallskip
+
+  
+Disprove that the two CTL formula $\af{p \land q}$ and
+$\af{p} \land \af{q}$ are equivalent.  \hfill (5 pts)
+
+\item
+To prove that one formula (say, $\varphi_1$) is ``stronger'' than
+another (say, $\varphi_2$), you need to prove that whenever in any
+state in any Kripke structure $\varphi_1$ holds, $\varphi_2$ holds in
+that state as well. In other words, $\varphi_1$ is ``stronger'' than
+$\varphi_2$ if and only if $\varphi_1\Rightarrow\varphi_2$ is a
+tautology (always evaluates to true). For instance, to prove that
+$\ax{p}$ is stronger than $\ex{p}$ we can write:
+%% math environment starts
+\[
+\begin{array}{rcl}
+  \forall s. s\in \sem{\ax{p}} & \Leftrightarrow & \forall \pi\in Path(s): \pi[1] \in \sem{p} \\
+                               & \Rightarrow &     \exists \pi\in Path(s): \pi[1] \in \sem{p} \\
+                               & \Rightarrow & s \in \sem{\ex{p}}
+\end{array}
+\]
+%% math environment ends
+%%
+To disprove that $\ex{p}$ is stronger that $\ax{p}$, you will draw a
+Kripke structure and present a state in the Kripke structure that
+satisfies $\ex{p}$ but does not satisify $\ax{p}$ (see the Kripke
+structure example in the previous problem).
+
+Prove or disprove $\ag{p\ \land\ q}$ is stronger than $\ag{p\ \Rightarrow\ \af{q}}$.
+
+
+\hfill (5 pts)
+
+\item \textbf{Extra Credit for 412; Required problem for 512.}
+  We will define a new operator $A\circ$
+  as follows. A state $s$ satisfies $\texttt{A}(\varphi_1\ \circ\ \varphi_2)$
+  if and only if for all paths starting from $s$ at least one of the
+  following holds
+\begin{itemize}
+\item there exists a state where $\varphi_2$ is
+  satisfied and before that $\varphi_1$ holds in all states in the
+  path
+\item all states in the path satisfy $\varphi_1$ and not
+  $\varphi_2$
+\end{itemize}
+Prove or disprove that 
+\begin{enumerate}
+\item $A(p\ \circ\ \mbox{false})$ can be expressed
+  in CTL.
+
+\item $A(\mbox{false}\ \circ\ p)$ can be expressed in CTL.
+
+\end{enumerate}
+\hfill(10pts)
+\end{enumerate}
+
+\end{document}
+
