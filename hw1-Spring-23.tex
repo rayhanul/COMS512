@@ -2,7 +2,7 @@
 
 \usepackage{fullpage,times}%charter}
 \usepackage{color}
-
+\usepackage{float}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
 
@@ -116,6 +116,29 @@ Identify the set of states that satisfy each of the following:
 \end{enumerate}
 \hfill(16 pts)
 
+
+\textbf{Answer}: The tree of computation is - 
+
+\begin{enumerate}
+\item $ \{s_1, s_2\} $ 
+
+  
+\item $ \{s_1\}$
+  
+\item $\{ \}$
+
+\item $\{ \}$
+  
+\item $\{ s_2\}$
+
+\item $\{ s_0, s_1, s_2\}$
+
+\item $\{s_1, s_2\}$
+  
+\item $\{s_0, s_1, s_2\}$
+  
+\end{enumerate}
+
 \item Express the following statements as CTL formula:\hfill (4+4+6 pts)
 \begin{enumerate}
 
@@ -190,6 +213,66 @@ and $q$ are satisfied.
 Disprove that the two CTL formula $\af{p \land q}$ and
 $\af{p} \land \af{q}$ are equivalent.  \hfill (5 pts)
 
+\textbf{Answer}:
+
+$\af{p \land q}$ implies that $p \land q$ is true sometimes in all possible future states from starting state.  However, $\af{p} \land \af{q}$ says that "In all possible future states, p must be true, and in all possible future states, q must be true".  Therefore, p and q does not necessarily true in one state to satisfy $\af{p} \land \af{q}$, but $\af{p \land q}$ demands p and q to be  true in the same state. 
+
+
+
+  \begin{center}
+  \begin{tabular}{cc}
+  \begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (s0) at (0,0) {$s_0$};
+    \node (s1) at (-2,-1) {$s_1$};
+    \node (s2) at (2,-1) {$s_2$};
+    
+    \node (s3) at (-3,-2) {$s_3$};
+    \node (s4) at (-1,-2) {$s_4$};
+
+    \node (s5) at (1,-2) {$s_5$};
+    \node (s6) at (3,-2) {$s_6$};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=black,very thick}]
+    \path [->] (s0) edge (s1);
+    \path [->] (s0) edge  (s2);
+    \path [->] (s1) edge (s3);
+    \path [->] (s1) edge (s4);
+    \path [->] (s3) edge[loop below] (s3);
+    \path [->] (s4) edge[loop below] (s4);
+
+
+    \path [->] (s2) edge (s5);
+    \path [->] (s2) edge (s6);
+    \path [->] (s5) edge[loop below] (s5);
+    \path [->] (s6) edge[loop below] (s6);
+    
+\end{scope}
+  \end{tikzpicture}
+  &
+  %%
+  \begin{tabular}{l}
+    $L(s_1) = \{p\}$, $L(s_3) = \{q\}$, $L(s_4) = \{q\}$ \\ $L(s_2) = \{q\}$, $L(s_5) = \{p\}$, $L(s_6) = \{p\}$
+    \end{tabular}
+  \end{tabular}
+\end{center}
+
+The above Kripke structure satisfies $\af{p} \land \af{q}$, but it does not satisfies $\af{p \land q}$. Therefore, it canbe said that these two properties are not equivalent. 
+
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=7cm]{images/1_3.jpg}
+%     \caption{ The Kripke structure dissatisfying $\af{p \land q}$ and
+% $\af{p} \land \af{q}$ }
+%     \label{kripke_struc}
+% \end{figure}
+
+
+
 \item
 To prove that one formula (say, $\varphi_1$) is ``stronger'' than
 another (say, $\varphi_2$), you need to prove that whenever in any
@@ -210,7 +293,7 @@ $\ax{p}$ is stronger than $\ex{p}$ we can write:
 %%
 To disprove that $\ex{p}$ is stronger that $\ax{p}$, you will draw a
 Kripke structure and present a state in the Kripke structure that
-satisfies $\ex{p}$ but does not satisify $\ax{p}$ (see the Kripke
+satisfies $\ex{p}$ but does not satisfy $\ax{p}$ (see the Kripke
 structure example in the previous problem).
 
 Prove or disprove $\ag{p\ \land\ q}$ is stronger than $\ag{p\ \Rightarrow\ \af{q}}$.
@@ -239,7 +322,29 @@ Prove or disprove that
 
 \end{enumerate}
 \hfill(10pts)
+
+
+
+The formula $\texttt{A}(\varphi_1\ \circ\ \varphi_2)$ can be defined using existing CTL formulas as follows:
+
+$\texttt{A}(\varphi_1\ \circ\ \varphi_2) \equiv \texttt{AG}(\varphi_1 \rightarrow \texttt{EF}(\varphi_2)) \land \texttt{AG}(\neg \varphi_2 \rightarrow \texttt{AX}(\varphi_1))$
+
+Explanation:
+
+$\texttt{AG}(\varphi_1 \rightarrow \texttt{EF}(\varphi_2))$ says that if $\varphi_1$ is satisfied, then there exists a state where $\varphi_2$ is satisfied.
+
+$\texttt{AG}(\neg \varphi_2 \rightarrow \texttt{AX}(\varphi_1))$ says that if $\varphi_2$ is not satisfied, then $\varphi_1$ holds in all states in the path.
+
+Together, these two formulas capture the condition that for all paths starting from $s$, either $\varphi_2$ is satisfied and $\varphi_1$ holds in all states in the path before that, or $\varphi_1$ holds in all states in the path and $\varphi_2$ is not satisfied.
+
+
+\textbf{Answer}: $A(p\ \circ\ \mbox{false})$ can be expressed in CTL: True. This operator can be expressed using the CTL formula $\ag{p} \vee \ax{\neg p \land \neg q}$. Here, $\ag{p}$ means "in all possible futures, $p$ holds". $\ax{\neg p \land \neg q}$ means "for all next states, both $p$ and $q$ do not hold". These two formulas capture the two conditions specified in the definition of the operator $\texttt{A}(\varphi_1\ \circ\ \varphi_2)$.
+
+$A(\mbox{false}\ \circ\ p)$ can be expressed in CTL: False. This operator cannot be expressed using standard CTL, because it requires a negative path quantification, which is not supported by standard CTL. In standard CTL, all paths are considered, positive or negative.
+
 \end{enumerate}
+
+
 
 \end{document}
 
