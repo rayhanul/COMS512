@@ -146,14 +146,14 @@ Identify the set of states that satisfy each of the following:
 Along all paths \textbf{withdraw-money} is never true after
 \textbf{invalid-login}.
 
-\textbf{Answer}: AG (\textbf{invalid-login} $\Rightarrow$ AXAG  \textbf{withdraw-money})
+\textbf{Answer}: AG (  \textbf{invalid-login} $\Rightarrow$ AXAG $\neg$ \textbf{withdraw-money})
 
 \item
 Along all execution sequences of an elevator behavior, if the elevator
 door is \textbf{open} then the door remains \textbf{open} until a
 \textbf{request-to-move} is sent to the elevator.
 
-\textbf{Answer}: AG ((\textbf{open} $\Rightarrow$ AG  \textbf{open}) U \textbf{request-to-move})
+\textbf{Answer}: A ((\textbf{open} $\Rightarrow$ AG  \textbf{open}) U \textbf{request-to-move})
 
 \item 
 Whenever proposition \textbf{request-site-update} is true in a state,
@@ -161,7 +161,8 @@ it is followed in zero or more steps by a state where proposition
 \textbf{updating-site} is true, which in turn is followed in one or
 more steps by a state where \textbf{update-complete} is true.
 
-\textbf{Answer}: AG (( \textbf{request-site-update} $\Rightarrow $AF \textbf{updating-site} ) $\Rightarrow$ AXAF \textbf{update-complete})
+\textbf{Answer}: AG (( \textbf{request-site-update} $\Rightarrow $AF \textbf{updating-site} ) $\Rightarrow$ AXAF \textbf{update-complete}) 
+
 
 
 \end{enumerate}
@@ -215,7 +216,7 @@ $\af{p} \land \af{q}$ are equivalent.  \hfill (5 pts)
 
 \textbf{Answer}:
 
-$\af{p \land q}$ implies that $p \land q$ is true sometimes in all possible future states from starting state.  However, $\af{p} \land \af{q}$ says that "In all possible future states, p must be true, and in all possible future states, q must be true".  Therefore, p and q does not necessarily true in one state to satisfy $\af{p} \land \af{q}$, but $\af{p \land q}$ demands p and q to be  true in the same state. 
+$\af{p \land q}$ implies that $p \land q$ is true sometimes in all possible future states from starting state.  However, $\af{p} \land \af{q}$ says that "In all possible future states, p must be true, and in all possible future states, q must be true".  Therefore, p and q do not necessarily true in one state to satisfy $\af{p} \land \af{q}$, but $\af{p \land q}$ demands p and q to be true in the same state. 
 
 
 
@@ -260,7 +261,8 @@ $\af{p \land q}$ implies that $p \land q$ is true sometimes in all possible futu
   \end{tabular}
 \end{center}
 
-The above Kripke structure satisfies $\af{p} \land \af{q}$, but it does not satisfy $\af{p \land q}$. Therefore, it can be said that these two properties are not equivalent. 
+The above Kripke structure satisfies $\af{p} \land \af{q}$, but it does not satisfy $\af{p \land q}$. Therefore, $\af{p \land q}$ and
+$\af{p} \land \af{q}$ are not equivalent. 
 
 
 % \begin{figure}[H]
@@ -310,7 +312,7 @@ Let's simplify $\ag{p \Rightarrow \af{q}}$.
 \end{array}
 \]
 
-When $\ag{p \Rightarrow \af{q}}$ holds in $s$, it is immediately true that $p \Rightarrow \af{q}$ holds for all successors of s, including $s$ itself. We can rewrite $p \Rightarrow \af{q}$ as $\neg p \lor \af{q}$, which implies either $\neg p$ or $\af{q}$ true in s and its successors. without loss of generality, we can write q holds in state $s$. 
+When $\ag{p \Rightarrow \af{q}}$ holds in $s$, it is immediately true that $p \Rightarrow \af{q}$ holds for all successors of s, including $s$ itself. We can rewrite $p \Rightarrow \af{q}$ as $\neg p \lor \af{q}$, which implies $\af{q}$ true in s and its successors. without loss of generality, we can write q holds in state $s$. 
 
 $\ag{p \land q}$ implies $p \land q$ holds in all successors of $s$ including $s$ itself. As both $p$ and $q$ holds in state $s$, which suffices to show that $p\ \Rightarrow\ \af{q}$ immediately true at that state. The Kripke structure satisfying $\ag{p \land q}$ is provided below. 
 
@@ -351,7 +353,7 @@ $\ag{p \land q}$ implies $p \land q$ holds in all successors of $s$ including $s
   &
   %%
   \begin{tabular}{l}
-    $L(s_1) = \{p, q\}$, $L(s_3) = \{p, q\}$, $L(s_4) = \{p, q\}$ \\ $L(s_2) = \{p, q\}$, $L(s_5) = \{p, q\}$, $L(s_6) = \{p, q\}$
+    $L(s_0) = \{p, q\}$, $L(s_1) = \{p, q\}$, $L(s_3) = \{p, q\}$, $L(s_4) = \{p, q\}$ \\ $L(s_2) = \{p, q\}$, $L(s_5) = \{p, q\}$, $L(s_6) = \{p, q\}$
     \end{tabular}
   \end{tabular}
 \end{center}
@@ -399,47 +401,6 @@ Let's first try to express the first condition in CTL, first condition says that
 \end{enumerate}
 \hfill(10pts)
 
-\textbf{Answer}: 
-
-The first condition "there exists a state where $\varphi_2$ is satisfied and before that $\varphi_1$ holds in all states in the
-  path" and the second condition, "all states in the path satisfy $\varphi_1$ and not
-  $\varphi_2$" can be represented as $\ag{\varphi_1 \rightarrow \af{\varphi2}} $ and $ \ag{\varphi_1 \land \neg \varphi_2}$ respectively.
-
-  \begin{enumerate}
-\item $A(p\ \circ\ \mbox{false})$ can be written as follows-
-
-$$\ag{p \rightarrow \af{false}} \lor \ag{p \land \neg false}$$
-
-$$\Rightarrow \ag{\neg p \lor \af{false}} \lor \ag{p \land true}$$
-
-$$\Rightarrow  \ag{p}$$
-
-
-
-
-\item $A(\mbox{false}\ \circ\ p)$ cannot be expressed in CTL. If we write this formula like the above,
-
-$$\ag{false \rightarrow \af{p}} \lor \ag{false \land \neg p}$$
-$$\rightarrow $$
-
-\end{enumerate}
-
-% The formula $\texttt{A}(\varphi_1\ \circ\ \varphi_2)$ can be defined using existing CTL formulas as follows:
-
-% $\texttt{A}(\varphi_1\ \circ\ \varphi_2) \equiv \texttt{AG}(\varphi_1 \rightarrow \texttt{EF}(\varphi_2)) \land \texttt{AG}(\neg \varphi_2 \rightarrow \texttt{AX}(\varphi_1))$
-
-% Explanation:
-
-% $\texttt{AG}(\varphi_1 \rightarrow \texttt{EF}(\varphi_2))$ says that if $\varphi_1$ is satisfied, then there exists a state where $\varphi_2$ is satisfied.
-
-% $\texttt{AG}(\neg \varphi_2 \rightarrow \texttt{AX}(\varphi_1))$ says that if $\varphi_2$ is not satisfied, then $\varphi_1$ holds in all states in the path.
-
-% Together, these two formulas capture the condition that for all paths starting from $s$, either $\varphi_2$ is satisfied and $\varphi_1$ holds in all states in the path before that, or $\varphi_1$ holds in all states in the path and $\varphi_2$ is not satisfied.
-
-
-% \textbf{Answer}: $A(p\ \circ\ \mbox{false})$ can be expressed in CTL: True. This operator can be expressed using the CTL formula $\ag{p} \vee \ax{\neg p \land \neg q}$. Here, $\ag{p}$ means "in all possible futures, $p$ holds". $\ax{\neg p \land \neg q}$ means "for all next states, both $p$ and $q$ do not hold". These two formulas capture the two conditions specified in the definition of the operator $\texttt{A}(\varphi_1\ \circ\ \varphi_2)$.
-
-% $A(\mbox{false}\ \circ\ p)$ can be expressed in CTL: False. This operator cannot be expressed using standard CTL, because it requires a negative path quantification, which is not supported by standard CTL. In standard CTL, all paths are considered, positive or negative.
 
 \end{enumerate}
 
