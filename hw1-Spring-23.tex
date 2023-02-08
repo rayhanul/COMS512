@@ -265,16 +265,6 @@ The above Kripke structure satisfies $\af{p} \land \af{q}$, but it does not sati
 $\af{p} \land \af{q}$ are not equivalent. 
 
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=7cm]{images/1_3.jpg}
-%     \caption{ The Kripke structure dissatisfying $\af{p \land q}$ and
-% $\af{p} \land \af{q}$ }
-%     \label{kripke_struc}
-% \end{figure}
-
-
-
 \item
 To prove that one formula (say, $\varphi_1$) is ``stronger'' than
 another (say, $\varphi_2$), you need to prove that whenever in any
@@ -312,7 +302,7 @@ Let's simplify $\ag{p \Rightarrow \af{q}}$.
 \end{array}
 \]
 
-When $\ag{p \Rightarrow \af{q}}$ holds in $s$, it is immediately true that $p \Rightarrow \af{q}$ holds for all successors of s, including $s$ itself. We can rewrite $p \Rightarrow \af{q}$ as $\neg p \lor \af{q}$, which implies $\af{q}$ true in s and its successors. without loss of generality, we can write q holds in state $s$. 
+When $\ag{p \Rightarrow \af{q}}$ holds in $s$, it is immediately true that $p \Rightarrow \af{q}$ holds for all successors of s, including $s$ itself. We can rewrite $p \Rightarrow \af{q}$ as $\neg p \lor \af{q}$, which implies $\af{q}$ true in s and its successors. without loss of generality, we can write q holds in state $s$. Furthermore, as $\af{q}$ could be immediately true in the source $s$; therefore, we can interpret $p \Rightarrow \af{q}$ as whenever p is true, q is also true. 
 
 $\ag{p \land q}$ implies $p \land q$ holds in all successors of $s$ including $s$ itself. As both $p$ and $q$ holds in state $s$, which suffices to show that $p\ \Rightarrow\ \af{q}$ immediately true at that state. The Kripke structure satisfying $\ag{p \land q}$ is provided below. 
 
@@ -358,6 +348,8 @@ $\ag{p \land q}$ implies $p \land q$ holds in all successors of $s$ including $s
   \end{tabular}
 \end{center}
 
+
+
 So, we can say that the formula $\ag{p \land q}$ is stronger than $\ag{p \Rightarrow \af{q}}$.
 
 \hfill (5 pts)
@@ -388,9 +380,7 @@ Therefore, $A(p\ \circ\ \mbox{false})$ can be expressed using CTL formula $\ag{p
 
 \item $A(\mbox{false}\ \circ\ p)$ can be expressed in CTL.
 
-\textbf{Answer:}
-
-Let's first try to express the first condition in CTL, first condition says that for all paths there exists a state where $p$ is
+\textbf{Answer:} Let's first try to express the first condition in CTL, first condition says that for all paths there exists a state where $p$ is
   satisfied, and before that $false$ holds in all states in the path. It can be immediately inferred that we cannot express this in CTL because these paths have negative path quantification, which cannot be expressed in CTL. 
 
 
