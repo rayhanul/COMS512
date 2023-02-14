@@ -1,0 +1,44 @@
+\documentclass[11pt]{article}
+
+\usepackage{fullpage,times}%charter}
+\usepackage{color}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+%% macros
+\newcommand{\ax}[1]{\texttt{AX}(#1)}
+\newcommand{\ex}[1]{\texttt{EX}(#1)}
+\newcommand{\af}[1]{\texttt{AF}(#1)}
+\newcommand{\ef}[1]{\texttt{EF}(#1)}
+\newcommand{\ag}[1]{\texttt{AG}(#1)}
+\newcommand{\eg}[1]{\texttt{EG}(#1)}
+\newcommand{\au}[2]{\texttt{A}(#1\ \texttt{U}\ #2)}
+\newcommand{\eu}[2]{\texttt{E}(#1\ \texttt{U}\ #2)}
+\newcommand{\sem}[1]{[\!\![#1]\!\!]}
+
+\newcommand{\sol}[1]{{\color{blue}#1}}
+
+\begin{document}
+
+
+a) $\ag{p}$: The formula $\ag{p}$ means that in all states reachable from the current state, $p$ must hold. In the given Kripke structure, $p$ holds in $s_0$ and $s_2$, so $s_0$ and $s_2$ satisfy $\ag{p}$.
+
+b) $\af{p}$: The formula $\af{p}$ means that there exists a state reachable from the current state such that $p$ holds in that state. In the given Kripke structure, $p$ holds in $s_2$, so $s_1$ and $s_2$ satisfy $\af{p}$.
+
+c) $\ag{\af{p}}$: The formula $\ag{\af{p}}$ means that for all states reachable from the current state, there exists a state reachable from that state such that $p$ holds in that state. In the given Kripke structure, $p$ holds in $s_2$, so only $s_2$ satisfies $\ag{\af{p}}$.
+
+d) $\af{\ag{p}}$: The formula $\af{\ag{p}}$ means that there exists a state reachable from the current state such that in all states reachable from that state, $p$ holds. In the given Kripke structure, $p$ holds in $s_0$ and $s_2$, so only $s_0$ and $s_2$ satisfy $\af{\ag{p}}$.
+
+a) $\ef{p}$: The formula $\ef{p}$ means that there exists an execution path starting from the current state such that $p$ holds in some state on that path.
+
+b) $\eg{\neg p \land \ef{p}}$: The formula $\eg{\neg p \land \ef{p}}$ means that there exists a state reachable from the current state such that the property $\neg p \land \ef{p}$ holds in that state. The property $\neg p \land \ef{p}$ means that there exists an execution path starting from that state such that $p$ holds in some state on that path, and $\neg p$ holds in the current state.
+
+a) Disprove: The property $\af{\ag{p}}$ only requires that there exists a state reachable from the current state such that in all states reachable from that state, $p$ holds. It does not guarantee that $p$ holds infinitely often along all paths from the current state.
+
+b) Disprove: Similar to the previous part, the property $\af{\ag{p}}$ only requires that there exists a state reachable from the current state such that in all states reachable from that state, $p$ holds. It does not guarantee that $\neg p$ holds finitely many times along all paths from the current state.
+
+c) Prove: The property $\eg{\ef{p}}$ means that there exists a state reachable from the current state such that there exists an execution path starting from that state such that $p$ holds in some state on that path. This implies that $p$ holds infinitely often along at least one path from the current state.
+
+d) Disprove: The formula $\au{p}{\ax{q}}$ means that there exists a state reachable from the current state such that $p$ holds in that state, and
+\end{document}
