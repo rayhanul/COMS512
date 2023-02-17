@@ -41,4 +41,56 @@ b) Disprove: Similar to the previous part, the property $\af{\ag{p}}$ only requi
 c) Prove: The property $\eg{\ef{p}}$ means that there exists a state reachable from the current state such that there exists an execution path starting from that state such that $p$ holds in some state on that path. This implies that $p$ holds infinitely often along at least one path from the current state.
 
 d) Disprove: The formula $\au{p}{\ax{q}}$ means that there exists a state reachable from the current state such that $p$ holds in that state, and
+
+
+
+$AG((p \rightarrow AF(\neg p)) \wedge (\neg p \rightarrow AF(p)))$
+
+This formula can be read as "For all paths, it is globally true that if $p$ is true, then eventually it is followed by a state where $p$ is false, and if $p$ is false, then eventually it is followed by a state where $p$ is true."
+
+Here's an explanation of why this formula captures the desired property:
+
+$p \rightarrow AF(\neg p)$ means "if $p$ is true, then eventually it becomes false." This ensures that along all paths, whenever $p$ is true, it is eventually followed by a state where $p$ is false.
+$\neg p \rightarrow AF(p)$ means "if $p$ is false, then eventually it becomes true." This ensures that along all paths, whenever $p$ is false, it is eventually followed by a state where $p$ is true.
+By using the $AG$ operator, we are checking that these properties hold globally for all paths in the model. Therefore, this formula captures the desired property.
+
+\newpage 
+
+Yes, the property "for all paths of the form $\pi$, $p$ is true in every $\pi[i]$ where $i$ is even" can be expressed in CTL (Computation Tree Logic).
+
+We can break down the property into two parts:
+
+All paths of the form $\pi$:
+This part of the property can be expressed using the universal path quantifier $\forall$ as follows:
+$\forall \pi$
+
+This specifies that the property should hold for all possible paths.
+
+$p$ is true in every $\pi[i]$ where $i$ is even:
+This part of the property can be expressed using the path quantifier $A$ (for "for all") and the temporal operator $G$ (for "globally") as follows:
+$A(G(p)) \land A(G(\neg p))$
+
+This specifies that $p$ should be true in every even position, and false in every odd position.
+
+Putting it all together, we get:
+
+$\forall \pi . A(G(p)) \land A(G(\neg p))$
+
+This expresses the property "for all paths of the form $\pi$, $p$ is true in every $\pi[i]$ where $i$ is even" in CTL.
+
+
+
+2,b 
+
+
+The property described in the question is known as "eventually alternating." In other words, along any path in the system, the truth value of the proposition $p$ alternates between true and false, and eventually it reaches a state where it stays false or a state where it stays true.
+
+This property can be expressed using temporal logic as follows:
+
+$$\textbf{AG}(\textbf{AF}(p \land \textbf{AX}\neg p) \land \textbf{AF}(\neg p \land \textbf{AX}p))$$
+
+where $\textbf{AF}$ means "eventually in the future" and $\textbf{AG}$ means "always in the future." The formula states that it is always true that, in the future, $p$ will eventually hold and then eventually not hold, and that $\neg p$ will eventually hold and then eventually hold again.
+
+Intuitively, this means that the system keeps oscillating between states where $p$ is true and states where $p$ is false, and this oscillation happens infinitely often along every path in the system.
+
 \end{document}

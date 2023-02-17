@@ -131,50 +131,112 @@ Identify the set of states that satisfy each of the following and justify your a
 
     \textbf{Answer}: Let's assume, $$s_0 \in [[\af{\ag{p}}]]$$
 
-    $$ \Rightarrow \forall \pi \in Path(s_0). \exists i \geq 0 \; \pi(i) \in [[\ag{p}]]$$
-    $$ \Rightarrow \forall \pi \in Path(s_0). \exists i \geq 0 \; \pi(i) [ \forall \pi^\prime \in Path(\pi(i))\; \forall j >=i \; \pi^\prime(j) \in [[p]] ]$$
-   This simplification tells that in all evaluations starting from the initial state, there exists a state from where $p$ holds in all paths globally. However, the question asks whether this CTL formula satisfies $p$
+    $$ \Rightarrow \forall \pi \in Path(s_0). \exists i \geq 0. \pi(i) \in [[\ag{p}]]$$
+    $$ \Rightarrow \forall \pi \in Path(s_0). \exists i \geq 0. \forall \pi^\prime \in Path(\pi(i)).\forall j >=i.\pi^\prime(j) \in [[p]] $$
+
+
+    
+   This simplification tells that in all evaluations starting from the initial state, there exists a state from where $p$ holds in all paths globally. Due to the property of $\af$, $\ag$ might be satisfied at the very initial state, therefore, we can write the following if it is satisfied in the initial state.  
+
+   $$ \Rightarrow \forall \pi \in Path(s_0).\forall j >=0.\pi(j) \in [[p]]$$
+   
+   
+   However, the question asks whether this CTL formula satisfies $p$
     holds infinitely often. Since $p$ holds globally in all paths, $\af{\ag{p}}$ disproves the property $p$
     holds infinitely often. 
+
+    The following Kripke structure satisfies $\af{\ag{p}}$ but it does not satisfies that the property $p$ holds infinitely often.
+
+
+    
+  \begin{center}
+  \begin{tabular}{cc}
+  \begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (s0) at (0,0) {$s_0$};
+    \node (s1) at (-1,-1) {$s_1$};
+    \node (s2) at (1,-1) {$s_2$};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=black,very thick}]
+    \path [->] (s0) edge (s1);
+    \path [->] (s0) edge  (s2);
+    \path [->] (s1) edge[loop below] (s1);
+    \path [->] (s2) edge[loop below] (s2);
+\end{scope}
+  \end{tikzpicture}
+  &
+  %%
+  \begin{tabular}{l}
+    $L(s_0) = \{p\}$ $L(s_1) = \{p\}$, $L(s_2) = \{p\}$
+    \end{tabular}
+  \end{tabular}
+\end{center}
 
     \item
     If a state satisfies $\af{\ag{p}}$ then along all paths from that state the property $\neg p$
     holds finitely many times. 
             
-\textbf{Answer}: It is immediate from the previous question's explanation that, $\af{\ag{p}}$ does not hold $\neg p$ finitely many times, because the value of $i$ might be anything greater than 0. If $i$ becomes 0,  $\ag{p}$ holds from the initial state. Therefore, $\af{\ag{p}}$ does not ensure $\neg p$ holds finitely many times. 
+\textbf{Answer}: It is immediate from question $3.a$ that, $\af{\ag{p}}$ does not guarantee to hold $\neg p$ finitely many times, because the value of $i$ might be anything greater than or equal to 0. If $i$ becomes 0,  $\ag{p}$ holds in the initial state. Therefore, $\af{\ag{p}}$ does not ensure $\neg p$ holds finitely many times. The Kripke structure provided in the same question also corroborates that the property $\neg p$ does not hold finitely many times. 
 
   \item  If a state satisfies $\eg{\ef{p}}$ then there exists at least one path starting from that
     state where $p$ holds infinitely often.
     
 \textbf{Answer}:
-Let's assume, $$s_0 \in [[\eg{\ef{p}}]]$$
 
-$$ \Rightarrow \exists \pi \in Path(s_0) \forall i \geq 0 \; \pi(i) \in [[\ef{p} ]]$$
-$$\Rightarrow \exists \pi \in Path(s_0) \forall i \geq 0 \; \pi(i) [ \exists \pi^\prime \in Path(\pi(i)) \exists j \geq i \; \pi^\prime(j) \in [[p]]]$$
+If a state satisfies $\eg{\ef{p}}$, it does not necessarily true that $p$ holds infinitely often. Consider the following Kripke structure-
 
-This implies that there exists a path that satisfies $p$ infinitely often. 
+  \begin{center}
+  \begin{tabular}{cc}
+  \begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (s0) at (0,0) {$s_0$};
+    \node (s1) at (2,0) {$s_1$};
+    \node (s2) at (4,0) {$s_2$};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=black,very thick}]
+    \path [->] (s0) edge (s1);
+    \path [->] (s1) edge (s2);
+    \path [->] (s2) edge[loop below] (s2);
+\end{scope}
+  \end{tikzpicture}
+  &
+  %%
+  \begin{tabular}{l}
+    $L(s_0) = L(s_2)= \{\}$, $L(s_1) = \{p\}$
+    \end{tabular}
+  \end{tabular}
+\end{center}
+
+This Kripke structure satisfies $\eg{\ef{p}}$ at $s_0$, but it does not satisfy $p$ to be true infinitely often in this path. 
+
+% Let's assume, $$s_0 \in [[\eg{\ef{p}}]]$$
+
+% $$ \Rightarrow \exists \pi \in Path(s_0). \forall i \geq 0. \pi(i) \in [[\ef{p} ]]$$
+% $$\Rightarrow \exists \pi \in Path(s_0) \forall i \geq 0. \pi(i) [ \exists \pi^\prime \in Path(\pi(i)). \exists j \geq i.\pi^\prime(j) \in [[p]]]$$
+% This implies that there exists at least one path that satisfies $p$ infinitely often. So, this statement holds. 
   
   \item $\au{p}{\ax{q}}$ is equivalent to $p \land \ax{\au{p}{q}}$
 
   \textbf{Answer}: Let's simplify  $\au{p}{\ax{q}}$ and $p \land \ax{\au{p}{q}}$ first. 
 
-  We know $\au{\varphi}{\psi}$ can be written as $\psi \lor (\varphi \land \ax{\au{\varphi}{\psi}})$. So, we can write, $\au{p}{\ax{q}} \Leftrightarrow \ax{q} \lor (p \land \ax{\au{p}{\ax{q}}})$. We can claim a state $s$ satisfies $\au{p}{\ax{q}}$ if it satisfies either $\ax{q}$ or $p \land \ax{\au{p}{\ax{q}}}$. 
+  We know $\au{\varphi}{\psi}$ can be written as $\psi \lor (\varphi \land \ax{\au{\varphi}{\psi}})$. So, we can write, 
+  $$\au{p}{\ax{q}} \Leftrightarrow \ax{q} \lor (p \land \ax{\au{p}{\ax{q}}})$$
+
   
+  We can claim a state $s$ satisfies $\au{p}{\ax{q}}$ if it satisfies either $\ax{q}$ or $p \land \ax{\au{p}{\ax{q}}}$. 
   
-  % For the sake of simplicity, let's assume, $s$ only satisfies $\ax{q}$. We can write it as 
-  % $$\forall s, s\in [[\ax{q}]] \Leftrightarrow \forall \pi \in Path(s): \pi(1) \in [[q]]$$
+
 
     Similarly, $$p \land \ax{\au{p}{q}} \Leftrightarrow p \land \ax{q \lor (p \land \ax{\au{p}{q}})}$$
-   
-    % Now let's assume $q$ is satisfied from $q \lor (p \land \ax{\au{p}{q}})$. Then we can write 
 
-    % $$p \land \ax{\au{p}{q}} \Leftrightarrow p \land \ax{q}$$
-    
-    % We can further write it as follows-
 
-    %   $$\forall s, s\in [[p \land \ax{q}]] \Leftrightarrow \forall \pi \in Path(s): \pi(0) \in [[p]] \land \pi(0) \in [[\ax{q}]]$$
-
-Now, construct a Kripke structure satisfying $\au{p}{\ax{q}}$. 
+Now, let's construct the following Kripke structure satisfying $\au{p}{\ax{q}}$. 
 
 
   \begin{center}
@@ -198,7 +260,7 @@ Now, construct a Kripke structure satisfying $\au{p}{\ax{q}}$.
   &
   %%
   \begin{tabular}{l}
-    $L(s_1) = \{q\}$, $L(s_2) = \{q\}$
+    $L(s_0)=\{\}, L(s_1) = \{q\}$, $L(s_2) = \{q\}$
     \end{tabular}
   \end{tabular}
 \end{center}
@@ -212,11 +274,16 @@ Therefore, we can say that $\au{p}{\ax{q}}$ is not equivalent to $p \land \ax{\a
     The property, \emph{for all paths of the form $\pi$, $p$ is true in every $\pi[i]$ where $i$ is even},
     can be expressed in CTL.
     
-    \textbf{Answer}: Let's consider a infinite path $\pi = s_0, s_1, s_2, ..., s_n, s_{n+1}, ... s_{n+k}, ...$. 
+     \textbf{Answer}: 
+    
 
-    Here $\pi[i] \in [[p]]$ when $i=\{0, 2, 4, 6, 8, ... \}$, and all the odd position $\pi[i] \in [[ \neg p]]$ where $i = \{ 1,3,5,7, ...\}$. 
+    This question did not explicitly say about the odd position. Therefore, there are two cases to consider in the odd position. 
+    Odd position may either hold $p$ or $ \neg p$. Even if the odd position holds any of $p$ or $\neg p$, it does not have an impact on the even position. 
 
-    The traces of the paths, $traces(\pi)= \{p, \neg p, p, \neg p, p, \neg p, ... \}$. As all the paths follow the same forms, we can say that $p$ is repeated infinitely often. Therefore, we can write it as $\ag{\af{p}}$, which is a valid CTL formula. 
+    Let's consider a path, $\pi = s_0, s_1, s_2, ..., s_n, s_{n+1}, ... s_{n+k}, ...$. Considering $p$ holds in the even and odd position, we get the trace of the paths, $trace(\pi)= \{p, p, p, p, p, p, ... \}$, which we can represent as $\ag{p}$. Again, considering $\neg p$ holds in the odd position, we get the trace, $trace(\pi) = \{p, \neg p, p, \neg p, p, \neg p, ... \}$, which can be represented as $\ag{\af{p}}$. 
+
+    Now the question is- does this formula enough to represent $p$ to be true in the even position? What if the trace becomes $trace(\pi) = \{\neg p, p, \neg p, p, \neg p, p, ... \}$. We can also represent this path using $\ag{\af{p}}$. However, these CTL formulas cannot restrict the path to hold $p$ in the even position. Therefore, we cannot write a CTL formula that can represent a path that satisfies $p$ to be true in the even position. 
+
     
   \end{enumerate}
   \hfill (2+2+3+3+4 pts)
