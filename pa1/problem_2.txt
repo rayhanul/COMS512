@@ -1,0 +1,27 @@
+
+
+MODULE main
+
+ 
+VAR 
+	xoba: {isi, iju};
+	yoba: {isi, iju};
+	zoba: {isi, iju};
+	xoba_padawan : {isi, iju};
+	yoba_padawan : {isi, iju};
+	zoba_padawan : {isi, iju};
+	move_sister : {mv_xoba, mv_yoba, mv_zoba};
+	move_pedawan : {mv_xoba_pedawan, mv_yoba_pedawan, mv_zoba_pedawan};
+	vesel:{isi, iju};
+	
+	
+
+ASSIGN
+	init(xoba) := isi;
+	init(yoba) := isi;
+	init(zoba) := isi;
+	init(xoba_padawan) := isi;
+	init(yoba_padawan) := isi;
+	init(zoba_padawan) := isi;
+	
+	
