@@ -6,30 +6,36 @@ MODULE main
 ASSIGN
  	init(s):=1;
 
- SPEC AG !(!proc0.y & ! proc1.y) 
- SPEC AG ((proc0.y  -> AF !proc0.y) & (proc1.y  -> AF !proc1.y)) 
+ SPEC !(EF(proc0.status=critical & proc1.status=critical))
+ SPEC AG ((proc0.status=wait  -> AF proc0.status=critical) & (proc1.status=wait  -> AF proc1.status=critical)) 
 
 
-MODULE user_process(s, y_i,i)
+MODULE user_process(s, y_o, i)
 
 VAR
 	y : boolean;
-	y_other:boolean;
+	y_other : boolean;
+	status : {noncritical, wait, critical};
 
 ASSIGN
 	init(y) := FALSE;
-	init(y_other) := y_i;
+	init(y_other) := y_o;
+	init(status) := noncritical ;
 	
 	next(s):=case
-		y_other = FALSE | s != i : i ;
 		TRUE: i;
 	esac;
-	
+
+	next(status) := case 
+			y_other = FALSE | s != i : critical ; 
+			TRUE: wait ;
+		esac;
+
+
 	next(y):=case
 		y_other = FALSE | s != i : TRUE ;
-		TRUE: y ;
+		TRUE: FALSE ;
 	esac;	
-
 
 FAIRNESS
 	running;
