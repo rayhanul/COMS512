@@ -7,7 +7,7 @@ ASSIGN
  	init(s):=1;
 
  SPEC AG !(!proc0.y & ! proc1.y) 
- <-- SPEC AG ((proc0.y  -> AF !proc0.y) & (proc1.y  -> AF !proc1.y)) -->
+ SPEC AG ((proc0.y  -> AF !proc0.y) & (proc1.y  -> AF !proc1.y)) 
 
 
 MODULE user_process(s, y_i,i)
