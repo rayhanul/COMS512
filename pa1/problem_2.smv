@@ -8,6 +8,7 @@ VAR
 	xoba_padawan : {isi, iju};
 	yoba_padawan : {isi, iju};
 	zoba_padawan : {isi, iju};
+
 	move_1 : {mv_xoba, mv_yoba, mv_zoba, mv_xoba_pedawan, mv_yoba_pedawan, mv_zoba_pedawan};
 	move_2 : {mv_xoba, mv_yoba, mv_zoba, mv_xoba_pedawan, mv_yoba_pedawan, mv_zoba_pedawan};
 
@@ -23,42 +24,58 @@ ASSIGN
 	init(xoba_padawan) := isi;
 	init(yoba_padawan) := isi;
 	init(zoba_padawan) := isi;
+	init(vessel) := isi ;
 
+	next(vessel) := case 
+		vessel = isi : { isi, iju } ;
+		vessel = iju :  { isi, iju } ;
+		TRUE: vessel;
+	esac; 
 
 	next(xoba_padawan) := case 
-					(move_1 = mv_xoba_pedawan) | (move_2 = mv_xoba_pedawan) : { isi, iju } ;
+					(move_1 = mv_xoba_pedawan) | (move_2 = mv_xoba_pedawan) & (xoba_padawan=vessel) : { isi, iju } ;
 					TRUE : xoba_padawan ;
 			esac; 
 	
 	next(yoba_padawan) := case 
-					(move_1 = mv_yoba_pedawan) | (move_2 = mv_yoba_pedawan) : {isi, iju};
+					(move_1 = mv_yoba_pedawan) | (move_2 = mv_yoba_pedawan) & (yoba_padawan=vessel): {isi, iju};
 					TRUE : yoba_padawan ;  
 			esac; 
+	
 	next(zoba_padawan) := case 
-					(move_1 = mv_zoba_pedawan) | (move_2 = mv_zoba_pedawan) : {isi, iju};
+					(move_1 = mv_zoba_pedawan) | (move_2 = mv_zoba_pedawan) & (zoba_padawan=vessel): {isi, iju};
 					TRUE : zoba_padawan ; 
 			esac; 
 
 	next(xoba) := case 
-					(move_1 = mv_xoba) | (move_2 = mv_xoba) : {isi, iju};
+					(move_1 = mv_xoba) | (move_2 = mv_xoba) & (xoba=vessel): {isi, iju};
 					TRUE : xoba ; 
 			esac; 
 	
 	next(yoba) := case 
-					(move_1 = mv_yoba) | (move_2 = mv_yoba) : {isi, iju};
+					(move_1 = mv_yoba) | (move_2 = mv_yoba) & (yoba=vessel): {isi, iju};
 					TRUE : yoba ; 
 			esac; 
+	
 	next(zoba) := case 
-					(move_1 = mv_zoba) | (move_2 = mv_zoba) : {isi, iju};
+					(move_1 = mv_zoba) | (move_2 = mv_zoba) & (zoba=vessel) : {isi, iju};
 					TRUE : zoba ; 
 			esac; 
 	
 
---FAIRNESS running;
+
 
 
 	
 --SPEC EF (xoba = iju & xoba_padawan = iju & yoba = iju & yoba_padawan = iju & zoba=iju & zoba_padawan = iju)
 
-SPEC  E [(((xoba_padawan = yoba) -> (xoba_padawan = xoba)) &((xoba_padawan =  zoba) -> (xoba_padawan = xoba)) & ((yoba_padawan = xoba) -> (yoba_padawan = yoba)) & ((yoba_padawan = zoba) -> (yoba_padawan = yoba))  & ((zoba_padawan = xoba)  -> (zoba = zoba)) & ((zoba_padawan= yoba) -> (zoba_padawan = zoba)) ) U (xoba = iju & xoba_padawan = iju & yoba = iju & yoba_padawan = iju & zoba=iju & zoba_padawan = iju)]
+--SPEC  ! E [(((xoba_padawan = yoba) -> (xoba_padawan = xoba)) &((xoba_padawan =  zoba) -> (xoba_padawan = xoba)) & ((yoba_padawan = xoba) -> (yoba_padawan = yoba)) & ((yoba_padawan = zoba) -> (yoba_padawan = yoba))  & ((zoba_padawan = xoba)  -> (zoba = zoba)) & ((zoba_padawan= yoba) -> (zoba_padawan = zoba)) ) U (xoba = iju & xoba_padawan = iju & yoba = iju & yoba_padawan = iju & zoba=iju & zoba_padawan = iju)]
 
+--SPEC  ! E [(((xoba_padawan = yoba) -> (xoba_padawan = xoba)) &((xoba_padawan =  zoba) -> (xoba_padawan = xoba)) & ((yoba_padawan = xoba) -> (yoba_padawan = yoba)) & ((yoba_padawan = zoba) -> (yoba_padawan = yoba))  & ((zoba_padawan = xoba)  -> (zoba_padawan = zoba)) & ((zoba_padawan= yoba) -> (zoba_padawan = zoba)) ) U (xoba = iju & xoba_padawan = iju & yoba = iju & yoba_padawan = iju & zoba=iju & zoba_padawan = iju)]
+
+
+SPEC  ! E [((((xoba_padawan = yoba) | (xoba_padawan =  zoba)) -> (xoba_padawan = xoba)) & (((yoba_padawan = xoba) | (yoba_padawan = zoba)) -> (yoba_padawan = yoba))  & (((zoba_padawan = xoba) | (zoba_padawan= yoba)) -> (zoba_padawan = zoba)) ) U (xoba = iju & xoba_padawan = iju & yoba = iju & yoba_padawan = iju & zoba=iju & zoba_padawan = iju)]
+
+
+
+--FAIRNESS running;

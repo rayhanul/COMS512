@@ -28,7 +28,7 @@ ASSIGN
 
 	next(vessel) := case 
 		vessel = isi : iju;
-		vessel = iju : isi;
+		vessel = iju :  isi;
 		TRUE: vessel;
 	esac; 
 
