@@ -6,9 +6,9 @@ MODULE main
 ASSIGN
  	init(s) := 1;
 
- --SPEC !(EF(proc0.status=critical & proc1.status=critical))
-SPEC AG (proc0.status=critical & proc1.status=critical)
- --SPEC AG ((proc0.status=wait  -> AF proc0.status=critical) & (proc1.status=wait  -> AF proc1.status=critical)) 
+ SPEC !EF(proc0.status=critical & proc1.status=critical)
+--SPEC EF (proc0.status=critical & proc1.status=critical)
+ SPEC  AG ((proc0.status=wait  -> AF proc0.status=critical) & (proc1.status=wait  -> AF proc1.status=critical)) 
 
 
 MODULE user_process(s, y_o, i)
@@ -29,6 +29,7 @@ ASSIGN
 
 	next(status) := case 
 			y_other = FALSE | s != i : critical ; 
+			y_other = TRUE | s = i : wait ;
 			TRUE: wait ;
 		esac;
 

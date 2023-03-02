@@ -27,8 +27,8 @@ ASSIGN
 	init(vessel) := isi ;
 
 	next(vessel) := case 
-		vessel = isi : { isi, iju } ;
-		vessel = iju :  { isi, iju } ;
+		vessel = isi : iju ;
+		vessel = iju : isi ;
 		TRUE: vessel;
 	esac; 
 
