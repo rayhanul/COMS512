@@ -1,8 +1,8 @@
 MODULE main 
 	VAR 
-		s : 0..1;
-		proc0 : process user_process(s, proc1.y, 0);
- 		proc1 : process user_process(s, proc0.y, 1);
+		s : {0, 1};
+		proc0 : process user_process(s, proc1.y_i, 0);
+ 		proc1 : process user_process(s, proc0.y_i, 1);
 ASSIGN
  	init(s) := 1;
 
@@ -11,32 +11,41 @@ ASSIGN
  SPEC  AG ((proc0.status=wait  -> AF proc0.status=critical) & (proc1.status=wait  -> AF proc1.status=critical)) 
 
 
-MODULE user_process(s, y_o, i)
+MODULE user_process(s, y_1-i, i)
 
 VAR
-	y : boolean;
-	y_other : boolean;
+	y_i : boolean;
+	--y_1-i : boolean;
 	status : {noncritical, wait, critical};
 
 ASSIGN
-	init(y) := FALSE;
-	init(y_other) := y_o;
+	init(y_i) := FALSE;
+	--init(y_1-i) := y_o;
 	init(status) := noncritical ;
 	
 	next(s):=case
-		TRUE: i;
+		status =noncritical : i;
+		--y_1-i = FALSE | s != i :  ; 
+		--y_1-i = TRUE | s = i : i ;		
+		TRUE: s;
+	esac;
+
+	next(y_i):=case
+		status=noncritical: TRUE;
+		--status=wait : TRUE;
+		status= critical & y_i= TRUE: FALSE;
+		--y_1-i = FALSE | s != i : FALSE ; 
+		--y_1-i = TRUE | s = i : TRUE ;
+		TRUE: y_i ;
 	esac;
 
 	next(status) := case 
-			y_other = FALSE | s != i : critical ; 
-			y_other = TRUE | s = i : wait ;
-			TRUE: wait ;
+
+		status=wait  & (y_1-i = FALSE | s != i) : critical ; 
+		status=noncritical  & (y_1-i = TRUE & s = i) : wait ;
+		status= critical & y_i= TRUE : noncritical;
+		TRUE: status ;
 		esac;
 
-	next(y):=case
-		y_other = FALSE | s != i : TRUE ;
-		TRUE: FALSE ;
-	esac;	
-
-FAIRNESS
+FAIRNESS 
 	running;
