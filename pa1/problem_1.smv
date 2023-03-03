@@ -15,27 +15,21 @@ MODULE user_process(s, y_1-i, i)
 
 VAR
 	y_i : boolean;
-	--y_1-i : boolean;
 	status : {noncritical, wait, critical};
 
 ASSIGN
 	init(y_i) := FALSE;
-	--init(y_1-i) := y_o;
+
 	init(status) := noncritical ;
 	
 	next(s):=case
 		status =noncritical : i;
-		--y_1-i = FALSE | s != i :  ; 
-		--y_1-i = TRUE | s = i : i ;		
 		TRUE: s;
 	esac;
 
 	next(y_i):=case
 		status=noncritical: TRUE;
-		--status=wait : TRUE;
 		status= critical & y_i= TRUE: FALSE;
-		--y_1-i = FALSE | s != i : FALSE ; 
-		--y_1-i = TRUE | s = i : TRUE ;
 		TRUE: y_i ;
 	esac;
 

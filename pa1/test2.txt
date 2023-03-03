@@ -1,0 +1,79 @@
+MODULE main
+
+ 
+VAR 
+	xoba: { isi, hyper, iju };
+	yoba: { isi, hyper, iju };
+	zoba: { isi, hyper, iju };
+	xoba_padawan : { isi, hyper, iju };
+	yoba_padawan :{ isi, hyper, iju };
+	zoba_padawan : { isi, hyper, iju };
+
+	move_1 : {mv_xoba, mv_yoba, mv_zoba, mv_xoba_pedawan, mv_yoba_pedawan, mv_zoba_pedawan};
+	move_2 : {mv_xoba, mv_yoba, mv_zoba, mv_xoba_pedawan, mv_yoba_pedawan, mv_zoba_pedawan};
+
+	vessel : { isi, hyper, iju };
+
+	
+	
+
+ASSIGN
+	init(xoba) := isi;
+	init(yoba) := isi;
+	init(zoba) := isi;
+	init(xoba_padawan) := isi;
+	init(yoba_padawan) := isi;
+	init(zoba_padawan) := isi;
+	init(vessel) := isi ;
+
+	next(vessel) := case 
+		vessel = isi & (xoba=isi | yoba=isi | zoba =isi | xoba_padawan=isi| yoba_padawan=isi | zoba_padawan=isi): hyper;
+		vessel = hyper & (xoba=hyper | yoba=hyper | zoba =hyper | xoba_padawan=hyper| yoba_padawan=hyper | zoba_padawan=hyper): {isi, iju} ;
+		vessel = iju & (xoba=iju | yoba=iju | zoba =iju | xoba_padawan=iju| yoba_padawan=iju | zoba_padawan=iju): {hyper} ;
+		TRUE: vessel;
+	esac; 
+
+	next(xoba_padawan) := case 
+					((move_1 = mv_xoba_pedawan) | (move_2 = mv_xoba_pedawan)) & (xoba_padawan=vessel) & xoba_padawan=isi : { isi, hyper };
+					((move_1 = mv_xoba_pedawan) | (move_2 = mv_xoba_pedawan)) & (xoba_padawan=vessel) & xoba_padawan=hyper : { isi, iju };
+					((move_1 = mv_xoba_pedawan) | (move_2 = mv_xoba_pedawan)) & (xoba_padawan=vessel) & xoba_padawan=iju : { hyper, iju };
+					TRUE : xoba_padawan ;
+			esac; 
+	
+	next(yoba_padawan) := case 
+					((move_1 = mv_yoba_pedawan) | (move_2 = mv_yoba_pedawan)) & (yoba_padawan=vessel) & yoba_padawan=isi : { isi, hyper };
+					((move_1 = mv_yoba_pedawan) | (move_2 = mv_yoba_pedawan)) & (yoba_padawan=vessel) & yoba_padawan=hyper : { isi, iju };
+					((move_1 = mv_yoba_pedawan) | (move_2 = mv_yoba_pedawan)) & (yoba_padawan=vessel) & yoba_padawan=iju : { hyper, iju };
+					TRUE : yoba_padawan ;  
+			esac; 
+	
+	next(zoba_padawan) := case 
+					((move_1 = mv_zoba_pedawan) | (move_2 = mv_zoba_pedawan)) & (zoba_padawan=vessel) & zoba_padawan=isi : { isi, hyper };
+					((move_1 = mv_zoba_pedawan) | (move_2 = mv_zoba_pedawan)) & (zoba_padawan=vessel) & zoba_padawan=hyper : { isi, iju };
+					((move_1 = mv_zoba_pedawan) | (move_2 = mv_zoba_pedawan)) & (zoba_padawan=vessel) & zoba_padawan=iju : { hyper, iju };
+					TRUE : zoba_padawan ; 
+			esac; 
+
+	next(xoba) := case 
+					((move_1 = mv_xoba) | (move_2 = mv_xoba)) & (xoba=vessel) & xoba=isi : { isi, hyper };
+					((move_1 = mv_xoba) | (move_2 = mv_xoba)) & (xoba=vessel) & xoba=hyper : { isi, iju };
+					((move_1 = mv_xoba) | (move_2 = mv_xoba)) & (xoba=vessel) & xoba=iju : { hyper, iju };
+					TRUE : xoba ; 
+			esac; 
+	
+	next(yoba) := case 
+					((move_1 = mv_yoba) | (move_2 = mv_yoba)) & (yoba=vessel) & yoba=isi : { isi, hyper };
+					((move_1 = mv_yoba) | (move_2 = mv_yoba)) & (yoba=vessel) & yoba=hyper : { isi, iju };
+					((move_1 = mv_yoba) | (move_2 = mv_yoba)) & (yoba=vessel) & yoba=iju : { hyper, iju };
+					TRUE : yoba ; 
+			esac; 
+	
+	next(zoba) := case 
+					((move_1 = mv_zoba) | (move_2 = mv_zoba)) & (zoba=vessel) & zoba=isi : { isi, hyper };
+					((move_1 = mv_zoba) | (move_2 = mv_zoba)) & (zoba=vessel) & zoba=hyper : { isi, iju };
+					((move_1 = mv_zoba) | (move_2 = mv_zoba)) & (zoba=vessel) & zoba=iju : { hyper, iju };
+					TRUE : zoba ; 
+			esac; 
+	
+
+SPEC  ! E [((((xoba_padawan = yoba) | (xoba_padawan =  zoba)) -> (xoba_padawan = xoba)) & (((yoba_padawan = xoba) | (yoba_padawan = zoba)) -> (yoba_padawan = yoba))  & (((zoba_padawan = xoba) | (zoba_padawan= yoba)) -> (zoba_padawan = zoba)) ) U (xoba = iju & xoba_padawan = iju & yoba = iju & yoba_padawan = iju & zoba=iju & zoba_padawan = iju)]
