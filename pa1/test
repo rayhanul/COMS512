@@ -64,3 +64,7 @@ ASSIGN
 	
 
 SPEC  ! E [((((xoba_padawan = yoba) | (xoba_padawan =  zoba)) -> (xoba_padawan = xoba)) & (((yoba_padawan = xoba) | (yoba_padawan = zoba)) -> (yoba_padawan = yoba))  & (((zoba_padawan = xoba) | (zoba_padawan= yoba)) -> (zoba_padawan = zoba)) ) U (xoba = iju & xoba_padawan = iju & yoba = iju & yoba_padawan = iju & zoba=iju & zoba_padawan = iju)]
+
+
+
+

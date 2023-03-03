@@ -12,7 +12,7 @@ VAR
 	zoba_padawan : { isi, iju };
 
 	driver : {mv_xoba_pedawan, mv_yoba_pedawan, mv_zoba_pedawan, mv_xoba, mv_yoba, mv_zoba};
-	passenger : {mv_xoba, mv_yoba, mv_zoba,  mv_xoba_pedawan, mv_yoba_pedawan, mv_zoba_pedawan, empty};
+	passenger : {mv_xoba, mv_yoba, mv_zoba,  mv_xoba_pedawan, mv_yoba_pedawan, mv_zoba_pedawan};
 
 	vessel : {isi, iju};
 
@@ -29,43 +29,38 @@ ASSIGN
 	init(vessel) := isi ;
 
 	next(vessel) := case 
-		(vessel = isi)  & ((driver= mv_xoba & xoba =vessel) | (driver= mv_yoba & yoba =vessel) | (driver= mv_zoba & zoba =vessel) | (driver= mv_xoba_pedawan & xoba_padawan =vessel) | (driver= mv_yoba_pedawan & yoba_padawan =vessel) | (driver= mv_xoba_pedawan & zoba_padawan =vessel)): iju ;
-		(vessel = iju) & ((driver= mv_xoba & xoba =vessel) | (driver= mv_yoba & yoba =vessel) | (driver= mv_zoba & zoba =vessel) | (driver= mv_xoba_pedawan & xoba_padawan =vessel) | (driver= mv_yoba_pedawan & yoba_padawan =vessel) | (driver= mv_xoba_pedawan & zoba_padawan =vessel)) : isi;
+		(vessel = isi)  & ((driver= mv_xoba & xoba =vessel) | (driver= mv_yoba & yoba =vessel) | (driver= mv_zoba & zoba =vessel) | (driver= mv_xoba_pedawan & xoba_padawan =vessel) | (driver= mv_yoba_pedawan & yoba_padawan =vessel) | (driver= mv_xoba_pedawan & zoba_padawan =vessel)):  {isi, iju};
+		(vessel = iju) & ((driver= mv_xoba & xoba =vessel) | (driver= mv_yoba & yoba =vessel) | (driver= mv_zoba & zoba =vessel) | (driver= mv_xoba_pedawan & xoba_padawan =vessel) | (driver= mv_yoba_pedawan & yoba_padawan =vessel) | (driver= mv_xoba_pedawan & zoba_padawan =vessel)) :  {isi, iju};
 		TRUE:vessel;
 	esac; 
 
 	next(xoba_padawan) := case 
-					(driver = mv_xoba_pedawan | passenger = mv_xoba_pedawan)  & (xoba_padawan=vessel) : next(vessel);
-	
+					(driver = mv_xoba_pedawan | passenger = mv_xoba_pedawan)  & (xoba_padawan=vessel) :  {isi, iju};
 					TRUE : xoba_padawan ;
 			esac; 
 	
 	next(yoba_padawan) := case 
-					(driver = mv_yoba_pedawan | passenger = mv_yoba_pedawan) & (yoba_padawan=vessel): next(vessel);
+					(driver = mv_yoba_pedawan | passenger = mv_yoba_pedawan) & (yoba_padawan=vessel):  {isi, iju};
 					TRUE : yoba_padawan ;  
 			esac; 
 	
 	next(zoba_padawan) := case 
-					(driver = mv_zoba_pedawan | passenger = mv_zoba_pedawan)  & (zoba_padawan=vessel) : next(vessel);
-
+					(driver = mv_zoba_pedawan | passenger = mv_zoba_pedawan)  & (zoba_padawan=vessel) :  {isi, iju};
 					TRUE : zoba_padawan ; 
 			esac; 
 
 	next(xoba) := case 
-					(driver = mv_xoba | passenger = mv_xoba) & (xoba=vessel) :  next(vessel);
-
+					(driver = mv_xoba | passenger = mv_xoba) & (xoba=vessel) :   {isi, iju};
 					TRUE : xoba ; 
 			esac; 
 	
 	next(yoba) := case 
-					 (driver = mv_yoba | passenger = mv_yoba) & (yoba=vessel) :   next(vessel);
-
+					 (driver = mv_yoba | passenger = mv_yoba) & (yoba=vessel) :    {isi, iju};
 					TRUE : yoba ; 
 			esac; 
 	
 	next(zoba) := case 
-				    (driver = mv_zoba | passenger = mv_zoba) & (zoba=vessel):  next(vessel);
-
+				    (driver = mv_zoba | passenger = mv_zoba) & (zoba=vessel):   {isi, iju};
 					TRUE : zoba ; 
 			esac; 
 	
