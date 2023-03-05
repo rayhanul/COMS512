@@ -1,0 +1,91 @@
+
+MODULE main
+
+ 
+VAR 
+	x: { isi, iju };
+	y: { isi, iju };
+	z: { isi, iju };
+	xp : { isi, iju };
+	yp :{ isi, iju };
+	zp : { isi, iju };
+
+	driver : {mv_x, mv_y, mv_z, mv_xp, mv_yp, mv_zp};
+	passenger : {mv_x, mv_y, mv_z, mv_xp, mv_yp, mv_zp};
+
+	vessel : {isi, iju};
+
+	
+	
+
+ASSIGN
+	init(x) := isi;
+	init(y) := isi;
+	init(z) := isi;
+	init(xp) := isi;
+	init(yp) := isi;
+	init(zp) := isi;
+	init(vessel) := isi ;
+
+	next(vessel):= case 
+			
+			vessel=isi & vessel =x & driver =mv_x & passenger != mv_yp & passenger != mv_zp : iju;
+			vessel=isi & vessel =y & driver =mv_y & passenger != mv_xp & passenger != mv_zp : iju;
+			vessel=isi & vessel =z & driver =mv_z & passenger != mv_xp & passenger != mv_yp : iju;
+			vessel=isi & vessel =xp & driver =mv_xp & passenger != mv_y & passenger != mv_z : iju;
+			vessel=isi & vessel =yp & driver =mv_yp & passenger != mv_x & passenger != mv_z : iju;
+			vessel=isi & vessel =zp & driver =mv_zp & passenger != mv_x & passenger != mv_y : iju;
+
+			vessel=iju & vessel =x & driver =mv_x & passenger != mv_yp & passenger != mv_zp : isi;
+			vessel=iju & vessel =y & driver =mv_y & passenger != mv_xp & passenger != mv_zp : isi;
+			vessel=iju & vessel =z & driver =mv_z & passenger != mv_xp & passenger != mv_yp : isi;
+			vessel=iju & vessel =xp & driver =mv_xp & passenger != mv_y & passenger != mv_z : isi;
+			vessel=iju & vessel =yp & driver =mv_yp & passenger != mv_x & passenger != mv_z : isi;
+			vessel=iju & vessel =zp & driver =mv_zp & passenger != mv_x & passenger != mv_y : isi;
+
+			TRUE:vessel;
+	esac;
+
+	next(x):= case
+			driver=mv_x &  passenger != mv_yp & passenger != mv_zp & x=vessel : next(vessel);
+			passenger=mv_x &  driver != mv_yp & driver != mv_zp & x=vessel : next(vessel);
+
+			TRUE: x;
+	esac;
+
+	next(y):= case
+			driver=mv_y &  passenger != mv_xp & passenger != mv_zp & y=vessel : next(vessel);
+			passenger=mv_y &  driver != mv_xp & driver != mv_zp & y=vessel  : next(vessel);
+			TRUE: y;
+	esac;
+
+	next(z):= case
+			driver=mv_z &  passenger != mv_xp & passenger != mv_yp & z=vessel : next(vessel);
+			passenger=mv_z &  driver != mv_xp & driver != mv_yp & z=vessel : next(vessel);
+			TRUE: z ; 
+	esac;
+
+	next(xp):= case
+			driver=mv_xp &  passenger != mv_y & passenger != mv_z & xp=vessel : next(vessel);
+			passenger=mv_xp &  driver != mv_y & driver != mv_z & xp=vessel : next(vessel);
+
+		TRUE: xp ; 
+	esac;
+
+	next(yp):= case
+			driver=mv_yp &  passenger != mv_x & passenger != mv_z & yp=vessel : next(vessel);
+			passenger=mv_yp &  driver != mv_x & driver != mv_z & yp=vessel : next(vessel);
+
+		TRUE: yp ; 
+	esac;
+
+	next(zp):= case
+			driver=mv_zp &  passenger != mv_x & passenger != mv_y & zp=vessel : next(vessel);
+			passenger=mv_zp &  driver != mv_x & driver != mv_z & zp=vessel : next(vessel);
+
+		TRUE: zp ; 
+	esac;
+
+
+
+SPEC  !E [((((xp = y) | (xp =  z)) -> (xp = x)) & (((yp = x) | (yp = z)) -> (yp = y))  & (((zp = x) | (zp= y)) -> (zp = z)) ) U (x = iju & xp = iju & y = iju & yp = iju & z=iju & zp = iju)]

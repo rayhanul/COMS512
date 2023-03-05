@@ -103,7 +103,7 @@ ASSIGN
 		TRUE: zp ; 
 	esac;
 
---	next(driver):= case
+--next(driver):= case
 --			x=vessel:mv_x;
 --			y=vessel:mv_y;
 --			z=vessel: mv_z;
