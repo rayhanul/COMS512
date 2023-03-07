@@ -2,7 +2,7 @@
 -- Verify the property that the processes do not have access to the critical section at the same time
 -- This safety property can be verified by following formula- 
 --  X: SPEC !EF(proc0.status=critical & proc1.status=critical)
--- Property X is proved to be satisfied because negation of the safety property is true 
+-- Property X is proved to be satisfied 
 
 
 -- Verify the property that whenever a process wants enter the critical section, it will always eventually be able to do so. That is, it will not wait for unbounded time.
