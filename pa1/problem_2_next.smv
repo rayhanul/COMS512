@@ -1,5 +1,11 @@
 
 
+--x:Xoba, y: Yoba, z: Zoba, xp: Xoba padawan, yp: Yoba padawan, zp: Zoba padawan. 
+
+
+--Two new variables driver and passenger are introduced here to represent who is going to move, 
+--however, even if driver is selected, if s/he is not available with the same side with vessel, in such case 
+--the selected  driver/passenger will not be moved.
 
 --The steps are provided 
 --init state : -- isu: (x,xp, y, yp, z, zp), iju: ()

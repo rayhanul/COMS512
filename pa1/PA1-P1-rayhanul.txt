@@ -1,0 +1,56 @@
+
+-- Verify the property that the processes do not have access to the critical section at the same time
+-- This safety property can be verified by following formula- 
+--  X: SPEC !EF(proc0.status=critical & proc1.status=critical)
+-- Property X is proved to be satisfied because negation of the safety property is true 
+
+
+-- Verify the property that whenever a process wants enter the critical section, it will always eventually be able to do so. That is, it will not wait for unbounded time.
+--X: SPEC  AG ((proc0.status=wait  -> AF proc0.status=critical) & (proc1.status=wait  -> AF proc1.status=critical)) 
+-- Property X is proved to be satisfied 
+
+MODULE main 
+	VAR 
+		s : {0, 1};
+		proc0 : process user_process(s, proc1.y_i, 0);
+ 		proc1 : process user_process(s, proc0.y_i, 1);
+ASSIGN
+ 	init(s) := 1;
+
+ SPEC !EF(proc0.status=critical & proc1.status=critical)
+--SPEC EF (proc0.status=critical & proc1.status=critical)
+ SPEC  AG ((proc0.status=wait  -> AF proc0.status=critical) & (proc1.status=wait  -> AF proc1.status=critical)) 
+
+
+MODULE user_process(s, y_1-i, i)
+
+VAR
+	y_i : boolean;
+	status : {noncritical, wait, critical};
+
+ASSIGN
+	init(y_i) := FALSE;
+
+	init(status) := noncritical ;
+	
+	next(s):=case
+		status =noncritical : i;
+		TRUE: s;
+	esac;
+
+	next(y_i):=case
+		status=noncritical: TRUE;
+		status= critical & y_i= TRUE: FALSE;
+		TRUE: y_i ;
+	esac;
+
+	next(status) := case 
+
+		status=wait  & (y_1-i = FALSE | s != i) : critical ; 
+		status=noncritical  & (y_1-i = TRUE & s = i) : wait ;
+		status= critical & y_i= TRUE : noncritical;
+		TRUE: status ;
+		esac;
+
+FAIRNESS 
+	running;
