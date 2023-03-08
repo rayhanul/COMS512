@@ -1,49 +1,53 @@
 
+--The specification !E [((((xp = y) | (xp =  z)) -> (xp = x)) & (((yp = x) | (yp = z)) -> (yp = y))  & (((zp = x) | (zp= y)) -> (zp = z)) ) U (x = iju & xp = iju & y = iju & yp = iju & z=iju & zp = iju)]
+
+
 
 --x:Xoba, y: Yoba, z: Zoba, xp: Xoba padawan, yp: Yoba padawan, zp: Zoba padawan. 
-
 
 --Two new variables driver and passenger are introduced here to represent who is going to move, 
 --however, even if driver is selected, if s/he is not available with the same side with vessel, in such case 
 --the selected  driver/passenger will not be moved.
 
---The steps are provided 
---init state : -- isu: (x,xp, y, yp, z, zp), iju: ()
+--There exists the following plans and each step are provided below- 
+--init state : -- isu: (x,xp, y, yp, z, zp, vessel), iju: ()
 
 --step 1 : move xp, and x to iju 
---isu:(y, yp, z, zp), iju: (x, xp)
+--isu:(y, yp, z, zp), iju: (x, xp, vessel)
 
 --step 2: move back x to isu 
---isu:(x, y, yp, z, zp), iju: (xp)
+--isu:(x, y, yp, z, zp, vessel), iju: (xp)
 
 --step 3: move yp and zp to iju  
---isu:(x, y, z), iju: (xp, yp, zp)
+--isu:(x, y, z), iju: (xp, yp, zp, vessel)
+
 
 --step 4: move back zp to isu  
---isu:(x, y, z, zp), iju: (xp, yp)
+--isu:(x, y, z, zp, vessel), iju: (xp, yp)
 
 --step 5: move x and y to iju    
---isu:(z, zp), iju: (x, xp, y, yp)
+--isu:(z, zp), iju: (x, xp, y, yp, vessel)
 
 --step 6: move back y and yp isu 
---isu:(y, yp, z, zp), iju: (x, xp)
+--isu:(y, yp, z, zp, vessel), iju: (x, xp)
 
---step 7: move y and z iju 
---isu:(yp, zp), iju: (x, xp, y, z)
+--step 7: move y and z to iju 
+--isu:(yp, zp), iju: (x, xp, y, z, vessel)
 
 --step 8: move back xp to isu 
---isu:(xp, yp, zp), iju: (x, y, z)
+--isu:(xp, yp, zp, vessel), iju: (x, y, z)
 
 --step 9: move xp and yp to iju 
---isu:(zp), iju: (x, xp, y, yp, z)
+--isu:(zp), iju: (x, xp, y, yp, z, vessel)
 
 --step 10: move back yp to isu 
---isu:(yp, zp), iju: (x, xp, y, z)
+--isu:(yp, zp, vessel), iju: (x, xp, y, z)
 
 --step 11: move yp and zp to iju 
---isu:(), iju: (x, xp, y, yp, z, zp)
+--isu:(), iju: (x, xp, y, yp, z, zp, vessel)
 
 --This moves all sisters and padawans to iju 
+
 
 MODULE main
 
