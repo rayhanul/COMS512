@@ -25,10 +25,10 @@
 --step 5: move x and y to iju    
 --isu:(z, zp), iju: (x, xp, y, yp)
 
---step 6: move back y and yp isu 
+--step 6: move back y and yp to isu 
 --isu:(y, yp, z, zp), iju: (x, xp)
 
---step 7: move y and z iju 
+--step 7: move y and z to iju 
 --isu:(yp, zp), iju: (x, xp, y, z)
 
 --step 8: move back xp to isu 
