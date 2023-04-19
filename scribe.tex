@@ -21,16 +21,14 @@
 
 \begin{document}
 
-Disproved. Consider a Kripke structure with states $s_0, s_1, s_2$ and transitions $s_0 \rightarrow s_1 \rightarrow s_2$, where $s_0$ satisfies $\lnot p$, $s_1$ satisfies $p \land \lnot q$, and $s_2$ satisfies $q$. The path $\pi = s_0 \rightarrow s_1 \rightarrow s_2$ satisfies $\lu{\lf{p}}{q}$ since $s_0$ does not satisfy $q$ and $s_1$ satisfies $p$, but there is no state where $p$ holds true before the state where $q$ holds true.
+Let's first expand the two LTL formulas:
 
-Proved. $\ax{\af{p}}$ means that for every path starting from the current state, $p$ eventually holds true along the path. $\lf{\lx{p}}$ means that in all next states from the current state, $p$ holds true. Thus, if the current state satisfies $\ax{\af{p}}$, then in particular, $p$ eventually holds true along any path starting from the current state. Therefore, in any next state, $p$ must hold true since it eventually holds true along all paths, which satisfies $\lf{\lx{p}}$. Conversely, if the current state satisfies $\lf{\lx{p}}$, then in all next states, $p$ holds true, so in particular, $p$ eventually holds true along any path starting from the current state. Therefore, the current state satisfies $\ax{\af{p}}$.
+$\lu{(\neg q)}{(\neg p \land \neg q)}$ means that at some point in the future, $\neg q$ holds and until that point, both $\neg p$ and $\neg q$ hold.
+$\neg \lu{p}{q}$ means that it is not the case that $p$ holds until $q$ holds.
+Now, let's assume that a state satisfies $\lu{(\neg q)}{(\neg p \land \neg q)}$. This means that there exists a future time $t$ at which $\neg q$ holds and until that time, both $\neg p$ and $\neg q$ hold.
 
-Proved. To show that $\lf{\llg{p}} \Rightarrow \llg{\lf{p}}$ is equivalent to propositional constant true, we need to show that for any Kripke structure and any state, the formula is always satisfied. Suppose a Kripke structure has a state $s$ that does not satisfy $\lf{p}$, then by definition of $\lf{}$, there is some next state $s'$ such that $p$ does not hold true in $s'$. Then, since $s'$ is a successor of $s$, we have $\llg{p}$ is false in $s$. Thus, $\lf{\llg{p}}$ is true in $s$ since $\llg{p}$ is false in some future state of $s$, and $\llg{\lf{p}}$ is also true in $s$ since the globally true $p$ is also locally true in all future states of $s$. Therefore, $\lf{\llg{p}} \Rightarrow \llg{\lf{p}}$ is true in all states of the Kripke structure, which means the formula is equivalent to propositional constant true.
+Suppose for the sake of contradiction that the state also satisfies $\lu{p}{q}$, which means that $p$ holds until $q$ holds. Since $\neg p$ holds until the time $t$ and $p$ holds until $q$ holds, we have that $\neg q$ holds until $q$ holds. But this contradicts the fact that at time $t$, $\neg q$ holds. Therefore, the state cannot satisfy $\lu{p}{q}$.
 
-
-
-
-
-
+In conclusion, if a state satisfies $\lu{(\neg q)}{(\neg p \land \neg q)}$, then it satisfies $\neg \lu{p}{q}$.
 
 \end{document}
