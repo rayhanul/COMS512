@@ -289,6 +289,16 @@ Here, $s_1 \models \ef{\neg p}$, but it does not satisfy $\lf{\neg p}$ because t
     
 \textbf{Answer}:
 
+When a state satisfies $\lu{(\neg q)}{(\neg p \land \neg q)} $, it means all paths starting from that state satisfies $(\neg p \land \neg q)$ immediately or it satisfies $\neg q$ untill it reaches to $(\neg p \land \neg q)$
+
+Similarly, $\neg \lu{p}{q}$ is satisfied in a state if all paths starting from that state do not satisfy $\lu{p}{q}$, which means the paths are in the form: $G(p \land \neg q)$ or we can say that it never reaches to $q$ in any paths. 
+
+
+As both always satisfy $\neg q$, we can say that a state satisfies $\lu{(\neg q)}{(\neg p \land \neg q)} $ implies
+    that the state satisfies $\neg \lu{p}{q}$.
+    
+\textbf{Second explanation:}
+
 $\neg \lu{p}{q}$ can be written as $\lu{(p \land \neg q)}{(\neg p \land \neg q)} \lor \llg{p \land \neg q}$.
 
 
@@ -301,6 +311,10 @@ $\neg \lu{p}{q}$ can be written as $\lu{(p \land \neg q)}{(\neg p \land \neg q)}
 Here, $\neg \lu{p}{q}$ is satisfied if $\lu{p}{q}$ is not satisfied, which means $\llg{p \land \neg q}$ is satisfied. In other words, $p$ is satisfied globally. 
 
 As $\neg (\lu{(\neg q)}{(\neg p \land \neg q)})$ is satisfied if $(p \lor q)$ holds, therefore $\lu{(\neg q)}{\neg (p \lor q)}  \Rightarrow \neg \lu{p}{q}$  holds. 
+
+
+
+
 
 We can say that a state satisfies $\lu{(\neg q)}{(\neg p \land \neg q)} $ implies
     that the state satisfies $\neg \lu{p}{q}$.
