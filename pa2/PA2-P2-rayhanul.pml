@@ -32,9 +32,9 @@ N    Time (sec)
 
 *** I failed to run for N=8,9 and 10 because either process is killed or terminal closed automatically. 
 
-From the pattern of N and Time, it is clear that the needed time increases with the increase of N. 
-This happens because the number of states grows with N and DFS algorithm takes more time to find solution.
-
+From the pattern of N and Time, it is clear that the needed time for verifying a given property along with 
+the number of states and memory increase as N increases. Therefore, DFS algorithm takes more time to find solution 
+from the high volumn of state space, which results the increase in the time of verifying any property. 
 */
 
 

@@ -1,6 +1,11 @@
 
 
+/**
+This verifies the Needham-Schroeder protocol.
 
+
+
+ */
 
 
 
@@ -23,14 +28,14 @@ mtype partnerB;
 
 mtype statusA = err;
 bool knows_nonceA, knows_nonceB;
-mtype statusB;
+mtype statusB = err;
 
 active proctype Alice(){
     mtype pkey, pnonce; 
     Crypt data; 
 
     if  /* choose a partner for this run */
-        :: partnerA=agentB; pkey=keyA;
+        :: partnerA=agentB; pkey=keyB;
         :: partnerA=agentI; pkey=keyI;
     fi;
 
@@ -54,17 +59,25 @@ active proctype Bob() {
     mtype pkey, pnonce;
     Crypt data;
     // read channel data
-    network ? msg3, partnerB, data;
+    network ? msg1, agentB, data;
     // set to channel 
-    (data.info1==agentA) && (data.info2==nonceA);
+    // if  /* choose a partner for this run */
+    //     :: partnerB=agentA; pkey=keyA;
+    //     :: partnerB=agentI; pkey=keyI;
+    // fi;
+    partnerB = data.info1;
+
+    (data.key==keyB);
     pnonce=data.info2;
-    partnerB=agentA;
-    data.key = keyB; data.info1 = agentB; data.info2 = nonceB;
-    network ! msg3, partnerB, nonceB;
+    Crypt data2;
+    data2.key = pkey; data2.info1 = pnonce; data2.info2 = nonceB;
+    network ! msg2, partnerB, data2;
 
     //read channel data 
-    network ? msg3, partnerB, data;
-    (data.info1==nonceB);
+    network ? msg3, agentB, data;
+    (data.key == keyB) && (data.info1 == nonceB);
+
+    // (data.info1==nonceB);
     statusB = ok;
 }
 
@@ -115,23 +128,23 @@ active proctype Intruder() {
     od;
 }
 
-ltl part2 { [] (statusA && statusB) }
+ltl part2 { [] (statusA ==ok && statusB == ok -> (partnerA==agentB <-> partnerB==agentA))}
 
 
 
-init{
-    // keyA = 1;
-    // keyB = 2;
-    // keyI = 3;
-    // agentA = 4;
-    // agentB = 5;
-    // agentI = 6;
-    // nonceA = 7;
-    // nonceB = 8;
-    // nonceI = 9;
+// init{
+//     // keyA = 1;
+//     // keyB = 2;
+//     // keyI = 3;
+//     // agentA = 4;
+//     // agentB = 5;
+//     // agentI = 6;
+//     // nonceA = 7;
+//     // nonceB = 8;
+//     // nonceI = 9;
 
-    run Alice();
-    run Bob();
-    run Intruder();
+//     run Alice();
+//     run Bob();
+//     run Intruder();
 
-}
+// }
