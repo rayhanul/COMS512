@@ -1,37 +1,41 @@
+/** 
+The steps of moving male frog to the place of female frog and moving female frog to the male frog's place. 
 
+                              Female Frog jumps from 4 to 3
+                          Male Frog jumps from 2 to 4
+                      Female Frog jumps from 5 to 3
+                  Male Frog jumps from 1 to 2
+              Female Frog jumps from 6 to 5
+          Male Frog jumps from 0 to 2
+                              Female Frog jumps from 3 to 1
+                          Male Frog jumps from 4 to 6
+                  Male Frog jumps from 2 to 4
+                              Female Frog jumps from 1 to 0
+                      Female Frog jumps from 3 to 1
+              Female Frog jumps from 5 to 3
+                          Male Frog jumps from 6 to 7
+                  Male Frog jumps from 4 to 5
+          Male Frog jumps from 2 to 4
+                              Female Frog jumps from 0 to -1
+                      Female Frog jumps from 1 to 0
+              Female Frog jumps from 3 to 2
+                  Male Frog jumps from 5 to 6
+          Male Frog jumps from 4 to 5
 
+The time needed for different value of N is provided below:
+N    Time (sec) 
+3    0.01
+4    0.09 
+5    0.32
+6    10.2
+7    32.4
 
-        //                       Female Frog jumps from 4 to 3
-        //                   Male Frog jumps from 2 to 4
-        //               Female Frog jumps from 5 to 3
-        //           Male Frog jumps from 1 to 2
-        //       Female Frog jumps from 6 to 5
-        //   Male Frog jumps from 0 to 2
-        //                       Female Frog jumps from 3 to 1
-        //                   Male Frog jumps from 4 to 6
-        //           Male Frog jumps from 2 to 4
-        //                       Female Frog jumps from 1 to 0
-        //               Female Frog jumps from 3 to 1
-        //       Female Frog jumps from 5 to 3
-        //                   Male Frog jumps from 6 to 7
-        //           Male Frog jumps from 4 to 5
-        //   Male Frog jumps from 2 to 4
-        //                       Female Frog jumps from 0 to -1
-        //               Female Frog jumps from 1 to 0
-        //       Female Frog jumps from 3 to 2
-        //           Male Frog jumps from 5 to 6
-        //   Male Frog jumps from 4 to 5
+*** I failed to run for N=8,9 and 10 because either process is killed or terminal closed automatically. 
 
+From the pattern of N and Time, it is clear that the needed time increases with the increase of N. 
+This happens because the number of states grows with N and DFS algorithm takes more time to find solution.
 
-// N    Time (sec) 
-// 3    0.01
-// 4    0.09 
-// 5    0.32
-// 6    10.2
-// 7    32.4
-
-// From the pattern of N and TIme, it is clear that the needed time increases with the increase of N. 
-// This happens because the number of states grows with N and DFS algorithm takes more time to find solution.
+*/
 
 
 #define STONES 7
