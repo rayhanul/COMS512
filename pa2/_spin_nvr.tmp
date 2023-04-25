@@ -1,0 +1,9 @@
+never ltl_0 {    /* !([] (! (((((((stones[0]==female)) && ((stones[1]==female))) && ((stones[2]==female))) && ((stones[4]==male))) && ((stones[5]==male))) && ((stones[6]==male))))) */
+T0_init:
+	do
+	:: atomic { (! ((! (((((((stones[0]==female)) && ((stones[1]==female))) && ((stones[2]==female))) && ((stones[4]==male))) && ((stones[5]==male))) && ((stones[6]==male)))))) -> assert(!(! ((! (((((((stones[0]==female)) && ((stones[1]==female))) && ((stones[2]==female))) && ((stones[4]==male))) && ((stones[5]==male))) && ((stones[6]==male))))))) }
+	:: (1) -> goto T0_init
+	od;
+accept_all:
+	skip
+}
