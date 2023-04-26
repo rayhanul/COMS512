@@ -57,30 +57,34 @@ mtype stones[STONES];
 ltl { []!success }
 
 inline jump_one_step_male_Frog(position){
-	printf("Male Frog jumps from %d to %d\n", position, position+1);
+	
 	atomic{
+		printf("Male Frog jumps from %d to %d\n", position, position+1);
 		(position < STONES-1) && (stones[position+1]==none) --> stones[position]=none; stones[position+1]=male; position=position+1;  
 	}
 }
 
 inline jump_two_step_male_Frog(position){
-	printf("Male Frog jumps from %d to %d\n", position, position+2);
+	
 	atomic{
+		printf("Male Frog jumps from %d to %d\n", position, position+2);
 		(position < STONES-2) && (stones[position+1] != none) &&  (stones[position+2]==none) --> stones[position]=none; stones[position+2]=male; position=position+2;  
 	}
 }
 
 inline jump_one_step_female_Frog(position){
-	printf("Female Frog jumps from %d to %d\n", position, position-1);
+	
 	atomic{
-			(position > 0) && (stones[position-1] == none) -> stones[position] = none; stones[position-1] = female; position = position - 1;
+		printf("Female Frog jumps from %d to %d\n", position, position-1);
+		(position > 0) && (stones[position-1] == none) -> stones[position] = none; stones[position-1] = female; position = position - 1;
 	}
 }
 
 inline jump_two_step_female_Frog(position){
-	printf("Female Frog jumps from %d to %d\n", position, position-2);
+	
 	atomic{
-			(position > 1) && (stones[position-1] != none) && (stones[position-2] == none) -> stones[position] = none; stones[position-2] = female; position = position - 2;
+		printf("Female Frog jumps from %d to %d\n", position, position-2);
+		(position > 1) && (stones[position-1] != none) && (stones[position-2] == none) -> stones[position] = none; stones[position-2] = female; position = position - 2;
 	}
 }
 
