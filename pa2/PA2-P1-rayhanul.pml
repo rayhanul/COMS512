@@ -31,7 +31,7 @@ mtype statusB ;
 
 active proctype Alice(){
     mtype pkey, pnonce; 
-    Crypt data; 
+    Crypt data, data2, data3; 
 
     if  /* choose a partner for this run */
         :: partnerA=agentB; pkey=keyB;
@@ -42,13 +42,12 @@ active proctype Alice(){
 
     network ! msg1, partnerA, data;
 
-    network ? msg2, agentA, data;
+    network ? msg2, agentA, data2;
+    (data2.key==keyA) && (data2.info1==nonceA);
+    pnonce=data2.info2;
 
-    (data.key==keyA) && (data.info1==nonceA);
-    pnonce=data.info2;
-    Crypt data2;
-    data2.key=pkey; data2.info1=pnonce; data2.info2=0;
-    network ! msg3, partnerA, data2;
+    data3.key=pkey; data3.info1=pnonce; data3.info2=0;
+    network ! msg3, partnerA, data3;
     statusA = ok;
 }
 
@@ -91,7 +90,13 @@ active proctype Intruder() {
                 :: (data.info1 == nonceA) || (data.info2 == nonceA) -> knows_nonceA = true;
                 :: else -> skip;
                 fi;
-        /* similar for knows_nonceB */
+            /* similar for knows_nonceB */
+            :: (data.key == keyI) ->
+                if
+                :: (data.info1 == nonceA) || (data.info2 == nonceB) -> knows_nonceB = true;
+                :: else -> skip;
+                fi;
+        
             :: else -> skip;
         fi;
             :: /* Replay or send a message */
@@ -115,6 +120,26 @@ active proctype Intruder() {
             :: data.info1 = nonceI;
         fi;
         /* similar for data.info2 and data.key */
+        :: if
+            :: data.info2 = agentA;
+            :: data.info2 = agentB;
+            :: data.info2 = agentI;
+            :: knows_nonceA -> data.info2 = nonceA;
+            :: knows_nonceB -> data.info2 = nonceB;
+            :: data.info2 = nonceI;
+        fi;
+
+        :: if
+            :: data.key = keyA;
+            :: data.key = keyB;
+            :: data.key = keyI;
+            :: knows_nonceA -> data.key = nonceA;
+            :: knows_nonceB -> data.key = nonceB;
+            :: data.key = nonceI;
+        fi;
+
+        /**end of update */
+        
         fi;
             network ! msg, recpt, data;
     od;
@@ -126,10 +151,3 @@ active proctype Intruder() {
 
 //ltl part2_3 {[] (statusB==ok && statusA==ok -> ! knows_nonceB)}
 
-init{
-
-    run Alice();
-    run Bob();
-    run Intruder();
-
-}

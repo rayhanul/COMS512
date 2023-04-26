@@ -1,7 +1,7 @@
-never ltl_0 {    /* !([] (! (((((((stones[0]==female)) && ((stones[1]==female))) && ((stones[2]==female))) && ((stones[4]==male))) && ((stones[5]==male))) && ((stones[6]==male))))) */
+never part2 {    /* !([] ((! (((statusA==ok)) && ((statusB==ok)))) || (((partnerA==agentB)) <-> ((partnerB==agentA))))) */
 T0_init:
 	do
-	:: atomic { (! ((! (((((((stones[0]==female)) && ((stones[1]==female))) && ((stones[2]==female))) && ((stones[4]==male))) && ((stones[5]==male))) && ((stones[6]==male)))))) -> assert(!(! ((! (((((((stones[0]==female)) && ((stones[1]==female))) && ((stones[2]==female))) && ((stones[4]==male))) && ((stones[5]==male))) && ((stones[6]==male))))))) }
+	:: atomic { (((! ((! (((statusA==ok)) && ((statusB==ok))))) && ! (((partnerB==agentA))) && ((partnerA==agentB))) || (! ((! (((statusA==ok)) && ((statusB==ok))))) && ! (((partnerA==agentB))) && ((partnerB==agentA))))) -> assert(!(((! ((! (((statusA==ok)) && ((statusB==ok))))) && ! (((partnerB==agentA))) && ((partnerA==agentB))) || (! ((! (((statusA==ok)) && ((statusB==ok))))) && ! (((partnerA==agentB))) && ((partnerB==agentA)))))) }
 	:: (1) -> goto T0_init
 	od;
 accept_all:
