@@ -17,8 +17,7 @@ mtype = { ok, err, msg1, msg2, msg3, keyA, keyB, keyI, agentA, agentB, agentI, n
 typedef Crypt { 
         mtype key;
         mtype info1;
-        mtype info2;
-        mtype who_sending 
+        mtype info2 
     };
 
 chan network = [0] of {mtype, mtype, Crypt}; 
@@ -39,14 +38,14 @@ active proctype Alice(){
         :: partnerA=agentI; pkey=keyI;
     fi;
 
-    data.key = pkey; data.info1 = agentA; data.info2 = nonceA; data.who_sending=agentA;
+    data.key = pkey; data.info1 = agentA; data.info2 = nonceA;
 
     network ! msg1, partnerA, data;
 
     network ? msg2, agentA, data2;
-    (data2.key==keyA) && (data2.info1==nonceA) ;
+    (data2.key==keyA) && (data2.info1==nonceA);
     pnonce=data2.info2;
-// && (data2.info2==nonceB)
+
     data3.key=pkey; data3.info1=pnonce; data3.info2=0;
     network ! msg3, partnerA, data3;
     statusA = ok;
@@ -58,20 +57,21 @@ active proctype Bob() {
     Crypt data;
 
     network ? msg1, agentB, data;
-
-    (data.key==keyB) && (data.info2==nonceA);
-    partnerB = data.info1;
+    (data.key==keyB);
     pnonce=data.info2;
+    // partnerB = data.info1;
+
     if  /* choose a partner for this run */
-        :: partnerA=agentB; pkey=keyB;
-        :: partnerA=agentI; pkey=keyI;
+        :: partnerB=agentA; pkey=keyB;
+        :: partnerB=agentI; pkey=keyI;
     fi;
     Crypt data2;
-    data2.key = pkey; data2.info1 = pnonce; data2.info2 = nonceB; data2.who_sending=agentB;
+    data2.key = pkey; data2.info1 = pnonce; data2.info2 = nonceB;
     network ! msg2, partnerB, data2;
 
     network ? msg3, agentB, data;
     (data.key == keyB) && (data.info1 == nonceB);
+
     statusB = ok;
 }
 
@@ -84,7 +84,7 @@ active proctype Intruder() {
     do
         :: network ? (msg, _, data) ->
         if /* perhaps store the message */
-            :: intercepted.key = data.key; intercepted.info1 = data.info1; intercepted.info2 = data.info2; intercepted.who_sending=data.who_sending;
+            :: intercepted.key = data.key; intercepted.info1 = data.info1; intercepted.info2 = data.info2; 
             :: skip;
         fi;
         if /* record newly learnt nonces */
@@ -113,7 +113,7 @@ active proctype Intruder() {
                 :: recpt = agentB;
             fi;
         if /* replay intercepted message or assemble it */
-        :: data.key = intercepted.key; data.info1 = intercepted.info1; data.info2 = intercepted.info2; data.who_sending=intercepted.who_sending;
+        :: data.key = intercepted.key; data.info1 = intercepted.info1; data.info2 = intercepted.info2; 
         :: if
             :: data.info1 = agentA;
             :: data.info1 = agentB;
@@ -140,14 +140,7 @@ active proctype Intruder() {
             :: knows_nonceB -> data.key = nonceB;
             :: data.key = nonceI;
         fi;
-        :: if
-            :: data.who_sending = agentA;
-            :: data.who_sending = agentB;
-            :: data.who_sending = agentI;
-            // :: knows_nonceA -> data.who_sending = nonceA;
-            // :: knows_nonceB -> data.who_sending = nonceB;
-            // :: data.who_sending = nonceI;
-        fi;
+
         /**end of update */
         
         fi;
