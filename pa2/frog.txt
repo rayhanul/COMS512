@@ -226,3 +226,36 @@ pan: elapsed time 0 seconds
 		stones[18] = female;
 		stones[19] = female;
 		stones[20] = female;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		 Female Frog jumps from 4 to 3
+                                  Female Frog jumps from 3 to 1
+                              Male Frog jumps from 2 to 4
+                              Male Frog jumps from 4 to 6
+                          Female Frog jumps from 5 to 3
+                      Male Frog jumps from 1 to 2
+                                  Female Frog jumps from 1 to 0
+                          Female Frog jumps from 3 to 1
+                      Male Frog jumps from 2 to 4
+                  Female Frog jumps from 6 to 5
+                              Male Frog jumps from 6 to 7
+                      Male Frog jumps from 4 to 5
+                  Female Frog jumps from 5 to 3
+              Male Frog jumps from 0 to 2
+                                  Female Frog jumps from 0 to -1
+                          Female Frog jumps from 1 to 0
+                      Male Frog jumps from 5 to 6
+                  Female Frog jumps from 3 to 2
+              Male Frog jumps from 2 to 4
