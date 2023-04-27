@@ -93,7 +93,7 @@ active proctype Intruder() {
             /* similar for knows_nonceB */
             :: (data.key == keyI) ->
                 if
-                :: (data.info1 == nonceA) || (data.info2 == nonceB) -> knows_nonceB = true;
+                :: (data.info1 == nonceB) || (data.info2 == nonceB) -> knows_nonceB = true;
                 :: else -> skip;
                 fi;
         
