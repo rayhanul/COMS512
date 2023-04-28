@@ -1,24 +1,10 @@
 
 
-/**
-This verifies the Needham-Schroeder protocol.
-
-
-
- */
-
-
-
-
-
-
-
 mtype = { ok, err, msg1, msg2, msg3, keyA, keyB, keyI, agentA, agentB, agentI, nonceA, nonceB, nonceI }; 
 typedef Crypt { 
         mtype key;
         mtype info1;
         mtype info2;
-        mtype who_sending 
     };
 
 chan network = [0] of {mtype, mtype, Crypt}; 
@@ -39,12 +25,12 @@ active proctype Alice(){
         :: partnerA=agentI; pkey=keyI;
     fi;
 
-    data.key = pkey; data.info1 = agentA; data.info2 = nonceA; data.who_sending=agentA;
+    data.key = pkey; data.info1 = agentA; data.info2 = nonceA; 
 
     network ! msg1, partnerA, data;
 
     network ? msg2, agentA, data2;
-    (data2.key==keyA) && (data2.info1==nonceA) ;
+    (data2.key==pkey) && (data2.info1==nonceA) ;
     pnonce=data2.info2;
 // && (data2.info2==nonceB)
     data3.key=pkey; data3.info1=pnonce; data3.info2=0;
@@ -59,7 +45,7 @@ active proctype Bob() {
 
     network ? msg1, agentB, data;
 
-    (data.key==keyB) && (data.info2==nonceA);
+    (data.key==keyB) && (data.info2==nonceA) ;
     partnerB = data.info1;
     pnonce=data.info2;
     if  /* choose a partner for this run */
@@ -67,7 +53,7 @@ active proctype Bob() {
         :: partnerA=agentI; pkey=keyI;
     fi;
     Crypt data2;
-    data2.key = pkey; data2.info1 = pnonce; data2.info2 = nonceB; data2.who_sending=agentB;
+    data2.key = pkey; data2.info1 = pnonce; data2.info2 = nonceB; 
     network ! msg2, partnerB, data2;
 
     network ? msg3, agentB, data;
@@ -84,7 +70,7 @@ active proctype Intruder() {
     do
         :: network ? (msg, _, data) ->
         if /* perhaps store the message */
-            :: intercepted.key = data.key; intercepted.info1 = data.info1; intercepted.info2 = data.info2; intercepted.who_sending=data.who_sending;
+            :: intercepted.key = data.key; intercepted.info1 = data.info1; intercepted.info2 = data.info2; 
             :: skip;
         fi;
         if /* record newly learnt nonces */
@@ -113,7 +99,7 @@ active proctype Intruder() {
                 :: recpt = agentB;
             fi;
         if /* replay intercepted message or assemble it */
-        :: data.key = intercepted.key; data.info1 = intercepted.info1; data.info2 = intercepted.info2; data.who_sending=intercepted.who_sending;
+        :: data.key = intercepted.key; data.info1 = intercepted.info1; data.info2 = intercepted.info2; 
         :: if
             :: data.info1 = agentA;
             :: data.info1 = agentB;
@@ -139,14 +125,6 @@ active proctype Intruder() {
             :: knows_nonceA -> data.key = nonceA;
             :: knows_nonceB -> data.key = nonceB;
             :: data.key = nonceI;
-        fi;
-        :: if
-            :: data.who_sending = agentA;
-            :: data.who_sending = agentB;
-            :: data.who_sending = agentI;
-            // :: knows_nonceA -> data.who_sending = nonceA;
-            // :: knows_nonceB -> data.who_sending = nonceB;
-            // :: data.who_sending = nonceI;
         fi;
         /**end of update */
         

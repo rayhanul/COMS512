@@ -1,5 +1,7 @@
 /** 
-The steps of moving male frog to the place of female frog and moving female frog to the male frog's place. 
+The output steps of moving male frog to the place of female frog and moving female 
+frog to the male frog's place are provided below- 
+
 
       Male Frog jumps from 2 to 3
       Female Frog jumps from 4 to 2

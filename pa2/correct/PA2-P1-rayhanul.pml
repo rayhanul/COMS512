@@ -6,9 +6,10 @@ finds an path to break the protocol.
 
 Ways to correct the protocol: 
 
-The incorrect version makes decision of whom it is communicating with by checking nonce, however that's not enough,
-therefore, Agent Bob's information can be added to the message two like (B, N_A, N_B) to send it to Alice. Similarly
-whenever it receives message, it should checks the senders to decide if it is communicating with an intruder or not. 
+The incorrect version identifies partner by checking nonce (N_a or N_B), however that's not enough,
+therefore, agent, Bob's information can be added to the message like (B, N_A, N_B) to send
+ it to Alice. Whenever any agent (Alice or Bob) receives message, it should checks the senders information in
+ addition to checking nonce to decide if it is communicating with an intruder or not. 
 
  */
 

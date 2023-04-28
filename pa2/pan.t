@@ -22,296 +22,206 @@ settable(void)
 {	Trans *T;
 	Trans *settr(int, int, int, int, int, char *, int, int, int);
 
-	trans = (Trans ***) emalloc(4*sizeof(Trans **));
+	trans = (Trans ***) emalloc(5*sizeof(Trans **));
 
-	/* proctype 2: ltl_0 */
+	/* proctype 3: part2 */
 
-	trans[2] = (Trans **) emalloc(11*sizeof(Trans *));
+	trans[3] = (Trans **) emalloc(11*sizeof(Trans *));
 
-	trans[2][7]	= settr(171,0,6,1,0,".(goto)", 0, 2, 0);
-	T = trans[2][6] = settr(170,0,0,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(170,0,3,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(170,0,4,0,0,"DO", 0, 2, 0);
-	T = trans[ 2][3] = settr(167,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(167,2,1,0,0,"ATOMIC", 1, 2, 0);
-	trans[2][1]	= settr(165,0,6,3,3,"(!(!(((((((stones[0]==female)&&(stones[1]==female))&&(stones[2]==female))&&(stones[4]==male))&&(stones[5]==male))&&(stones[6]==male)))))", 1, 2, 0); /* m: 2 -> 6,0 */
-	reached2[2] = 1;
-	trans[2][2]	= settr(0,0,0,0,0,"assert(!(!(!(((((((stones[0]==female)&&(stones[1]==female))&&(stones[2]==female))&&(stones[4]==male))&&(stones[5]==male))&&(stones[6]==male))))))",0,0,0);
-	trans[2][4]	= settr(168,0,6,1,0,"(1)", 0, 2, 0);
-	trans[2][5]	= settr(169,0,6,1,0,"goto T0_init", 0, 2, 0);
-	trans[2][8]	= settr(172,0,9,1,0,"break", 0, 2, 0);
-	trans[2][9]	= settr(173,0,10,1,0,"(1)", 0, 2, 0);
-	trans[2][10]	= settr(174,0,0,4,4,"-end-", 0, 3500, 0);
+	trans[3][7]	= settr(118,0,6,1,0,".(goto)", 0, 2, 0);
+	T = trans[3][6] = settr(117,0,0,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(117,0,3,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(117,0,4,0,0,"DO", 0, 2, 0);
+	T = trans[ 3][3] = settr(114,2,0,0,0,"ATOMIC", 1, 2, 0);
+	T->nxt	= settr(114,2,1,0,0,"ATOMIC", 1, 2, 0);
+	trans[3][1]	= settr(112,0,6,3,3,"((((!(!(((statusA==ok)&&(statusB==ok))))&&!((partnerB==agentA)))&&(partnerA==agentB))||((!(!(((statusA==ok)&&(statusB==ok))))&&!((partnerA==agentB)))&&(partnerB==agentA))))", 1, 2, 0); /* m: 2 -> 6,0 */
+	reached3[2] = 1;
+	trans[3][2]	= settr(0,0,0,0,0,"assert(!((((!(!(((statusA==ok)&&(statusB==ok))))&&!((partnerB==agentA)))&&(partnerA==agentB))||((!(!(((statusA==ok)&&(statusB==ok))))&&!((partnerA==agentB)))&&(partnerB==agentA)))))",0,0,0);
+	trans[3][4]	= settr(115,0,6,1,0,"(1)", 0, 2, 0);
+	trans[3][5]	= settr(116,0,6,1,0,"goto T0_init", 0, 2, 0);
+	trans[3][8]	= settr(119,0,9,1,0,"break", 0, 2, 0);
+	trans[3][9]	= settr(120,0,10,1,0,"(1)", 0, 2, 0);
+	trans[3][10]	= settr(121,0,0,4,4,"-end-", 0, 3500, 0);
 
-	/* proctype 1: :init: */
+	/* proctype 2: Intruder */
 
-	trans[1] = (Trans **) emalloc(9*sizeof(Trans *));
+	trans[2] = (Trans **) emalloc(75*sizeof(Trans *));
 
-	trans[1][1]	= settr(157,0,2,5,5,"stones[0] = male", 1, 2, 0);
-	trans[1][2]	= settr(158,0,3,6,6,"stones[1] = male", 1, 2, 0);
-	trans[1][3]	= settr(159,0,4,7,7,"stones[2] = male", 1, 2, 0);
-	trans[1][4]	= settr(160,0,5,8,8,"stones[3] = none", 1, 2, 0);
-	trans[1][5]	= settr(161,0,6,9,9,"stones[4] = female", 1, 2, 0);
-	trans[1][6]	= settr(162,0,7,10,10,"stones[5] = female", 1, 2, 0);
-	trans[1][7]	= settr(163,0,8,11,11,"stones[6] = female", 1, 2, 0);
-	trans[1][8]	= settr(164,0,0,12,12,"-end-", 0, 3500, 0);
+	trans[2][72]	= settr(109,0,71,1,0,".(goto)", 0, 2, 0);
+	T = trans[2][71] = settr(108,0,0,0,0,"DO", 0, 2, 0);
+	T = T->nxt	= settr(108,0,1,0,0,"DO", 0, 2, 0);
+	    T->nxt	= settr(108,0,29,0,0,"DO", 0, 2, 0);
+	trans[2][1]	= settr(38,0,6,5,5,"network?msg,_,data.key,data.info1,data.info2", 1, 503, 0);
+	T = trans[2][6] = settr(43,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(43,0,2,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(43,0,5,0,0,"IF", 0, 2, 0);
+	trans[2][2]	= settr(39,0,24,6,6,"intercepted.key = data.key", 0, 2, 0); /* m: 3 -> 0,24 */
+	reached2[3] = 1;
+	trans[2][3]	= settr(0,0,0,0,0,"intercepted.info1 = data.info1",0,0,0);
+	trans[2][4]	= settr(0,0,0,0,0,"intercepted.info2 = data.info2",0,0,0);
+	trans[2][7]	= settr(44,0,24,1,0,".(goto)", 0, 2, 0);
+	trans[2][5]	= settr(42,0,24,1,0,"(1)", 0, 2, 0);
+	T = trans[2][24] = settr(61,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(61,0,8,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(61,0,15,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(61,0,22,0,0,"IF", 0, 2, 0);
+	trans[2][8]	= settr(45,0,13,7,0,"((data.key==keyI))", 0, 2, 0);
+	T = trans[2][13] = settr(50,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(50,0,9,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(50,0,11,0,0,"IF", 0, 2, 0);
+	trans[2][9]	= settr(46,0,10,8,0,"(((data.info1==nonceA)||(data.info2==nonceA)))", 0, 2, 0);
+	trans[2][10]	= settr(47,0,71,9,9,"knows_nonceA = 1", 1, 2, 0);
+	trans[2][14]	= settr(51,0,71,1,0,".(goto)", 0, 2, 0);
+	trans[2][11]	= settr(48,0,12,2,0,"else", 0, 2, 0);
+	trans[2][12]	= settr(49,0,71,1,0,"(1)", 0, 2, 0);
+	trans[2][25]	= settr(62,0,71,1,0,".(goto)", 0, 2, 0);
+	trans[2][15]	= settr(52,0,20,10,0,"((data.key==keyI))", 0, 2, 0);
+	T = trans[2][20] = settr(57,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(57,0,16,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(57,0,18,0,0,"IF", 0, 2, 0);
+	trans[2][16]	= settr(53,0,17,11,0,"(((data.info1==nonceB)||(data.info2==nonceB)))", 0, 2, 0);
+	trans[2][17]	= settr(54,0,71,12,12,"knows_nonceB = 1", 1, 2, 0);
+	trans[2][21]	= settr(58,0,71,1,0,".(goto)", 0, 2, 0);
+	trans[2][18]	= settr(55,0,19,2,0,"else", 0, 2, 0);
+	trans[2][19]	= settr(56,0,71,1,0,"(1)", 0, 2, 0);
+	trans[2][22]	= settr(59,0,23,2,0,"else", 0, 2, 0);
+	trans[2][23]	= settr(60,0,71,1,0,"(1)", 0, 2, 0);
+	T = trans[2][29] = settr(66,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(66,0,26,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(66,0,27,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(66,0,28,0,0,"IF", 0, 2, 0);
+	trans[2][26]	= settr(63,0,33,13,13,"msg = msg1", 0, 2, 0);
+	trans[2][30]	= settr(67,0,33,1,0,".(goto)", 0, 2, 0);
+	trans[2][27]	= settr(64,0,33,14,14,"msg = msg2", 0, 2, 0);
+	trans[2][28]	= settr(65,0,33,15,15,"msg = msg3", 0, 2, 0);
+	T = trans[2][33] = settr(70,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(70,0,31,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(70,0,32,0,0,"IF", 0, 2, 0);
+	trans[2][31]	= settr(68,0,68,16,16,"recpt = agentA", 0, 2, 0);
+	trans[2][34]	= settr(71,0,68,1,0,".(goto)", 0, 2, 0);
+	trans[2][32]	= settr(69,0,68,17,17,"recpt = agentB", 0, 2, 0);
+	T = trans[2][68] = settr(105,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(105,0,35,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(105,0,46,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(105,0,56,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(105,0,66,0,0,"IF", 0, 2, 0);
+	trans[2][35]	= settr(72,0,70,18,18,"data.key = intercepted.key", 0, 2, 0); /* m: 36 -> 0,70 */
+	reached2[36] = 1;
+	trans[2][36]	= settr(0,0,0,0,0,"data.info1 = intercepted.info1",0,0,0);
+	trans[2][37]	= settr(0,0,0,0,0,"data.info2 = intercepted.info2",0,0,0);
+	trans[2][69]	= settr(106,0,70,1,0,".(goto)", 0, 2, 0);
+	T = trans[2][46] = settr(83,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(83,0,38,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(83,0,39,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(83,0,40,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(83,0,41,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(83,0,43,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(83,0,45,0,0,"IF", 0, 2, 0);
+	trans[2][38]	= settr(75,0,70,19,19,"data.info1 = agentA", 0, 2, 0);
+	trans[2][47]	= settr(84,0,70,1,0,".(goto)", 0, 2, 0);
+	trans[2][39]	= settr(76,0,70,20,20,"data.info1 = agentB", 0, 2, 0);
+	trans[2][40]	= settr(77,0,70,21,21,"data.info1 = agentI", 0, 2, 0);
+	trans[2][41]	= settr(78,0,42,22,0,"(knows_nonceA)", 1, 2, 0);
+	trans[2][42]	= settr(79,0,70,23,23,"data.info1 = nonceA", 0, 2, 0);
+	trans[2][43]	= settr(80,0,44,24,0,"(knows_nonceB)", 1, 2, 0);
+	trans[2][44]	= settr(81,0,70,25,25,"data.info1 = nonceB", 0, 2, 0);
+	trans[2][45]	= settr(82,0,70,26,26,"data.info1 = nonceI", 0, 2, 0);
+	T = trans[2][56] = settr(93,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(93,0,48,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(93,0,49,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(93,0,50,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(93,0,51,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(93,0,53,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(93,0,55,0,0,"IF", 0, 2, 0);
+	trans[2][48]	= settr(85,0,70,27,27,"data.info2 = agentA", 0, 2, 0);
+	trans[2][57]	= settr(94,0,70,1,0,".(goto)", 0, 2, 0);
+	trans[2][49]	= settr(86,0,70,28,28,"data.info2 = agentB", 0, 2, 0);
+	trans[2][50]	= settr(87,0,70,29,29,"data.info2 = agentI", 0, 2, 0);
+	trans[2][51]	= settr(88,0,52,30,0,"(knows_nonceA)", 1, 2, 0);
+	trans[2][52]	= settr(89,0,70,31,31,"data.info2 = nonceA", 0, 2, 0);
+	trans[2][53]	= settr(90,0,54,32,0,"(knows_nonceB)", 1, 2, 0);
+	trans[2][54]	= settr(91,0,70,33,33,"data.info2 = nonceB", 0, 2, 0);
+	trans[2][55]	= settr(92,0,70,34,34,"data.info2 = nonceI", 0, 2, 0);
+	T = trans[2][66] = settr(103,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(103,0,58,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(103,0,59,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(103,0,60,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(103,0,61,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(103,0,63,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(103,0,65,0,0,"IF", 0, 2, 0);
+	trans[2][58]	= settr(95,0,70,35,35,"data.key = keyA", 0, 2, 0);
+	trans[2][67]	= settr(104,0,70,1,0,".(goto)", 0, 2, 0);
+	trans[2][59]	= settr(96,0,70,36,36,"data.key = keyB", 0, 2, 0);
+	trans[2][60]	= settr(97,0,70,37,37,"data.key = keyI", 0, 2, 0);
+	trans[2][61]	= settr(98,0,62,38,0,"(knows_nonceA)", 1, 2, 0);
+	trans[2][62]	= settr(99,0,70,39,39,"data.key = nonceA", 0, 2, 0);
+	trans[2][63]	= settr(100,0,64,40,0,"(knows_nonceB)", 1, 2, 0);
+	trans[2][64]	= settr(101,0,70,41,41,"data.key = nonceB", 0, 2, 0);
+	trans[2][65]	= settr(102,0,70,42,42,"data.key = nonceI", 0, 2, 0);
+	trans[2][70]	= settr(107,0,71,43,43,"network!msg,recpt,data.key,data.info1,data.info2", 1, 3, 0);
+	trans[2][73]	= settr(110,0,74,1,0,"break", 0, 2, 0);
+	trans[2][74]	= settr(111,0,0,44,44,"-end-", 0, 3500, 0);
 
-	/* proctype 0: main_process */
+	/* proctype 1: Bob */
 
-	trans[0] = (Trans **) emalloc(158*sizeof(Trans *));
+	trans[1] = (Trans **) emalloc(20*sizeof(Trans *));
 
-	trans[0][155]	= settr(154,0,154,1,0,".(goto)", 0, 2, 0);
-	T = trans[0][154] = settr(153,0,0,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(153,0,1,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(153,0,16,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(153,0,37,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(153,0,64,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(153,0,91,0,0,"DO", 0, 2, 0);
-	T = T->nxt	= settr(153,0,118,0,0,"DO", 0, 2, 0);
-	    T->nxt	= settr(153,0,139,0,0,"DO", 0, 2, 0);
-	trans[0][1]	= settr(0,0,14,13,0,"((stones[0]==none))", 1, 2, 0);
-	T = trans[0][14] = settr(13,0,0,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(13,0,7,0,0,"IF", 0, 2, 0);
-	    T->nxt	= settr(13,0,13,0,0,"IF", 0, 2, 0);
-	T = trans[ 0][7] = settr(6,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(6,0,6,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][6] = settr(5,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(5,2,2,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][2]	= settr(1,2,3,14,0,"printf('Female Frog jumps from %d to %d\\n',1,0)", 1, 2, 0);
-	trans[0][3]	= settr(2,0,154,15,15,"(((stones[0]==none)&&(stones[1]==female)))", 1, 2, 0); /* m: 4 -> 154,0 */
-	reached0[4] = 1;
-	trans[0][4]	= settr(0,0,0,0,0,"stones[0] = female",0,0,0);
-	trans[0][5]	= settr(0,0,0,0,0,"stones[1] = none",0,0,0);
-	trans[0][15]	= settr(14,0,154,1,0,".(goto)", 0, 2, 0);
-	T = trans[ 0][13] = settr(12,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(12,0,12,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][12] = settr(11,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(11,2,8,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][8]	= settr(7,2,9,16,0,"printf('Female Frog jumps from %d to %d\\n',2,0)", 1, 2, 0);
-	trans[0][9]	= settr(8,0,154,17,17,"(((stones[0]==none)&&(stones[2]==female)))", 1, 2, 0); /* m: 10 -> 154,0 */
-	reached0[10] = 1;
-	trans[0][10]	= settr(0,0,0,0,0,"stones[0] = female",0,0,0);
-	trans[0][11]	= settr(0,0,0,0,0,"stones[2] = none",0,0,0);
-	trans[0][16]	= settr(15,0,35,18,0,"((stones[1]==none))", 1, 2, 0);
-	T = trans[0][35] = settr(34,0,0,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(34,0,22,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(34,0,28,0,0,"IF", 0, 2, 0);
-	    T->nxt	= settr(34,0,34,0,0,"IF", 0, 2, 0);
-	T = trans[ 0][22] = settr(21,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(21,0,21,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][21] = settr(20,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(20,2,17,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][17]	= settr(16,2,18,19,0,"printf('Male Frog jumps from %d to %d\\n',0,1)", 1, 2, 0);
-	trans[0][18]	= settr(17,0,154,20,20,"(((stones[1]==none)&&(stones[0]==male)))", 1, 2, 0); /* m: 19 -> 154,0 */
-	reached0[19] = 1;
-	trans[0][19]	= settr(0,0,0,0,0,"stones[1] = male",0,0,0);
-	trans[0][20]	= settr(0,0,0,0,0,"stones[0] = none",0,0,0);
-	trans[0][36]	= settr(35,0,154,1,0,".(goto)", 0, 2, 0);
-	T = trans[ 0][28] = settr(27,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(27,0,27,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][27] = settr(26,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(26,2,23,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][23]	= settr(22,2,24,21,0,"printf('Female Frog jumps from %d to %d\\n',2,1)", 1, 2, 0);
-	trans[0][24]	= settr(23,0,154,22,22,"(((stones[1]==none)&&(stones[2]==female)))", 1, 2, 0); /* m: 25 -> 154,0 */
-	reached0[25] = 1;
-	trans[0][25]	= settr(0,0,0,0,0,"stones[1] = female",0,0,0);
-	trans[0][26]	= settr(0,0,0,0,0,"stones[2] = none",0,0,0);
-	T = trans[ 0][34] = settr(33,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(33,0,33,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][33] = settr(32,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(32,2,29,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][29]	= settr(28,2,30,23,0,"printf('Female Frog jumps from %d to %d\\n',3,1)", 1, 2, 0);
-	trans[0][30]	= settr(29,0,154,24,24,"(((stones[1]==none)&&(stones[3]==female)))", 1, 2, 0); /* m: 31 -> 154,0 */
-	reached0[31] = 1;
-	trans[0][31]	= settr(0,0,0,0,0,"stones[1] = female",0,0,0);
-	trans[0][32]	= settr(0,0,0,0,0,"stones[3] = none",0,0,0);
-	trans[0][37]	= settr(36,0,62,25,0,"((stones[2]==none))", 1, 2, 0);
-	T = trans[0][62] = settr(61,0,0,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(61,0,43,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(61,0,49,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(61,0,55,0,0,"IF", 0, 2, 0);
-	    T->nxt	= settr(61,0,61,0,0,"IF", 0, 2, 0);
-	T = trans[ 0][43] = settr(42,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(42,0,42,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][42] = settr(41,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(41,2,38,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][38]	= settr(37,2,39,26,0,"printf('Male Frog jumps from %d to %d\\n',0,2)", 1, 2, 0);
-	trans[0][39]	= settr(38,0,154,27,27,"(((stones[2]==none)&&(stones[0]==male)))", 1, 2, 0); /* m: 40 -> 154,0 */
-	reached0[40] = 1;
-	trans[0][40]	= settr(0,0,0,0,0,"stones[2] = male",0,0,0);
-	trans[0][41]	= settr(0,0,0,0,0,"stones[0] = none",0,0,0);
-	trans[0][63]	= settr(62,0,154,1,0,".(goto)", 0, 2, 0);
-	T = trans[ 0][49] = settr(48,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(48,0,48,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][48] = settr(47,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(47,2,44,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][44]	= settr(43,2,45,28,0,"printf('Male Frog jumps from %d to %d\\n',1,2)", 1, 2, 0);
-	trans[0][45]	= settr(44,0,154,29,29,"(((stones[2]==none)&&(stones[1]==male)))", 1, 2, 0); /* m: 46 -> 154,0 */
-	reached0[46] = 1;
-	trans[0][46]	= settr(0,0,0,0,0,"stones[2] = male",0,0,0);
-	trans[0][47]	= settr(0,0,0,0,0,"stones[1] = none",0,0,0);
-	T = trans[ 0][55] = settr(54,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(54,0,54,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][54] = settr(53,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(53,2,50,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][50]	= settr(49,2,51,30,0,"printf('Female Frog jumps from %d to %d\\n',3,2)", 1, 2, 0);
-	trans[0][51]	= settr(50,0,154,31,31,"(((stones[2]==none)&&(stones[3]==female)))", 1, 2, 0); /* m: 52 -> 154,0 */
-	reached0[52] = 1;
-	trans[0][52]	= settr(0,0,0,0,0,"stones[2] = female",0,0,0);
-	trans[0][53]	= settr(0,0,0,0,0,"stones[3] = none",0,0,0);
-	T = trans[ 0][61] = settr(60,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(60,0,60,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][60] = settr(59,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(59,2,56,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][56]	= settr(55,2,57,32,0,"printf('Female Frog jumps from %d to %d\\n',4,2)", 1, 2, 0);
-	trans[0][57]	= settr(56,0,154,33,33,"(((stones[2]==none)&&(stones[4]==female)))", 1, 2, 0); /* m: 58 -> 154,0 */
-	reached0[58] = 1;
-	trans[0][58]	= settr(0,0,0,0,0,"stones[2] = female",0,0,0);
-	trans[0][59]	= settr(0,0,0,0,0,"stones[4] = none",0,0,0);
-	trans[0][64]	= settr(63,0,89,34,0,"((stones[3]==none))", 1, 2, 0);
-	T = trans[0][89] = settr(88,0,0,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(88,0,70,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(88,0,76,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(88,0,82,0,0,"IF", 0, 2, 0);
-	    T->nxt	= settr(88,0,88,0,0,"IF", 0, 2, 0);
-	T = trans[ 0][70] = settr(69,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(69,0,69,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][69] = settr(68,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(68,2,65,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][65]	= settr(64,2,66,35,0,"printf('Male Frog jumps from %d to %d\\n',1,3)", 1, 2, 0);
-	trans[0][66]	= settr(65,0,154,36,36,"(((stones[3]==none)&&(stones[1]==male)))", 1, 2, 0); /* m: 67 -> 154,0 */
-	reached0[67] = 1;
-	trans[0][67]	= settr(0,0,0,0,0,"stones[3] = male",0,0,0);
-	trans[0][68]	= settr(0,0,0,0,0,"stones[1] = none",0,0,0);
-	trans[0][90]	= settr(89,0,154,1,0,".(goto)", 0, 2, 0);
-	T = trans[ 0][76] = settr(75,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(75,0,75,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][75] = settr(74,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(74,2,71,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][71]	= settr(70,2,72,37,0,"printf('Male Frog jumps from %d to %d\\n',2,3)", 1, 2, 0);
-	trans[0][72]	= settr(71,0,154,38,38,"(((stones[3]==none)&&(stones[2]==male)))", 1, 2, 0); /* m: 73 -> 154,0 */
-	reached0[73] = 1;
-	trans[0][73]	= settr(0,0,0,0,0,"stones[3] = male",0,0,0);
-	trans[0][74]	= settr(0,0,0,0,0,"stones[2] = none",0,0,0);
-	T = trans[ 0][82] = settr(81,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(81,0,81,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][81] = settr(80,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(80,2,77,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][77]	= settr(76,2,78,39,0,"printf('Female Frog jumps from %d to %d\\n',4,3)", 1, 2, 0);
-	trans[0][78]	= settr(77,0,154,40,40,"(((stones[3]==none)&&(stones[4]==female)))", 1, 2, 0); /* m: 79 -> 154,0 */
-	reached0[79] = 1;
-	trans[0][79]	= settr(0,0,0,0,0,"stones[3] = female",0,0,0);
-	trans[0][80]	= settr(0,0,0,0,0,"stones[4] = none",0,0,0);
-	T = trans[ 0][88] = settr(87,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(87,0,87,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][87] = settr(86,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(86,2,83,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][83]	= settr(82,2,84,41,0,"printf('Female Frog jumps from %d to %d\\n',5,3)", 1, 2, 0);
-	trans[0][84]	= settr(83,0,154,42,42,"(((stones[3]==none)&&(stones[5]==female)))", 1, 2, 0); /* m: 85 -> 154,0 */
-	reached0[85] = 1;
-	trans[0][85]	= settr(0,0,0,0,0,"stones[3] = female",0,0,0);
-	trans[0][86]	= settr(0,0,0,0,0,"stones[5] = none",0,0,0);
-	trans[0][91]	= settr(90,0,116,43,0,"((stones[4]==none))", 1, 2, 0);
-	T = trans[0][116] = settr(115,0,0,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(115,0,97,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(115,0,103,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(115,0,109,0,0,"IF", 0, 2, 0);
-	    T->nxt	= settr(115,0,115,0,0,"IF", 0, 2, 0);
-	T = trans[ 0][97] = settr(96,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(96,0,96,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][96] = settr(95,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(95,2,92,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][92]	= settr(91,2,93,44,0,"printf('Male Frog jumps from %d to %d\\n',3,4)", 1, 2, 0);
-	trans[0][93]	= settr(92,0,154,45,45,"(((stones[4]==none)&&(stones[3]==male)))", 1, 2, 0); /* m: 94 -> 154,0 */
-	reached0[94] = 1;
-	trans[0][94]	= settr(0,0,0,0,0,"stones[4] = male",0,0,0);
-	trans[0][95]	= settr(0,0,0,0,0,"stones[3] = none",0,0,0);
-	trans[0][117]	= settr(116,0,154,1,0,".(goto)", 0, 2, 0);
-	T = trans[ 0][103] = settr(102,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(102,0,102,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][102] = settr(101,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(101,2,98,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][98]	= settr(97,2,99,46,0,"printf('Male Frog jumps from %d to %d\\n',2,4)", 1, 2, 0);
-	trans[0][99]	= settr(98,0,154,47,47,"(((stones[4]==none)&&(stones[2]==male)))", 1, 2, 0); /* m: 100 -> 154,0 */
-	reached0[100] = 1;
-	trans[0][100]	= settr(0,0,0,0,0,"stones[4] = male",0,0,0);
-	trans[0][101]	= settr(0,0,0,0,0,"stones[2] = none",0,0,0);
-	T = trans[ 0][109] = settr(108,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(108,0,108,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][108] = settr(107,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(107,2,104,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][104]	= settr(103,2,105,48,0,"printf('Female Frog jumps from %d to %d\\n',5,4)", 1, 2, 0);
-	trans[0][105]	= settr(104,0,154,49,49,"(((stones[4]==none)&&(stones[5]==female)))", 1, 2, 0); /* m: 106 -> 154,0 */
-	reached0[106] = 1;
-	trans[0][106]	= settr(0,0,0,0,0,"stones[4] = female",0,0,0);
-	trans[0][107]	= settr(0,0,0,0,0,"stones[5] = none",0,0,0);
-	T = trans[ 0][115] = settr(114,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(114,0,114,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][114] = settr(113,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(113,2,110,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][110]	= settr(109,2,111,50,0,"printf('Female Frog jumps from %d to %d\\n',6,4)", 1, 2, 0);
-	trans[0][111]	= settr(110,0,154,51,51,"(((stones[4]==none)&&(stones[6]==female)))", 1, 2, 0); /* m: 112 -> 154,0 */
-	reached0[112] = 1;
-	trans[0][112]	= settr(0,0,0,0,0,"stones[4] = female",0,0,0);
-	trans[0][113]	= settr(0,0,0,0,0,"stones[6] = none",0,0,0);
-	trans[0][118]	= settr(117,0,137,52,0,"((stones[5]==none))", 1, 2, 0);
-	T = trans[0][137] = settr(136,0,0,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(136,0,124,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(136,0,130,0,0,"IF", 0, 2, 0);
-	    T->nxt	= settr(136,0,136,0,0,"IF", 0, 2, 0);
-	T = trans[ 0][124] = settr(123,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(123,0,123,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][123] = settr(122,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(122,2,119,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][119]	= settr(118,2,120,53,0,"printf('Male Frog jumps from %d to %d\\n',3,5)", 1, 2, 0);
-	trans[0][120]	= settr(119,0,154,54,54,"(((stones[5]==none)&&(stones[3]==male)))", 1, 2, 0); /* m: 121 -> 154,0 */
-	reached0[121] = 1;
-	trans[0][121]	= settr(0,0,0,0,0,"stones[5] = male",0,0,0);
-	trans[0][122]	= settr(0,0,0,0,0,"stones[3] = none",0,0,0);
-	trans[0][138]	= settr(137,0,154,1,0,".(goto)", 0, 2, 0);
-	T = trans[ 0][130] = settr(129,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(129,0,129,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][129] = settr(128,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(128,2,125,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][125]	= settr(124,2,126,55,0,"printf('Male Frog jumps from %d to %d\\n',4,5)", 1, 2, 0);
-	trans[0][126]	= settr(125,0,154,56,56,"(((stones[5]==none)&&(stones[4]==male)))", 1, 2, 0); /* m: 127 -> 154,0 */
-	reached0[127] = 1;
-	trans[0][127]	= settr(0,0,0,0,0,"stones[5] = male",0,0,0);
-	trans[0][128]	= settr(0,0,0,0,0,"stones[4] = none",0,0,0);
-	T = trans[ 0][136] = settr(135,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(135,0,135,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][135] = settr(134,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(134,2,131,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][131]	= settr(130,2,132,57,0,"printf('Female Frog jumps from %d to %d\\n',6,5)", 1, 2, 0);
-	trans[0][132]	= settr(131,0,154,58,58,"(((stones[5]==none)&&(stones[6]==female)))", 1, 2, 0); /* m: 133 -> 154,0 */
-	reached0[133] = 1;
-	trans[0][133]	= settr(0,0,0,0,0,"stones[5] = female",0,0,0);
-	trans[0][134]	= settr(0,0,0,0,0,"stones[6] = none",0,0,0);
-	trans[0][139]	= settr(138,0,152,59,0,"((stones[6]==none))", 1, 2, 0);
-	T = trans[0][152] = settr(151,0,0,0,0,"IF", 0, 2, 0);
-	T = T->nxt	= settr(151,0,145,0,0,"IF", 0, 2, 0);
-	    T->nxt	= settr(151,0,151,0,0,"IF", 0, 2, 0);
-	T = trans[ 0][145] = settr(144,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(144,0,144,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][144] = settr(143,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(143,2,140,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][140]	= settr(139,2,141,60,0,"printf('Male Frog jumps from %d to %d\\n',5,6)", 1, 2, 0);
-	trans[0][141]	= settr(140,0,154,61,61,"(((stones[6]==none)&&(stones[5]==male)))", 1, 2, 0); /* m: 142 -> 154,0 */
-	reached0[142] = 1;
-	trans[0][142]	= settr(0,0,0,0,0,"stones[6] = male",0,0,0);
-	trans[0][143]	= settr(0,0,0,0,0,"stones[5] = none",0,0,0);
-	trans[0][153]	= settr(152,0,154,1,0,".(goto)", 0, 2, 0);
-	T = trans[ 0][151] = settr(150,0,0,0,0,"sub-sequence", 0, 2, 0);
-	T->nxt	= settr(150,0,150,0,0,"sub-sequence", 0, 2, 0);
-	T = trans[ 0][150] = settr(149,2,0,0,0,"ATOMIC", 1, 2, 0);
-	T->nxt	= settr(149,2,146,0,0,"ATOMIC", 1, 2, 0);
-	trans[0][146]	= settr(145,2,147,62,0,"printf('Male Frog jumps from %d to %d\\n',4,6)", 1, 2, 0);
-	trans[0][147]	= settr(146,0,154,63,63,"(((stones[6]==none)&&(stones[4]==male)))", 1, 2, 0); /* m: 148 -> 154,0 */
-	reached0[148] = 1;
-	trans[0][148]	= settr(0,0,0,0,0,"stones[6] = male",0,0,0);
-	trans[0][149]	= settr(0,0,0,0,0,"stones[4] = none",0,0,0);
-	trans[0][156]	= settr(155,0,157,1,0,"break", 0, 2, 0);
-	trans[0][157]	= settr(156,0,0,64,64,"-end-", 0, 3500, 0);
+	trans[1][1]	= settr(19,0,2,45,45,"network?msg1,agentB,data.key,data.info1,data.info2", 1, 503, 0);
+	trans[1][2]	= settr(20,0,3,46,0,"((((data.key==keyB)&&(data.info2==nonceA))&&(data.info1==agentA)))", 0, 2, 0);
+	trans[1][3]	= settr(21,0,4,47,47,"partnerB = data.info1", 1, 2, 0);
+	trans[1][4]	= settr(22,0,9,48,48,"pnonce = data.info2", 0, 2, 0);
+	T = trans[1][9] = settr(27,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(27,0,5,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(27,0,7,0,0,"IF", 0, 2, 0);
+	trans[1][5]	= settr(23,0,6,49,49,"partnerA = agentB", 1, 2, 0);
+	trans[1][6]	= settr(24,0,15,50,50,"pkey = keyB", 0, 2, 0); /* m: 11 -> 0,15 */
+	reached1[11] = 1;
+	trans[1][10]	= settr(28,0,11,1,0,".(goto)", 0, 2, 0); /* m: 11 -> 0,15 */
+	reached1[11] = 1;
+	trans[1][7]	= settr(25,0,8,51,51,"partnerA = agentI", 1, 2, 0);
+	trans[1][8]	= settr(26,0,15,52,52,"pkey = keyI", 0, 2, 0); /* m: 11 -> 0,15 */
+	reached1[11] = 1;
+	trans[1][11]	= settr(29,0,15,53,53,"", 0, 2, 0); /* m: 12 -> 0,15 */
+	reached1[12] = 1;
+	trans[1][12]	= settr(0,0,0,0,0,"data2.key = pkey",0,0,0);
+	trans[1][13]	= settr(0,0,0,0,0,"data2.info1 = pnonce",0,0,0);
+	trans[1][14]	= settr(0,0,0,0,0,"data2.info2 = nonceB",0,0,0);
+	trans[1][15]	= settr(33,0,16,54,54,"network!msg2,partnerB,data2.key,data2.info1,data2.info2", 1, 3, 0);
+	trans[1][16]	= settr(34,0,17,55,55,"network?msg3,agentB,data.key,data.info1,data.info2", 1, 503, 0);
+	trans[1][17]	= settr(35,0,18,56,0,"(((data.key==keyB)&&(data.info1==nonceB)))", 0, 2, 0);
+	trans[1][18]	= settr(36,0,19,57,57,"statusB = ok", 1, 2, 0);
+	trans[1][19]	= settr(37,0,0,58,58,"-end-", 0, 3500, 0);
+
+	/* proctype 0: Alice */
+
+	trans[0] = (Trans **) emalloc(20*sizeof(Trans *));
+
+	T = trans[0][5] = settr(4,0,0,0,0,"IF", 0, 2, 0);
+	T = T->nxt	= settr(4,0,1,0,0,"IF", 0, 2, 0);
+	    T->nxt	= settr(4,0,3,0,0,"IF", 0, 2, 0);
+	trans[0][1]	= settr(0,0,2,59,59,"partnerA = agentB", 1, 2, 0);
+	trans[0][2]	= settr(1,0,10,60,60,"pkey = keyB", 0, 2, 0); /* m: 7 -> 0,10 */
+	reached0[7] = 1;
+	trans[0][6]	= settr(5,0,7,1,0,".(goto)", 0, 2, 0); /* m: 7 -> 0,10 */
+	reached0[7] = 1;
+	trans[0][3]	= settr(2,0,4,61,61,"partnerA = agentI", 1, 2, 0);
+	trans[0][4]	= settr(3,0,10,62,62,"pkey = keyI", 0, 2, 0); /* m: 7 -> 0,10 */
+	reached0[7] = 1;
+	trans[0][7]	= settr(6,0,10,63,63,"data.key = pkey", 0, 2, 0); /* m: 8 -> 0,10 */
+	reached0[8] = 1;
+	trans[0][8]	= settr(0,0,0,0,0,"data.info1 = agentA",0,0,0);
+	trans[0][9]	= settr(0,0,0,0,0,"data.info2 = nonceA",0,0,0);
+	trans[0][10]	= settr(9,0,11,64,64,"network!msg1,partnerA,data.key,data.info1,data.info2", 1, 3, 0);
+	trans[0][11]	= settr(10,0,12,65,65,"network?msg2,agentA,data2.key,data2.info1,data2.info2", 1, 503, 0);
+	trans[0][12]	= settr(11,0,17,66,66,"(((data2.key==pkey)&&(data2.info1==nonceA)))", 0, 2, 0); /* m: 13 -> 17,0 */
+	reached0[13] = 1;
+	trans[0][13]	= settr(0,0,0,0,0,"pnonce = data2.info2",0,0,0);
+	trans[0][14]	= settr(0,0,0,0,0,"data3.key = pkey",0,0,0);
+	trans[0][15]	= settr(0,0,0,0,0,"data3.info1 = pnonce",0,0,0);
+	trans[0][16]	= settr(0,0,0,0,0,"data3.info2 = 0",0,0,0);
+	trans[0][17]	= settr(16,0,18,67,67,"network!msg3,partnerA,data3.key,data3.info1,data3.info2", 1, 3, 0);
+	trans[0][18]	= settr(17,0,19,68,68,"statusA = ok", 1, 2, 0);
+	trans[0][19]	= settr(18,0,0,69,69,"-end-", 0, 3500, 0);
 	/* np_ demon: */
 	trans[_NP_] = (Trans **) emalloc(3*sizeof(Trans *));
 	T = trans[_NP_][0] = settr(9997,0,1,_T5,0,"(np_)", 1,2,0);
