@@ -2,7 +2,7 @@
 #define PAN_H
 
 #define SpinVersion	"Spin Version 6.5.2 -- 13 October 2022"
-#define PanSource	"pa_2_frogs_N_9.pml"
+#define PanSource	"PA2-P2-rayhanul.pml"
 
 #define G_long	8
 #define G_int	4
@@ -140,19 +140,19 @@ typedef struct S_F_MAP {
 } S_F_MAP;
 
 #define _nstates2	11	/* ltl_0 */
-#define minseq2	501
-#define maxseq2	510
+#define minseq2	165
+#define maxseq2	174
 #define _endstate2	10
 
-#define _nstates1	21	/* :init: */
-#define minseq1	481
-#define maxseq1	500
-#define _endstate1	20
+#define _nstates1	9	/* :init: */
+#define minseq1	157
+#define maxseq1	164
+#define _endstate1	8
 
-#define _nstates0	482	/* main_process */
+#define _nstates0	158	/* main_process */
 #define minseq0	0
-#define maxseq0	480
-#define _endstate0	481
+#define maxseq0	156
+#define _endstate0	157
 
 extern short src_ln2[];
 extern short src_ln1[];
@@ -161,9 +161,9 @@ extern S_F_MAP src_file2[];
 extern S_F_MAP src_file1[];
 extern S_F_MAP src_file0[];
 
-#define T_ID	unsigned short
-#define _T5	185
-#define _T2	186
+#define T_ID	unsigned char
+#define _T5	65
+#define _T2	66
 #define WS		8 /* word size in bytes */
 #define SYNC	0
 #define ASYNC	0
@@ -181,7 +181,7 @@ extern S_F_MAP src_file0[];
 typedef struct P2 { /* ltl_0 */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 3; /* proctype */
-	unsigned _p   : 10; /* state    */
+	unsigned _p   : 9; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
@@ -192,7 +192,7 @@ typedef struct P2 { /* ltl_0 */
 typedef struct P1 { /* :init: */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 3; /* proctype */
-	unsigned _p   : 10; /* state    */
+	unsigned _p   : 9; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
@@ -203,7 +203,7 @@ typedef struct P1 { /* :init: */
 typedef struct P0 { /* main_process */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 3; /* proctype */
-	unsigned _p   : 10; /* state    */
+	unsigned _p   : 9; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
@@ -213,7 +213,7 @@ typedef struct P0 { /* main_process */
 typedef struct P3 { /* np_ */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 3; /* proctype */
-	unsigned _p   : 10; /* state    */
+	unsigned _p   : 9; /* state    */
 #ifdef HAS_PRIORITY
 	unsigned _priority : 8; /* 0..255 */
 #endif
@@ -410,7 +410,7 @@ typedef struct State {
 		unsigned short _event;
 	#endif
 #endif
-	uchar stones[19];
+	uchar stones[7];
 #ifdef TRIX
 	/* room for 512 proc+chan ptrs, + safety margin */
 	char *_ids_[MAXPROC+MAXQ+4];
@@ -442,7 +442,7 @@ typedef struct TRIX_v6 {
 #define _start3	0 /* np_ */
 #define _start2	6
 #define _start1	1
-#define _start0	478
+#define _start0	154
 #ifdef NP
 	#define ACCEPT_LAB	1 /* at least 1 in np_ */
 #else
@@ -802,7 +802,7 @@ void qsend(int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	187
+#define NTRANS	67
 #if defined(BFS_PAR) || NCORE>1
 	void e_critical(int);
 	void x_critical(int);

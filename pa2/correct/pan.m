@@ -79,7 +79,7 @@
 		_m = 3; goto P999; /* 0 */
 
 		 /* PROC Intruder */
-	case 5: // STATE 1 - PA2-P1-rayhanul.pml:85 - [network?msg,_,data.key,data.info1,data.info2] (0:0:6 - 1)
+	case 5: // STATE 1 - PA2-P1-rayhanul.pml:90 - [network?msg,_,data.key,data.info1,data.info2] (0:0:6 - 1)
 		reached[2][1] = 1;
 		if (boq != now.network) continue;
 		if (q_len(now.network) == 0) continue;
@@ -118,11 +118,16 @@
 		if (readtrail && gui) {
 			char simtmp[32];
 			sprintf(simvals, "%d?", now.network);
-		sprintf(simtmp, "%d", ((P2 *)_this)->msg); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((int)_)); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P2 *)_this)->data.key); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P2 *)_this)->data.info1); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P2 *)_this)->data.info2); strcat(simvals, simtmp);		}
+			sprintf(simtmp, "%d", ((P2 *)_this)->msg); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((int)_)); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((P2 *)_this)->data.key); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((P2 *)_this)->data.info1); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((P2 *)_this)->data.info2); strcat(simvals, simtmp);
+		}
 #endif
 		if (q_zero(now.network))
 		{	boq = -1;
@@ -153,7 +158,7 @@
 #endif
 			((P2 *)_this)->msg = 0;
 		_m = 4; goto P999; /* 0 */
-	case 6: // STATE 2 - PA2-P1-rayhanul.pml:87 - [intercepted.key = data.key] (0:24:3 - 1)
+	case 6: // STATE 2 - PA2-P1-rayhanul.pml:92 - [intercepted.key = data.key] (0:24:3 - 1)
 		IfNotBlocked
 		reached[2][2] = 1;
 		(trpt+1)->bup.ovals = grab_ints(3);
@@ -183,19 +188,19 @@
 		reached[2][7] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 7: // STATE 8 - PA2-P1-rayhanul.pml:91 - [((data.key==keyI))] (0:0:0 - 1)
+	case 7: // STATE 8 - PA2-P1-rayhanul.pml:96 - [((data.key==keyI))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][8] = 1;
 		if (!((((P2 *)_this)->data.key==7)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 8: // STATE 9 - PA2-P1-rayhanul.pml:93 - [(((data.info1==nonceA)||(data.info2==nonceA)))] (0:0:0 - 1)
+	case 8: // STATE 9 - PA2-P1-rayhanul.pml:98 - [(((data.info1==nonceA)||(data.info2==nonceA)))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][9] = 1;
 		if (!(((((P2 *)_this)->data.info1==3)||(((P2 *)_this)->data.info2==3))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 9: // STATE 10 - PA2-P1-rayhanul.pml:93 - [knows_nonceA = 1] (0:0:1 - 1)
+	case 9: // STATE 10 - PA2-P1-rayhanul.pml:98 - [knows_nonceA = 1] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][10] = 1;
 		(trpt+1)->bup.oval = ((int)now.knows_nonceA);
@@ -205,19 +210,19 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 10: // STATE 15 - PA2-P1-rayhanul.pml:97 - [((data.key==keyI))] (0:0:0 - 1)
+	case 10: // STATE 15 - PA2-P1-rayhanul.pml:102 - [((data.key==keyI))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][15] = 1;
 		if (!((((P2 *)_this)->data.key==7)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 11: // STATE 16 - PA2-P1-rayhanul.pml:99 - [(((data.info1==nonceB)||(data.info2==nonceB)))] (0:0:0 - 1)
+	case 11: // STATE 16 - PA2-P1-rayhanul.pml:104 - [(((data.info1==nonceB)||(data.info2==nonceB)))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][16] = 1;
 		if (!(((((P2 *)_this)->data.info1==2)||(((P2 *)_this)->data.info2==2))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 12: // STATE 17 - PA2-P1-rayhanul.pml:99 - [knows_nonceB = 1] (0:0:1 - 1)
+	case 12: // STATE 17 - PA2-P1-rayhanul.pml:104 - [knows_nonceB = 1] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][17] = 1;
 		(trpt+1)->bup.oval = ((int)now.knows_nonceB);
@@ -227,7 +232,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 13: // STATE 26 - PA2-P1-rayhanul.pml:107 - [msg = msg1] (0:0:1 - 1)
+	case 13: // STATE 26 - PA2-P1-rayhanul.pml:112 - [msg = msg1] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][26] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->msg;
@@ -237,7 +242,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 14: // STATE 27 - PA2-P1-rayhanul.pml:108 - [msg = msg2] (0:0:1 - 1)
+	case 14: // STATE 27 - PA2-P1-rayhanul.pml:113 - [msg = msg2] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][27] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->msg;
@@ -247,7 +252,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 15: // STATE 28 - PA2-P1-rayhanul.pml:109 - [msg = msg3] (0:0:1 - 1)
+	case 15: // STATE 28 - PA2-P1-rayhanul.pml:114 - [msg = msg3] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][28] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->msg;
@@ -257,7 +262,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 16: // STATE 31 - PA2-P1-rayhanul.pml:112 - [recpt = agentA] (0:0:1 - 1)
+	case 16: // STATE 31 - PA2-P1-rayhanul.pml:117 - [recpt = agentA] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][31] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->recpt;
@@ -267,7 +272,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 17: // STATE 32 - PA2-P1-rayhanul.pml:113 - [recpt = agentB] (0:0:1 - 1)
+	case 17: // STATE 32 - PA2-P1-rayhanul.pml:118 - [recpt = agentB] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][32] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->recpt;
@@ -277,7 +282,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 18: // STATE 35 - PA2-P1-rayhanul.pml:116 - [data.key = intercepted.key] (0:70:3 - 1)
+	case 18: // STATE 35 - PA2-P1-rayhanul.pml:121 - [data.key = intercepted.key] (0:70:3 - 1)
 		IfNotBlocked
 		reached[2][35] = 1;
 		(trpt+1)->bup.ovals = grab_ints(3);
@@ -307,7 +312,7 @@
 		reached[2][69] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 19: // STATE 38 - PA2-P1-rayhanul.pml:118 - [data.info1 = agentA] (0:0:1 - 1)
+	case 19: // STATE 38 - PA2-P1-rayhanul.pml:123 - [data.info1 = agentA] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][38] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.info1;
@@ -317,7 +322,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 20: // STATE 39 - PA2-P1-rayhanul.pml:119 - [data.info1 = agentB] (0:0:1 - 1)
+	case 20: // STATE 39 - PA2-P1-rayhanul.pml:124 - [data.info1 = agentB] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][39] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.info1;
@@ -327,7 +332,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 21: // STATE 40 - PA2-P1-rayhanul.pml:120 - [data.info1 = agentI] (0:0:1 - 1)
+	case 21: // STATE 40 - PA2-P1-rayhanul.pml:125 - [data.info1 = agentI] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][40] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.info1;
@@ -337,13 +342,13 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 22: // STATE 41 - PA2-P1-rayhanul.pml:121 - [(knows_nonceA)] (0:0:0 - 1)
+	case 22: // STATE 41 - PA2-P1-rayhanul.pml:126 - [(knows_nonceA)] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][41] = 1;
 		if (!(((int)now.knows_nonceA)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 23: // STATE 42 - PA2-P1-rayhanul.pml:121 - [data.info1 = nonceA] (0:0:1 - 1)
+	case 23: // STATE 42 - PA2-P1-rayhanul.pml:126 - [data.info1 = nonceA] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][42] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.info1;
@@ -353,13 +358,13 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 24: // STATE 43 - PA2-P1-rayhanul.pml:122 - [(knows_nonceB)] (0:0:0 - 1)
+	case 24: // STATE 43 - PA2-P1-rayhanul.pml:127 - [(knows_nonceB)] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][43] = 1;
 		if (!(((int)now.knows_nonceB)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 25: // STATE 44 - PA2-P1-rayhanul.pml:122 - [data.info1 = nonceB] (0:0:1 - 1)
+	case 25: // STATE 44 - PA2-P1-rayhanul.pml:127 - [data.info1 = nonceB] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][44] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.info1;
@@ -369,7 +374,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 26: // STATE 45 - PA2-P1-rayhanul.pml:123 - [data.info1 = nonceI] (0:0:1 - 1)
+	case 26: // STATE 45 - PA2-P1-rayhanul.pml:128 - [data.info1 = nonceI] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][45] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.info1;
@@ -379,7 +384,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 27: // STATE 48 - PA2-P1-rayhanul.pml:127 - [data.info2 = agentA] (0:0:1 - 1)
+	case 27: // STATE 48 - PA2-P1-rayhanul.pml:132 - [data.info2 = agentA] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][48] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.info2;
@@ -389,7 +394,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 28: // STATE 49 - PA2-P1-rayhanul.pml:128 - [data.info2 = agentB] (0:0:1 - 1)
+	case 28: // STATE 49 - PA2-P1-rayhanul.pml:133 - [data.info2 = agentB] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][49] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.info2;
@@ -399,7 +404,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 29: // STATE 50 - PA2-P1-rayhanul.pml:129 - [data.info2 = agentI] (0:0:1 - 1)
+	case 29: // STATE 50 - PA2-P1-rayhanul.pml:134 - [data.info2 = agentI] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][50] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.info2;
@@ -409,13 +414,13 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 30: // STATE 51 - PA2-P1-rayhanul.pml:130 - [(knows_nonceA)] (0:0:0 - 1)
+	case 30: // STATE 51 - PA2-P1-rayhanul.pml:135 - [(knows_nonceA)] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][51] = 1;
 		if (!(((int)now.knows_nonceA)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 31: // STATE 52 - PA2-P1-rayhanul.pml:130 - [data.info2 = nonceA] (0:0:1 - 1)
+	case 31: // STATE 52 - PA2-P1-rayhanul.pml:135 - [data.info2 = nonceA] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][52] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.info2;
@@ -425,13 +430,13 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 32: // STATE 53 - PA2-P1-rayhanul.pml:131 - [(knows_nonceB)] (0:0:0 - 1)
+	case 32: // STATE 53 - PA2-P1-rayhanul.pml:136 - [(knows_nonceB)] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][53] = 1;
 		if (!(((int)now.knows_nonceB)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 33: // STATE 54 - PA2-P1-rayhanul.pml:131 - [data.info2 = nonceB] (0:0:1 - 1)
+	case 33: // STATE 54 - PA2-P1-rayhanul.pml:136 - [data.info2 = nonceB] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][54] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.info2;
@@ -441,7 +446,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 34: // STATE 55 - PA2-P1-rayhanul.pml:132 - [data.info2 = nonceI] (0:0:1 - 1)
+	case 34: // STATE 55 - PA2-P1-rayhanul.pml:137 - [data.info2 = nonceI] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][55] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.info2;
@@ -451,7 +456,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 35: // STATE 58 - PA2-P1-rayhanul.pml:136 - [data.key = keyA] (0:0:1 - 1)
+	case 35: // STATE 58 - PA2-P1-rayhanul.pml:141 - [data.key = keyA] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][58] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.key;
@@ -461,7 +466,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 36: // STATE 59 - PA2-P1-rayhanul.pml:137 - [data.key = keyB] (0:0:1 - 1)
+	case 36: // STATE 59 - PA2-P1-rayhanul.pml:142 - [data.key = keyB] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][59] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.key;
@@ -471,7 +476,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 37: // STATE 60 - PA2-P1-rayhanul.pml:138 - [data.key = keyI] (0:0:1 - 1)
+	case 37: // STATE 60 - PA2-P1-rayhanul.pml:143 - [data.key = keyI] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][60] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.key;
@@ -481,13 +486,13 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 38: // STATE 61 - PA2-P1-rayhanul.pml:139 - [(knows_nonceA)] (0:0:0 - 1)
+	case 38: // STATE 61 - PA2-P1-rayhanul.pml:144 - [(knows_nonceA)] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][61] = 1;
 		if (!(((int)now.knows_nonceA)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 39: // STATE 62 - PA2-P1-rayhanul.pml:139 - [data.key = nonceA] (0:0:1 - 1)
+	case 39: // STATE 62 - PA2-P1-rayhanul.pml:144 - [data.key = nonceA] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][62] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.key;
@@ -497,13 +502,13 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 40: // STATE 63 - PA2-P1-rayhanul.pml:140 - [(knows_nonceB)] (0:0:0 - 1)
+	case 40: // STATE 63 - PA2-P1-rayhanul.pml:145 - [(knows_nonceB)] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][63] = 1;
 		if (!(((int)now.knows_nonceB)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 41: // STATE 64 - PA2-P1-rayhanul.pml:140 - [data.key = nonceB] (0:0:1 - 1)
+	case 41: // STATE 64 - PA2-P1-rayhanul.pml:145 - [data.key = nonceB] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][64] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.key;
@@ -513,7 +518,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 42: // STATE 65 - PA2-P1-rayhanul.pml:141 - [data.key = nonceI] (0:0:1 - 1)
+	case 42: // STATE 65 - PA2-P1-rayhanul.pml:146 - [data.key = nonceI] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][65] = 1;
 		(trpt+1)->bup.oval = ((P2 *)_this)->data.key;
@@ -523,7 +528,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 43: // STATE 70 - PA2-P1-rayhanul.pml:147 - [network!msg,recpt,data.key,data.info1,data.info2] (0:0:0 - 23)
+	case 43: // STATE 70 - PA2-P1-rayhanul.pml:152 - [network!msg,recpt,data.key,data.info1,data.info2] (0:0:0 - 23)
 		IfNotBlocked
 		reached[2][70] = 1;
 		if (q_len(now.network))
@@ -542,14 +547,14 @@
 		qsend(now.network, 0, ((P2 *)_this)->msg, ((P2 *)_this)->recpt, ((P2 *)_this)->data.key, ((P2 *)_this)->data.info1, ((P2 *)_this)->data.info2, 5);
 		{ boq = now.network; };
 		_m = 2; goto P999; /* 0 */
-	case 44: // STATE 74 - PA2-P1-rayhanul.pml:149 - [-end-] (0:0:0 - 1)
+	case 44: // STATE 74 - PA2-P1-rayhanul.pml:154 - [-end-] (0:0:0 - 1)
 		IfNotBlocked
 		reached[2][74] = 1;
 		if (!delproc(1, II)) continue;
 		_m = 3; goto P999; /* 0 */
 
 		 /* PROC Bob */
-	case 45: // STATE 1 - PA2-P1-rayhanul.pml:59 - [network?msg1,agentB,data.key,data.info1,data.info2] (0:0:3 - 1)
+	case 45: // STATE 1 - PA2-P1-rayhanul.pml:64 - [network?msg1,agentB,data.key,data.info1,data.info2] (0:0:3 - 1)
 		reached[1][1] = 1;
 		if (boq != now.network) continue;
 		if (q_len(now.network) == 0) continue;
@@ -582,11 +587,16 @@
 		if (readtrail && gui) {
 			char simtmp[32];
 			sprintf(simvals, "%d?", now.network);
-		sprintf(simtmp, "%d", 12); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", 5); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.key); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.info1); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.info2); strcat(simvals, simtmp);		}
+			sprintf(simtmp, "%d", 12); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", 5); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((P1 *)_this)->data.key); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((P1 *)_this)->data.info1); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((P1 *)_this)->data.info2); strcat(simvals, simtmp);
+		}
 #endif
 		if (q_zero(now.network))
 		{	boq = -1;
@@ -611,7 +621,7 @@
 
 		};
 		_m = 4; goto P999; /* 0 */
-	case 46: // STATE 2 - PA2-P1-rayhanul.pml:60 - [((data.key==keyB))] (8:0:1 - 1)
+	case 46: // STATE 2 - PA2-P1-rayhanul.pml:65 - [((data.key==keyB))] (8:0:1 - 1)
 		IfNotBlocked
 		reached[1][2] = 1;
 		if (!((((P1 *)_this)->data.key==8)))
@@ -625,7 +635,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 1 */
-	case 47: // STATE 4 - PA2-P1-rayhanul.pml:65 - [partnerB = agentA] (0:0:1 - 1)
+	case 47: // STATE 4 - PA2-P1-rayhanul.pml:70 - [partnerB = agentA] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][4] = 1;
 		(trpt+1)->bup.oval = now.partnerB;
@@ -635,7 +645,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 48: // STATE 5 - PA2-P1-rayhanul.pml:65 - [pkey = keyB] (0:14:4 - 1)
+	case 48: // STATE 5 - PA2-P1-rayhanul.pml:70 - [pkey = keyB] (0:14:4 - 1)
 		IfNotBlocked
 		reached[1][5] = 1;
 		(trpt+1)->bup.ovals = grab_ints(4);
@@ -676,7 +686,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 5 */
-	case 49: // STATE 6 - PA2-P1-rayhanul.pml:66 - [partnerB = agentI] (0:0:1 - 1)
+	case 49: // STATE 6 - PA2-P1-rayhanul.pml:71 - [partnerB = agentI] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][6] = 1;
 		(trpt+1)->bup.oval = now.partnerB;
@@ -686,7 +696,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 50: // STATE 7 - PA2-P1-rayhanul.pml:66 - [pkey = keyI] (0:14:4 - 1)
+	case 50: // STATE 7 - PA2-P1-rayhanul.pml:71 - [pkey = keyI] (0:14:4 - 1)
 		IfNotBlocked
 		reached[1][7] = 1;
 		(trpt+1)->bup.ovals = grab_ints(4);
@@ -727,7 +737,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 5 */
-	case 51: // STATE 10 - PA2-P1-rayhanul.pml:69 - [] (0:14:3 - 3)
+	case 51: // STATE 10 - PA2-P1-rayhanul.pml:74 - [] (0:14:3 - 3)
 		IfNotBlocked
 		reached[1][10] = 1;
 		;
@@ -757,7 +767,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 3 */
-	case 52: // STATE 14 - PA2-P1-rayhanul.pml:70 - [network!msg2,partnerB,data2.key,data2.info1,data2.info2] (0:0:0 - 1)
+	case 52: // STATE 14 - PA2-P1-rayhanul.pml:75 - [network!msg2,partnerB,data2.key,data2.info1,data2.info2] (0:0:0 - 1)
 		IfNotBlocked
 		reached[1][14] = 1;
 		if (q_len(now.network))
@@ -776,7 +786,7 @@
 		qsend(now.network, 0, 11, now.partnerB, ((P1 *)_this)->data2.key, ((P1 *)_this)->data2.info1, ((P1 *)_this)->data2.info2, 5);
 		{ boq = now.network; };
 		_m = 2; goto P999; /* 0 */
-	case 53: // STATE 15 - PA2-P1-rayhanul.pml:72 - [network?msg3,agentB,data.key,data.info1,data.info2] (0:0:3 - 1)
+	case 53: // STATE 15 - PA2-P1-rayhanul.pml:77 - [network?msg3,agentB,data.key,data.info1,data.info2] (0:0:3 - 1)
 		reached[1][15] = 1;
 		if (boq != now.network) continue;
 		if (q_len(now.network) == 0) continue;
@@ -809,11 +819,16 @@
 		if (readtrail && gui) {
 			char simtmp[32];
 			sprintf(simvals, "%d?", now.network);
-		sprintf(simtmp, "%d", 10); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", 5); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.key); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.info1); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.info2); strcat(simvals, simtmp);		}
+			sprintf(simtmp, "%d", 10); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", 5); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((P1 *)_this)->data.key); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((P1 *)_this)->data.info1); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((P1 *)_this)->data.info2); strcat(simvals, simtmp);
+		}
 #endif
 		if (q_zero(now.network))
 		{	boq = -1;
@@ -838,13 +853,13 @@
 
 		};
 		_m = 4; goto P999; /* 0 */
-	case 54: // STATE 16 - PA2-P1-rayhanul.pml:73 - [(((data.key==keyB)&&(data.info1==nonceB)))] (0:0:0 - 1)
+	case 54: // STATE 16 - PA2-P1-rayhanul.pml:78 - [(((data.key==keyB)&&(data.info1==nonceB)))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[1][16] = 1;
 		if (!(((((P1 *)_this)->data.key==8)&&(((P1 *)_this)->data.info1==2))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 55: // STATE 17 - PA2-P1-rayhanul.pml:75 - [statusB = ok] (0:0:1 - 1)
+	case 55: // STATE 17 - PA2-P1-rayhanul.pml:80 - [statusB = ok] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][17] = 1;
 		(trpt+1)->bup.oval = now.statusB;
@@ -854,14 +869,14 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 56: // STATE 18 - PA2-P1-rayhanul.pml:76 - [-end-] (0:0:0 - 1)
+	case 56: // STATE 18 - PA2-P1-rayhanul.pml:81 - [-end-] (0:0:0 - 1)
 		IfNotBlocked
 		reached[1][18] = 1;
 		if (!delproc(1, II)) continue;
 		_m = 3; goto P999; /* 0 */
 
 		 /* PROC Alice */
-	case 57: // STATE 1 - PA2-P1-rayhanul.pml:37 - [partnerA = agentB] (0:0:1 - 1)
+	case 57: // STATE 1 - PA2-P1-rayhanul.pml:42 - [partnerA = agentB] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][1] = 1;
 		(trpt+1)->bup.oval = now.partnerA;
@@ -871,7 +886,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 58: // STATE 2 - PA2-P1-rayhanul.pml:37 - [pkey = keyB] (0:10:4 - 1)
+	case 58: // STATE 2 - PA2-P1-rayhanul.pml:42 - [pkey = keyB] (0:10:4 - 1)
 		IfNotBlocked
 		reached[0][2] = 1;
 		(trpt+1)->bup.ovals = grab_ints(4);
@@ -909,7 +924,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 4 */
-	case 59: // STATE 3 - PA2-P1-rayhanul.pml:38 - [partnerA = agentI] (0:0:1 - 1)
+	case 59: // STATE 3 - PA2-P1-rayhanul.pml:43 - [partnerA = agentI] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][3] = 1;
 		(trpt+1)->bup.oval = now.partnerA;
@@ -919,7 +934,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 60: // STATE 4 - PA2-P1-rayhanul.pml:38 - [pkey = keyI] (0:10:4 - 1)
+	case 60: // STATE 4 - PA2-P1-rayhanul.pml:43 - [pkey = keyI] (0:10:4 - 1)
 		IfNotBlocked
 		reached[0][4] = 1;
 		(trpt+1)->bup.ovals = grab_ints(4);
@@ -957,7 +972,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 4 */
-	case 61: // STATE 7 - PA2-P1-rayhanul.pml:41 - [data.key = pkey] (0:10:3 - 3)
+	case 61: // STATE 7 - PA2-P1-rayhanul.pml:46 - [data.key = pkey] (0:10:3 - 3)
 		IfNotBlocked
 		reached[0][7] = 1;
 		(trpt+1)->bup.ovals = grab_ints(3);
@@ -984,7 +999,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 2 */
-	case 62: // STATE 10 - PA2-P1-rayhanul.pml:43 - [network!msg1,partnerA,data.key,data.info1,data.info2] (0:0:0 - 1)
+	case 62: // STATE 10 - PA2-P1-rayhanul.pml:48 - [network!msg1,partnerA,data.key,data.info1,data.info2] (0:0:0 - 1)
 		IfNotBlocked
 		reached[0][10] = 1;
 		if (q_len(now.network))
@@ -1003,7 +1018,7 @@
 		qsend(now.network, 0, 12, now.partnerA, ((P0 *)_this)->data.key, ((P0 *)_this)->data.info1, ((P0 *)_this)->data.info2, 5);
 		{ boq = now.network; };
 		_m = 2; goto P999; /* 0 */
-	case 63: // STATE 11 - PA2-P1-rayhanul.pml:45 - [network?msg2,agentA,data2.key,data2.info1,data2.info2] (0:0:3 - 1)
+	case 63: // STATE 11 - PA2-P1-rayhanul.pml:50 - [network?msg2,agentA,data2.key,data2.info1,data2.info2] (0:0:3 - 1)
 		reached[0][11] = 1;
 		if (boq != now.network) continue;
 		if (q_len(now.network) == 0) continue;
@@ -1036,11 +1051,16 @@
 		if (readtrail && gui) {
 			char simtmp[32];
 			sprintf(simvals, "%d?", now.network);
-		sprintf(simtmp, "%d", 11); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", 6); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data2.key); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data2.info1); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data2.info2); strcat(simvals, simtmp);		}
+			sprintf(simtmp, "%d", 11); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", 6); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((P0 *)_this)->data2.key); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((P0 *)_this)->data2.info1); strcat(simvals, simtmp);
+			strcat(simvals, ",");
+			sprintf(simtmp, "%d", ((P0 *)_this)->data2.info2); strcat(simvals, simtmp);
+		}
 #endif
 		if (q_zero(now.network))
 		{	boq = -1;
@@ -1065,7 +1085,7 @@
 
 		};
 		_m = 4; goto P999; /* 0 */
-	case 64: // STATE 12 - PA2-P1-rayhanul.pml:46 - [(((data2.key==keyA)&&(data2.info1==nonceA)))] (17:0:4 - 1)
+	case 64: // STATE 12 - PA2-P1-rayhanul.pml:51 - [(((data2.key==keyA)&&(data2.info1==nonceA)))] (17:0:4 - 1)
 		IfNotBlocked
 		reached[0][12] = 1;
 		if (!(((((P0 *)_this)->data2.key==9)&&(((P0 *)_this)->data2.info1==3))))
@@ -1104,7 +1124,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 4 */
-	case 65: // STATE 17 - PA2-P1-rayhanul.pml:50 - [network!msg3,partnerA,data3.key,data3.info1,data3.info2] (0:0:0 - 1)
+	case 65: // STATE 17 - PA2-P1-rayhanul.pml:55 - [network!msg3,partnerA,data3.key,data3.info1,data3.info2] (0:0:0 - 1)
 		IfNotBlocked
 		reached[0][17] = 1;
 		if (q_len(now.network))
@@ -1123,7 +1143,7 @@
 		qsend(now.network, 0, 10, now.partnerA, ((P0 *)_this)->data3.key, ((P0 *)_this)->data3.info1, ((P0 *)_this)->data3.info2, 5);
 		{ boq = now.network; };
 		_m = 2; goto P999; /* 0 */
-	case 66: // STATE 18 - PA2-P1-rayhanul.pml:51 - [statusA = ok] (0:0:1 - 1)
+	case 66: // STATE 18 - PA2-P1-rayhanul.pml:56 - [statusA = ok] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][18] = 1;
 		(trpt+1)->bup.oval = now.statusA;
@@ -1133,7 +1153,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 67: // STATE 19 - PA2-P1-rayhanul.pml:52 - [-end-] (0:0:0 - 1)
+	case 67: // STATE 19 - PA2-P1-rayhanul.pml:57 - [-end-] (0:0:0 - 1)
 		IfNotBlocked
 		reached[0][19] = 1;
 		if (!delproc(1, II)) continue;

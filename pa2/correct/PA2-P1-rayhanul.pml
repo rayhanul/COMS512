@@ -1,9 +1,14 @@
 
 
 /**
-This verifies the Needham-Schroeder protocol.
+This verifies the Needham-Schroeder protocol. This version is the incorrect version because the following property
+finds an path to break the protocol. 
 
+Ways to correct the protocol: 
 
+The incorrect version makes decision of whom it is communicating with by checking nonce, however that's not enough,
+therefore, Agent Bob's information can be added to the message two like (B, N_A, N_B) to send it to Alice. Similarly
+whenever it receives message, it should checks the senders to decide if it is communicating with an intruder or not. 
 
  */
 
@@ -148,9 +153,9 @@ active proctype Intruder() {
     od;
 }
 
- ltl part2 { [] (statusA ==ok && statusB == ok -> (partnerA==agentB <-> partnerB==agentA))}
+  ltl part2 { [] (statusA ==ok && statusB == ok -> (partnerA==agentB <-> partnerB==agentA))}
 
 // ltl part2_2 {[] (statusA==ok && statusB==ok -> ! knows_nonceA)}
 
-//ltl part2_3 {[] (statusB==ok && statusA==ok -> ! knows_nonceB)}
+// ltl part2_3 {[] (statusB==ok && statusA==ok -> ! knows_nonceB)}
 

@@ -1,7 +1,7 @@
 #ifndef PAN_H
 #define PAN_H
 
-#define SpinVersion	"Spin Version 6.5.2 -- 6 December 2019"
+#define SpinVersion	"Spin Version 6.5.2 -- 13 October 2022"
 #define PanSource	"PA2-P1-rayhanul.pml"
 
 #define G_long	8
@@ -111,7 +111,7 @@
 #if !defined(HAS_LAST) && defined(BCS)
 	#define HAS_LAST	1 /* use it, but */
 	#ifndef STORE_LAST
-		#define NO_LAST	1 /* dont store it */
+		#define NO_LAST	1 /* don't store it */
 	#endif
 #endif
 #if defined(BCS) && defined(BITSTATE)

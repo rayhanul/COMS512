@@ -31,10 +31,13 @@ N    Time (sec)
 10   0.02
 
  
-
-From the pattern of N and Time, it is clear that the needed time for verifying a given property along with 
-the number of states and memory increase as N increases. Therefore, DFS algorithm takes more time to find solution 
-from the high volumn of state space, which results the increase in the time of verifying any property. 
+Although, the recorded time for different N value (3 to 8) 0 here, but the running
+time increase as N increases, for example, the running time for N=11 is higher than N=10. 
+From the pattern of N and Time, it is clear that the needed time for verifying a 
+given property along with the number of states and memory increase as N increases. 
+Due to high number of states, DFS algorithm takes more time to find the counter 
+example or examples satisfying the specification for higher value of N. 
+Which results the increase in the time of verifying any property of interest.  
 */
 
 
@@ -113,9 +116,7 @@ od
 }
 
 
-init {
-
-		
+init {	
 		stones[0] = male;
 		stones[1] = male;
 		stones[2] = male;
@@ -123,6 +124,4 @@ init {
 		stones[4] = female;
 		stones[5] = female;
 		stones[6] = female;
-
-
 }
