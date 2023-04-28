@@ -19,8 +19,8 @@
 		if (trpt->o_pm&1) continue;
 		_m = 3; goto P999;
 
-		 /* CLAIM part2 */
-	case 3: // STATE 1 - _spin_nvr.tmp:3 - [((((!(!(((statusA==ok)&&(statusB==ok))))&&!((partnerB==agentA)))&&(partnerA==agentB))||((!(!(((statusA==ok)&&(statusB==ok))))&&!((partnerA==agentB)))&&(partnerB==agentA))))] (6:0:0 - 1)
+		 /* CLAIM ltl_0 */
+	case 3: // STATE 1 - _spin_nvr.tmp:3 - [(!(!(((((((((((((((((((stones[0]==female)&&(stones[1]==female))&&(stones[2]==female))&&(stones[3]==female))&&(stones[4]==female))&&(stones[5]==female))&&(stones[6]==female))&&(stones[7]==female))&&(stones[8]==female))&&(stones[10]==male))&&(stones[11]==male))&&(stones[12]==male))&&(stones[13]==male))&&(stones[14]==male))&&(stones[15]==male))&&(stones[16]==male))&&(stones[17]==male))&&(stones[18]==male)))))] (6:0:0 - 1)
 		
 #if defined(VERI) && !defined(NP)
 #if NCLAIMS>1
@@ -42,14 +42,14 @@
 		}	}
 #endif
 #endif
-		reached[3][1] = 1;
-		if (!(((( !( !(((now.statusA==14)&&(now.statusB==14))))&& !((now.partnerB==6)))&&(now.partnerA==5))||(( !( !(((now.statusA==14)&&(now.statusB==14))))&& !((now.partnerA==5)))&&(now.partnerB==6)))))
+		reached[2][1] = 1;
+		if (!( !( !(((((((((((((((((((now.stones[0]==1)&&(now.stones[1]==1))&&(now.stones[2]==1))&&(now.stones[3]==1))&&(now.stones[4]==1))&&(now.stones[5]==1))&&(now.stones[6]==1))&&(now.stones[7]==1))&&(now.stones[8]==1))&&(now.stones[10]==2))&&(now.stones[11]==2))&&(now.stones[12]==2))&&(now.stones[13]==2))&&(now.stones[14]==2))&&(now.stones[15]==2))&&(now.stones[16]==2))&&(now.stones[17]==2))&&(now.stones[18]==2))))))
 			continue;
-		/* merge: assert(!((((!(!(((statusA==ok)&&(statusB==ok))))&&!((partnerB==agentA)))&&(partnerA==agentB))||((!(!(((statusA==ok)&&(statusB==ok))))&&!((partnerA==agentB)))&&(partnerB==agentA)))))(0, 2, 6) */
-		reached[3][2] = 1;
-		spin_assert( !(((( !( !(((now.statusA==14)&&(now.statusB==14))))&& !((now.partnerB==6)))&&(now.partnerA==5))||(( !( !(((now.statusA==14)&&(now.statusB==14))))&& !((now.partnerA==5)))&&(now.partnerB==6)))), " !(((( !( !(((statusA==14)&&(statusB==14))))&& !((partnerB==6)))&&(partnerA==5))||(( !( !(((statusA==14)&&(statusB==14))))&& !((partnerA==5)))&&(partnerB==6))))", II, tt, t);
+		/* merge: assert(!(!(!(((((((((((((((((((stones[0]==female)&&(stones[1]==female))&&(stones[2]==female))&&(stones[3]==female))&&(stones[4]==female))&&(stones[5]==female))&&(stones[6]==female))&&(stones[7]==female))&&(stones[8]==female))&&(stones[10]==male))&&(stones[11]==male))&&(stones[12]==male))&&(stones[13]==male))&&(stones[14]==male))&&(stones[15]==male))&&(stones[16]==male))&&(stones[17]==male))&&(stones[18]==male))))))(0, 2, 6) */
+		reached[2][2] = 1;
+		spin_assert( !( !( !(((((((((((((((((((now.stones[0]==1)&&(now.stones[1]==1))&&(now.stones[2]==1))&&(now.stones[3]==1))&&(now.stones[4]==1))&&(now.stones[5]==1))&&(now.stones[6]==1))&&(now.stones[7]==1))&&(now.stones[8]==1))&&(now.stones[10]==2))&&(now.stones[11]==2))&&(now.stones[12]==2))&&(now.stones[13]==2))&&(now.stones[14]==2))&&(now.stones[15]==2))&&(now.stones[16]==2))&&(now.stones[17]==2))&&(now.stones[18]==2))))), " !( !( !(((((((((((((((((((stones[0]==1)&&(stones[1]==1))&&(stones[2]==1))&&(stones[3]==1))&&(stones[4]==1))&&(stones[5]==1))&&(stones[6]==1))&&(stones[7]==1))&&(stones[8]==1))&&(stones[10]==2))&&(stones[11]==2))&&(stones[12]==2))&&(stones[13]==2))&&(stones[14]==2))&&(stones[15]==2))&&(stones[16]==2))&&(stones[17]==2))&&(stones[18]==2)))))", II, tt, t);
 		/* merge: .(goto)(0, 7, 6) */
-		reached[3][7] = 1;
+		reached[2][7] = 1;
 		;
 		_m = 3; goto P999; /* 2 */
 	case 4: // STATE 10 - _spin_nvr.tmp:8 - [-end-] (0:0:0 - 1)
@@ -74,1206 +74,2705 @@
 		}	}
 #endif
 #endif
-		reached[3][10] = 1;
-		if (!delproc(1, II)) continue;
-		_m = 3; goto P999; /* 0 */
-
-		 /* PROC Intruder */
-	case 5: // STATE 1 - PA2-P1-rayhanul.pml:85 - [network?msg,_,data.key,data.info1,data.info2,data.who_sending] (0:0:7 - 1)
-		reached[2][1] = 1;
-		if (boq != now.network) continue;
-		if (q_len(now.network) == 0) continue;
-
-		XX=1;
-		(trpt+1)->bup.ovals = grab_ints(7);
-		(trpt+1)->bup.ovals[0] = ((P2 *)_this)->msg;
-		(trpt+1)->bup.ovals[1] = qrecv(now.network, XX-1, 1, 0);
-		(trpt+1)->bup.ovals[2] = ((P2 *)_this)->data.key;
-		(trpt+1)->bup.ovals[3] = ((P2 *)_this)->data.info1;
-		(trpt+1)->bup.ovals[4] = ((P2 *)_this)->data.info2;
-		(trpt+1)->bup.ovals[5] = ((P2 *)_this)->data.who_sending;
-		;
-		((P2 *)_this)->msg = qrecv(now.network, XX-1, 0, 0);
-#ifdef VAR_RANGES
-		logval("Intruder:msg", ((P2 *)_this)->msg);
-#endif
-		;
-		qrecv(now.network, XX-1, 1, 0);
-		((P2 *)_this)->data.key = qrecv(now.network, XX-1, 2, 0);
-#ifdef VAR_RANGES
-		logval("Intruder:data.key", ((P2 *)_this)->data.key);
-#endif
-		;
-		((P2 *)_this)->data.info1 = qrecv(now.network, XX-1, 3, 0);
-#ifdef VAR_RANGES
-		logval("Intruder:data.info1", ((P2 *)_this)->data.info1);
-#endif
-		;
-		((P2 *)_this)->data.info2 = qrecv(now.network, XX-1, 4, 0);
-#ifdef VAR_RANGES
-		logval("Intruder:data.info2", ((P2 *)_this)->data.info2);
-#endif
-		;
-		((P2 *)_this)->data.who_sending = qrecv(now.network, XX-1, 5, 1);
-#ifdef VAR_RANGES
-		logval("Intruder:data.who_sending", ((P2 *)_this)->data.who_sending);
-#endif
-		;
-		
-#ifdef HAS_CODE
-		if (readtrail && gui) {
-			char simtmp[32];
-			sprintf(simvals, "%d?", now.network);
-		sprintf(simtmp, "%d", ((P2 *)_this)->msg); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((int)_)); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P2 *)_this)->data.key); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P2 *)_this)->data.info1); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P2 *)_this)->data.info2); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P2 *)_this)->data.who_sending); strcat(simvals, simtmp);		}
-#endif
-		if (q_zero(now.network))
-		{	boq = -1;
-#ifndef NOFAIR
-			if (fairness
-			&& !(trpt->o_pm&32)
-			&& (now._a_t&2)
-			&&  now._cnt[now._a_t&1] == II+2)
-			{	now._cnt[now._a_t&1] -= 1;
-#ifdef VERI
-				if (II == 1)
-					now._cnt[now._a_t&1] = 1;
-#endif
-#ifdef DEBUG
-			printf("%3ld: proc %d fairness ", depth, II);
-			printf("Rule 2: --cnt to %d (%d)\n",
-				now._cnt[now._a_t&1], now._a_t);
-#endif
-				trpt->o_pm |= (32|64);
-			}
-#endif
-
-		};
-		if (TstOnly) return 1; /* TT */
-		/* dead 2: msg */  (trpt+1)->bup.ovals[6] = ((P2 *)_this)->msg;
-#ifdef HAS_CODE
-		if (!readtrail)
-#endif
-			((P2 *)_this)->msg = 0;
-		_m = 4; goto P999; /* 0 */
-	case 6: // STATE 2 - PA2-P1-rayhanul.pml:87 - [intercepted.key = data.key] (0:25:4 - 1)
-		IfNotBlocked
-		reached[2][2] = 1;
-		(trpt+1)->bup.ovals = grab_ints(4);
-		(trpt+1)->bup.ovals[0] = ((P2 *)_this)->intercepted.key;
-		((P2 *)_this)->intercepted.key = ((P2 *)_this)->data.key;
-#ifdef VAR_RANGES
-		logval("Intruder:intercepted.key", ((P2 *)_this)->intercepted.key);
-#endif
-		;
-		/* merge: intercepted.info1 = data.info1(25, 3, 25) */
-		reached[2][3] = 1;
-		(trpt+1)->bup.ovals[1] = ((P2 *)_this)->intercepted.info1;
-		((P2 *)_this)->intercepted.info1 = ((P2 *)_this)->data.info1;
-#ifdef VAR_RANGES
-		logval("Intruder:intercepted.info1", ((P2 *)_this)->intercepted.info1);
-#endif
-		;
-		/* merge: intercepted.info2 = data.info2(25, 4, 25) */
-		reached[2][4] = 1;
-		(trpt+1)->bup.ovals[2] = ((P2 *)_this)->intercepted.info2;
-		((P2 *)_this)->intercepted.info2 = ((P2 *)_this)->data.info2;
-#ifdef VAR_RANGES
-		logval("Intruder:intercepted.info2", ((P2 *)_this)->intercepted.info2);
-#endif
-		;
-		/* merge: intercepted.who_sending = data.who_sending(25, 5, 25) */
-		reached[2][5] = 1;
-		(trpt+1)->bup.ovals[3] = ((P2 *)_this)->intercepted.who_sending;
-		((P2 *)_this)->intercepted.who_sending = ((P2 *)_this)->data.who_sending;
-#ifdef VAR_RANGES
-		logval("Intruder:intercepted.who_sending", ((P2 *)_this)->intercepted.who_sending);
-#endif
-		;
-		/* merge: .(goto)(0, 8, 25) */
-		reached[2][8] = 1;
-		;
-		_m = 3; goto P999; /* 4 */
-	case 7: // STATE 9 - PA2-P1-rayhanul.pml:91 - [((data.key==keyI))] (0:0:0 - 1)
-		IfNotBlocked
-		reached[2][9] = 1;
-		if (!((((P2 *)_this)->data.key==7)))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 8: // STATE 10 - PA2-P1-rayhanul.pml:93 - [(((data.info1==nonceA)||(data.info2==nonceA)))] (0:0:0 - 1)
-		IfNotBlocked
 		reached[2][10] = 1;
-		if (!(((((P2 *)_this)->data.info1==3)||(((P2 *)_this)->data.info2==3))))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 9: // STATE 11 - PA2-P1-rayhanul.pml:93 - [knows_nonceA = 1] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][11] = 1;
-		(trpt+1)->bup.oval = ((int)now.knows_nonceA);
-		now.knows_nonceA = 1;
-#ifdef VAR_RANGES
-		logval("knows_nonceA", ((int)now.knows_nonceA));
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 10: // STATE 16 - PA2-P1-rayhanul.pml:97 - [((data.key==keyI))] (0:0:0 - 1)
-		IfNotBlocked
-		reached[2][16] = 1;
-		if (!((((P2 *)_this)->data.key==7)))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 11: // STATE 17 - PA2-P1-rayhanul.pml:99 - [(((data.info1==nonceB)||(data.info2==nonceB)))] (0:0:0 - 1)
-		IfNotBlocked
-		reached[2][17] = 1;
-		if (!(((((P2 *)_this)->data.info1==2)||(((P2 *)_this)->data.info2==2))))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 12: // STATE 18 - PA2-P1-rayhanul.pml:99 - [knows_nonceB = 1] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][18] = 1;
-		(trpt+1)->bup.oval = ((int)now.knows_nonceB);
-		now.knows_nonceB = 1;
-#ifdef VAR_RANGES
-		logval("knows_nonceB", ((int)now.knows_nonceB));
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 13: // STATE 27 - PA2-P1-rayhanul.pml:107 - [msg = msg1] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][27] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->msg;
-		((P2 *)_this)->msg = 12;
-#ifdef VAR_RANGES
-		logval("Intruder:msg", ((P2 *)_this)->msg);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 14: // STATE 28 - PA2-P1-rayhanul.pml:108 - [msg = msg2] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][28] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->msg;
-		((P2 *)_this)->msg = 11;
-#ifdef VAR_RANGES
-		logval("Intruder:msg", ((P2 *)_this)->msg);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 15: // STATE 29 - PA2-P1-rayhanul.pml:109 - [msg = msg3] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][29] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->msg;
-		((P2 *)_this)->msg = 10;
-#ifdef VAR_RANGES
-		logval("Intruder:msg", ((P2 *)_this)->msg);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 16: // STATE 32 - PA2-P1-rayhanul.pml:112 - [recpt = agentA] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][32] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->recpt;
-		((P2 *)_this)->recpt = 6;
-#ifdef VAR_RANGES
-		logval("Intruder:recpt", ((P2 *)_this)->recpt);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 17: // STATE 33 - PA2-P1-rayhanul.pml:113 - [recpt = agentB] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][33] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->recpt;
-		((P2 *)_this)->recpt = 5;
-#ifdef VAR_RANGES
-		logval("Intruder:recpt", ((P2 *)_this)->recpt);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 18: // STATE 36 - PA2-P1-rayhanul.pml:116 - [data.key = intercepted.key] (0:77:4 - 1)
-		IfNotBlocked
-		reached[2][36] = 1;
-		(trpt+1)->bup.ovals = grab_ints(4);
-		(trpt+1)->bup.ovals[0] = ((P2 *)_this)->data.key;
-		((P2 *)_this)->data.key = ((P2 *)_this)->intercepted.key;
-#ifdef VAR_RANGES
-		logval("Intruder:data.key", ((P2 *)_this)->data.key);
-#endif
-		;
-		/* merge: data.info1 = intercepted.info1(77, 37, 77) */
-		reached[2][37] = 1;
-		(trpt+1)->bup.ovals[1] = ((P2 *)_this)->data.info1;
-		((P2 *)_this)->data.info1 = ((P2 *)_this)->intercepted.info1;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info1", ((P2 *)_this)->data.info1);
-#endif
-		;
-		/* merge: data.info2 = intercepted.info2(77, 38, 77) */
-		reached[2][38] = 1;
-		(trpt+1)->bup.ovals[2] = ((P2 *)_this)->data.info2;
-		((P2 *)_this)->data.info2 = ((P2 *)_this)->intercepted.info2;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info2", ((P2 *)_this)->data.info2);
-#endif
-		;
-		/* merge: data.who_sending = intercepted.who_sending(77, 39, 77) */
-		reached[2][39] = 1;
-		(trpt+1)->bup.ovals[3] = ((P2 *)_this)->data.who_sending;
-		((P2 *)_this)->data.who_sending = ((P2 *)_this)->intercepted.who_sending;
-#ifdef VAR_RANGES
-		logval("Intruder:data.who_sending", ((P2 *)_this)->data.who_sending);
-#endif
-		;
-		/* merge: .(goto)(0, 76, 77) */
-		reached[2][76] = 1;
-		;
-		_m = 3; goto P999; /* 4 */
-	case 19: // STATE 40 - PA2-P1-rayhanul.pml:118 - [data.info1 = agentA] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][40] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.info1;
-		((P2 *)_this)->data.info1 = 6;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info1", ((P2 *)_this)->data.info1);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 20: // STATE 41 - PA2-P1-rayhanul.pml:119 - [data.info1 = agentB] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][41] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.info1;
-		((P2 *)_this)->data.info1 = 5;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info1", ((P2 *)_this)->data.info1);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 21: // STATE 42 - PA2-P1-rayhanul.pml:120 - [data.info1 = agentI] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][42] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.info1;
-		((P2 *)_this)->data.info1 = 4;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info1", ((P2 *)_this)->data.info1);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 22: // STATE 43 - PA2-P1-rayhanul.pml:121 - [(knows_nonceA)] (0:0:0 - 1)
-		IfNotBlocked
-		reached[2][43] = 1;
-		if (!(((int)now.knows_nonceA)))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 23: // STATE 44 - PA2-P1-rayhanul.pml:121 - [data.info1 = nonceA] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][44] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.info1;
-		((P2 *)_this)->data.info1 = 3;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info1", ((P2 *)_this)->data.info1);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 24: // STATE 45 - PA2-P1-rayhanul.pml:122 - [(knows_nonceB)] (0:0:0 - 1)
-		IfNotBlocked
-		reached[2][45] = 1;
-		if (!(((int)now.knows_nonceB)))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 25: // STATE 46 - PA2-P1-rayhanul.pml:122 - [data.info1 = nonceB] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][46] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.info1;
-		((P2 *)_this)->data.info1 = 2;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info1", ((P2 *)_this)->data.info1);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 26: // STATE 47 - PA2-P1-rayhanul.pml:123 - [data.info1 = nonceI] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][47] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.info1;
-		((P2 *)_this)->data.info1 = 1;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info1", ((P2 *)_this)->data.info1);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 27: // STATE 50 - PA2-P1-rayhanul.pml:127 - [data.info2 = agentA] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][50] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.info2;
-		((P2 *)_this)->data.info2 = 6;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info2", ((P2 *)_this)->data.info2);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 28: // STATE 51 - PA2-P1-rayhanul.pml:128 - [data.info2 = agentB] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][51] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.info2;
-		((P2 *)_this)->data.info2 = 5;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info2", ((P2 *)_this)->data.info2);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 29: // STATE 52 - PA2-P1-rayhanul.pml:129 - [data.info2 = agentI] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][52] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.info2;
-		((P2 *)_this)->data.info2 = 4;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info2", ((P2 *)_this)->data.info2);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 30: // STATE 53 - PA2-P1-rayhanul.pml:130 - [(knows_nonceA)] (0:0:0 - 1)
-		IfNotBlocked
-		reached[2][53] = 1;
-		if (!(((int)now.knows_nonceA)))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 31: // STATE 54 - PA2-P1-rayhanul.pml:130 - [data.info2 = nonceA] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][54] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.info2;
-		((P2 *)_this)->data.info2 = 3;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info2", ((P2 *)_this)->data.info2);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 32: // STATE 55 - PA2-P1-rayhanul.pml:131 - [(knows_nonceB)] (0:0:0 - 1)
-		IfNotBlocked
-		reached[2][55] = 1;
-		if (!(((int)now.knows_nonceB)))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 33: // STATE 56 - PA2-P1-rayhanul.pml:131 - [data.info2 = nonceB] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][56] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.info2;
-		((P2 *)_this)->data.info2 = 2;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info2", ((P2 *)_this)->data.info2);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 34: // STATE 57 - PA2-P1-rayhanul.pml:132 - [data.info2 = nonceI] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][57] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.info2;
-		((P2 *)_this)->data.info2 = 1;
-#ifdef VAR_RANGES
-		logval("Intruder:data.info2", ((P2 *)_this)->data.info2);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 35: // STATE 60 - PA2-P1-rayhanul.pml:136 - [data.key = keyA] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][60] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.key;
-		((P2 *)_this)->data.key = 9;
-#ifdef VAR_RANGES
-		logval("Intruder:data.key", ((P2 *)_this)->data.key);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 36: // STATE 61 - PA2-P1-rayhanul.pml:137 - [data.key = keyB] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][61] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.key;
-		((P2 *)_this)->data.key = 8;
-#ifdef VAR_RANGES
-		logval("Intruder:data.key", ((P2 *)_this)->data.key);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 37: // STATE 62 - PA2-P1-rayhanul.pml:138 - [data.key = keyI] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][62] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.key;
-		((P2 *)_this)->data.key = 7;
-#ifdef VAR_RANGES
-		logval("Intruder:data.key", ((P2 *)_this)->data.key);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 38: // STATE 63 - PA2-P1-rayhanul.pml:139 - [(knows_nonceA)] (0:0:0 - 1)
-		IfNotBlocked
-		reached[2][63] = 1;
-		if (!(((int)now.knows_nonceA)))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 39: // STATE 64 - PA2-P1-rayhanul.pml:139 - [data.key = nonceA] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][64] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.key;
-		((P2 *)_this)->data.key = 3;
-#ifdef VAR_RANGES
-		logval("Intruder:data.key", ((P2 *)_this)->data.key);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 40: // STATE 65 - PA2-P1-rayhanul.pml:140 - [(knows_nonceB)] (0:0:0 - 1)
-		IfNotBlocked
-		reached[2][65] = 1;
-		if (!(((int)now.knows_nonceB)))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 41: // STATE 66 - PA2-P1-rayhanul.pml:140 - [data.key = nonceB] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][66] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.key;
-		((P2 *)_this)->data.key = 2;
-#ifdef VAR_RANGES
-		logval("Intruder:data.key", ((P2 *)_this)->data.key);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 42: // STATE 67 - PA2-P1-rayhanul.pml:141 - [data.key = nonceI] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][67] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.key;
-		((P2 *)_this)->data.key = 1;
-#ifdef VAR_RANGES
-		logval("Intruder:data.key", ((P2 *)_this)->data.key);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 43: // STATE 70 - PA2-P1-rayhanul.pml:144 - [data.who_sending = agentA] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][70] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.who_sending;
-		((P2 *)_this)->data.who_sending = 6;
-#ifdef VAR_RANGES
-		logval("Intruder:data.who_sending", ((P2 *)_this)->data.who_sending);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 44: // STATE 71 - PA2-P1-rayhanul.pml:145 - [data.who_sending = agentB] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][71] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.who_sending;
-		((P2 *)_this)->data.who_sending = 5;
-#ifdef VAR_RANGES
-		logval("Intruder:data.who_sending", ((P2 *)_this)->data.who_sending);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 45: // STATE 72 - PA2-P1-rayhanul.pml:146 - [data.who_sending = agentI] (0:0:1 - 1)
-		IfNotBlocked
-		reached[2][72] = 1;
-		(trpt+1)->bup.oval = ((P2 *)_this)->data.who_sending;
-		((P2 *)_this)->data.who_sending = 4;
-#ifdef VAR_RANGES
-		logval("Intruder:data.who_sending", ((P2 *)_this)->data.who_sending);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 46: // STATE 77 - PA2-P1-rayhanul.pml:154 - [network!msg,recpt,data.key,data.info1,data.info2,data.who_sending] (0:0:0 - 27)
-		IfNotBlocked
-		reached[2][77] = 1;
-		if (q_len(now.network))
-			continue;
-#ifdef HAS_CODE
-		if (readtrail && gui) {
-			char simtmp[64];
-			sprintf(simvals, "%d!", now.network);
-		sprintf(simtmp, "%d", ((P2 *)_this)->msg); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P2 *)_this)->recpt); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P2 *)_this)->data.key); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P2 *)_this)->data.info1); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P2 *)_this)->data.info2); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P2 *)_this)->data.who_sending); strcat(simvals, simtmp);		}
-#endif
-		
-		qsend(now.network, 0, ((P2 *)_this)->msg, ((P2 *)_this)->recpt, ((P2 *)_this)->data.key, ((P2 *)_this)->data.info1, ((P2 *)_this)->data.info2, ((P2 *)_this)->data.who_sending, 6);
-		{ boq = now.network; };
-		_m = 2; goto P999; /* 0 */
-	case 47: // STATE 81 - PA2-P1-rayhanul.pml:156 - [-end-] (0:0:0 - 1)
-		IfNotBlocked
-		reached[2][81] = 1;
 		if (!delproc(1, II)) continue;
 		_m = 3; goto P999; /* 0 */
 
-		 /* PROC Bob */
-	case 48: // STATE 1 - PA2-P1-rayhanul.pml:60 - [network?msg1,agentB,data.key,data.info1,data.info2,data.who_sending] (0:0:4 - 1)
+		 /* PROC :init: */
+	case 5: // STATE 1 - pa_2_frogs_N_9.pml:169 - [stones[0] = male] (0:0:1 - 1)
+		IfNotBlocked
 		reached[1][1] = 1;
-		if (boq != now.network) continue;
-		if (q_len(now.network) == 0) continue;
-
-		XX=1;
-		if (12 != qrecv(now.network, 0, 0, 0)) continue;
-		if (5 != qrecv(now.network, 0, 1, 0)) continue;
-		(trpt+1)->bup.ovals = grab_ints(4);
-		(trpt+1)->bup.ovals[0] = ((P1 *)_this)->data.key;
-		(trpt+1)->bup.ovals[1] = ((P1 *)_this)->data.info1;
-		(trpt+1)->bup.ovals[2] = ((P1 *)_this)->data.info2;
-		(trpt+1)->bup.ovals[3] = ((P1 *)_this)->data.who_sending;
-		;
-		((P1 *)_this)->data.key = qrecv(now.network, XX-1, 2, 0);
+		(trpt+1)->bup.oval = now.stones[0];
+		now.stones[0] = 2;
 #ifdef VAR_RANGES
-		logval("Bob:data.key", ((P1 *)_this)->data.key);
+		logval("stones[0]", now.stones[0]);
 #endif
 		;
-		((P1 *)_this)->data.info1 = qrecv(now.network, XX-1, 3, 0);
-#ifdef VAR_RANGES
-		logval("Bob:data.info1", ((P1 *)_this)->data.info1);
-#endif
-		;
-		((P1 *)_this)->data.info2 = qrecv(now.network, XX-1, 4, 0);
-#ifdef VAR_RANGES
-		logval("Bob:data.info2", ((P1 *)_this)->data.info2);
-#endif
-		;
-		((P1 *)_this)->data.who_sending = qrecv(now.network, XX-1, 5, 1);
-#ifdef VAR_RANGES
-		logval("Bob:data.who_sending", ((P1 *)_this)->data.who_sending);
-#endif
-		;
-		
-#ifdef HAS_CODE
-		if (readtrail && gui) {
-			char simtmp[32];
-			sprintf(simvals, "%d?", now.network);
-		sprintf(simtmp, "%d", 12); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", 5); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.key); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.info1); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.info2); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.who_sending); strcat(simvals, simtmp);		}
-#endif
-		if (q_zero(now.network))
-		{	boq = -1;
-#ifndef NOFAIR
-			if (fairness
-			&& !(trpt->o_pm&32)
-			&& (now._a_t&2)
-			&&  now._cnt[now._a_t&1] == II+2)
-			{	now._cnt[now._a_t&1] -= 1;
-#ifdef VERI
-				if (II == 1)
-					now._cnt[now._a_t&1] = 1;
-#endif
-#ifdef DEBUG
-			printf("%3ld: proc %d fairness ", depth, II);
-			printf("Rule 2: --cnt to %d (%d)\n",
-				now._cnt[now._a_t&1], now._a_t);
-#endif
-				trpt->o_pm |= (32|64);
-			}
-#endif
-
-		};
-		_m = 4; goto P999; /* 0 */
-	case 49: // STATE 2 - PA2-P1-rayhanul.pml:62 - [(((data.key==keyB)&&(data.info2==nonceA)))] (0:0:0 - 1)
+		_m = 3; goto P999; /* 0 */
+	case 6: // STATE 2 - pa_2_frogs_N_9.pml:170 - [stones[1] = male] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][2] = 1;
-		if (!(((((P1 *)_this)->data.key==8)&&(((P1 *)_this)->data.info2==3))))
-			continue;
+		(trpt+1)->bup.oval = now.stones[1];
+		now.stones[1] = 2;
+#ifdef VAR_RANGES
+		logval("stones[1]", now.stones[1]);
+#endif
+		;
 		_m = 3; goto P999; /* 0 */
-	case 50: // STATE 3 - PA2-P1-rayhanul.pml:63 - [partnerB = data.info1] (0:0:1 - 1)
+	case 7: // STATE 3 - pa_2_frogs_N_9.pml:171 - [stones[2] = male] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][3] = 1;
-		(trpt+1)->bup.oval = now.partnerB;
-		now.partnerB = ((P1 *)_this)->data.info1;
+		(trpt+1)->bup.oval = now.stones[2];
+		now.stones[2] = 2;
 #ifdef VAR_RANGES
-		logval("partnerB", now.partnerB);
+		logval("stones[2]", now.stones[2]);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 51: // STATE 4 - PA2-P1-rayhanul.pml:64 - [pnonce = data.info2] (0:0:1 - 1)
+	case 8: // STATE 4 - pa_2_frogs_N_9.pml:172 - [stones[3] = male] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][4] = 1;
-		(trpt+1)->bup.oval = ((P1 *)_this)->pnonce;
-		((P1 *)_this)->pnonce = ((P1 *)_this)->data.info2;
+		(trpt+1)->bup.oval = now.stones[3];
+		now.stones[3] = 2;
 #ifdef VAR_RANGES
-		logval("Bob:pnonce", ((P1 *)_this)->pnonce);
+		logval("stones[3]", now.stones[3]);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 52: // STATE 5 - PA2-P1-rayhanul.pml:66 - [partnerA = agentB] (0:0:1 - 1)
+	case 9: // STATE 5 - pa_2_frogs_N_9.pml:173 - [stones[4] = male] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][5] = 1;
-		(trpt+1)->bup.oval = now.partnerA;
-		now.partnerA = 5;
+		(trpt+1)->bup.oval = now.stones[4];
+		now.stones[4] = 2;
 #ifdef VAR_RANGES
-		logval("partnerA", now.partnerA);
+		logval("stones[4]", now.stones[4]);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 53: // STATE 6 - PA2-P1-rayhanul.pml:66 - [pkey = keyB] (0:16:5 - 1)
+	case 10: // STATE 6 - pa_2_frogs_N_9.pml:174 - [stones[5] = male] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][6] = 1;
-		(trpt+1)->bup.ovals = grab_ints(5);
-		(trpt+1)->bup.ovals[0] = ((P1 *)_this)->pkey;
-		((P1 *)_this)->pkey = 8;
+		(trpt+1)->bup.oval = now.stones[5];
+		now.stones[5] = 2;
 #ifdef VAR_RANGES
-		logval("Bob:pkey", ((P1 *)_this)->pkey);
+		logval("stones[5]", now.stones[5]);
 #endif
 		;
-		/* merge: .(goto)(16, 10, 16) */
-		reached[1][10] = 1;
-		;
-		/* merge: (16, 11, 16) */
-		reached[1][11] = 1;
-		;
-		/* merge: data2.key = pkey(16, 12, 16) */
-		reached[1][12] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)_this)->data2.key;
-		((P1 *)_this)->data2.key = ((P1 *)_this)->pkey;
-#ifdef VAR_RANGES
-		logval("Bob:data2.key", ((P1 *)_this)->data2.key);
-#endif
-		;
-		/* merge: data2.info1 = pnonce(16, 13, 16) */
-		reached[1][13] = 1;
-		(trpt+1)->bup.ovals[2] = ((P1 *)_this)->data2.info1;
-		((P1 *)_this)->data2.info1 = ((P1 *)_this)->pnonce;
-#ifdef VAR_RANGES
-		logval("Bob:data2.info1", ((P1 *)_this)->data2.info1);
-#endif
-		;
-		/* merge: data2.info2 = nonceB(16, 14, 16) */
-		reached[1][14] = 1;
-		(trpt+1)->bup.ovals[3] = ((P1 *)_this)->data2.info2;
-		((P1 *)_this)->data2.info2 = 2;
-#ifdef VAR_RANGES
-		logval("Bob:data2.info2", ((P1 *)_this)->data2.info2);
-#endif
-		;
-		/* merge: data2.who_sending = agentB(16, 15, 16) */
-		reached[1][15] = 1;
-		(trpt+1)->bup.ovals[4] = ((P1 *)_this)->data2.who_sending;
-		((P1 *)_this)->data2.who_sending = 5;
-#ifdef VAR_RANGES
-		logval("Bob:data2.who_sending", ((P1 *)_this)->data2.who_sending);
-#endif
-		;
-		_m = 3; goto P999; /* 6 */
-	case 54: // STATE 7 - PA2-P1-rayhanul.pml:67 - [partnerA = agentI] (0:0:1 - 1)
+		_m = 3; goto P999; /* 0 */
+	case 11: // STATE 7 - pa_2_frogs_N_9.pml:175 - [stones[6] = male] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][7] = 1;
-		(trpt+1)->bup.oval = now.partnerA;
-		now.partnerA = 4;
+		(trpt+1)->bup.oval = now.stones[6];
+		now.stones[6] = 2;
 #ifdef VAR_RANGES
-		logval("partnerA", now.partnerA);
+		logval("stones[6]", now.stones[6]);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 55: // STATE 8 - PA2-P1-rayhanul.pml:67 - [pkey = keyI] (0:16:5 - 1)
+	case 12: // STATE 8 - pa_2_frogs_N_9.pml:176 - [stones[7] = male] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][8] = 1;
-		(trpt+1)->bup.ovals = grab_ints(5);
-		(trpt+1)->bup.ovals[0] = ((P1 *)_this)->pkey;
-		((P1 *)_this)->pkey = 7;
+		(trpt+1)->bup.oval = now.stones[7];
+		now.stones[7] = 2;
 #ifdef VAR_RANGES
-		logval("Bob:pkey", ((P1 *)_this)->pkey);
+		logval("stones[7]", now.stones[7]);
 #endif
 		;
-		/* merge: .(goto)(16, 10, 16) */
+		_m = 3; goto P999; /* 0 */
+	case 13: // STATE 9 - pa_2_frogs_N_9.pml:177 - [stones[8] = male] (0:0:1 - 1)
+		IfNotBlocked
+		reached[1][9] = 1;
+		(trpt+1)->bup.oval = now.stones[8];
+		now.stones[8] = 2;
+#ifdef VAR_RANGES
+		logval("stones[8]", now.stones[8]);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 14: // STATE 10 - pa_2_frogs_N_9.pml:178 - [stones[9] = none] (0:0:1 - 1)
+		IfNotBlocked
 		reached[1][10] = 1;
-		;
-		/* merge: (16, 11, 16) */
-		reached[1][11] = 1;
-		;
-		/* merge: data2.key = pkey(16, 12, 16) */
-		reached[1][12] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)_this)->data2.key;
-		((P1 *)_this)->data2.key = ((P1 *)_this)->pkey;
+		(trpt+1)->bup.oval = now.stones[9];
+		now.stones[9] = 3;
 #ifdef VAR_RANGES
-		logval("Bob:data2.key", ((P1 *)_this)->data2.key);
+		logval("stones[9]", now.stones[9]);
 #endif
 		;
-		/* merge: data2.info1 = pnonce(16, 13, 16) */
-		reached[1][13] = 1;
-		(trpt+1)->bup.ovals[2] = ((P1 *)_this)->data2.info1;
-		((P1 *)_this)->data2.info1 = ((P1 *)_this)->pnonce;
-#ifdef VAR_RANGES
-		logval("Bob:data2.info1", ((P1 *)_this)->data2.info1);
-#endif
-		;
-		/* merge: data2.info2 = nonceB(16, 14, 16) */
-		reached[1][14] = 1;
-		(trpt+1)->bup.ovals[3] = ((P1 *)_this)->data2.info2;
-		((P1 *)_this)->data2.info2 = 2;
-#ifdef VAR_RANGES
-		logval("Bob:data2.info2", ((P1 *)_this)->data2.info2);
-#endif
-		;
-		/* merge: data2.who_sending = agentB(16, 15, 16) */
-		reached[1][15] = 1;
-		(trpt+1)->bup.ovals[4] = ((P1 *)_this)->data2.who_sending;
-		((P1 *)_this)->data2.who_sending = 5;
-#ifdef VAR_RANGES
-		logval("Bob:data2.who_sending", ((P1 *)_this)->data2.who_sending);
-#endif
-		;
-		_m = 3; goto P999; /* 6 */
-	case 56: // STATE 11 - PA2-P1-rayhanul.pml:70 - [] (0:16:4 - 3)
+		_m = 3; goto P999; /* 0 */
+	case 15: // STATE 11 - pa_2_frogs_N_9.pml:180 - [stones[10] = female] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][11] = 1;
+		(trpt+1)->bup.oval = now.stones[10];
+		now.stones[10] = 1;
+#ifdef VAR_RANGES
+		logval("stones[10]", now.stones[10]);
+#endif
 		;
-		/* merge: data2.key = pkey(16, 12, 16) */
+		_m = 3; goto P999; /* 0 */
+	case 16: // STATE 12 - pa_2_frogs_N_9.pml:182 - [stones[11] = female] (0:0:1 - 1)
+		IfNotBlocked
 		reached[1][12] = 1;
-		(trpt+1)->bup.ovals = grab_ints(4);
-		(trpt+1)->bup.ovals[0] = ((P1 *)_this)->data2.key;
-		((P1 *)_this)->data2.key = ((P1 *)_this)->pkey;
+		(trpt+1)->bup.oval = now.stones[11];
+		now.stones[11] = 1;
 #ifdef VAR_RANGES
-		logval("Bob:data2.key", ((P1 *)_this)->data2.key);
+		logval("stones[11]", now.stones[11]);
 #endif
 		;
-		/* merge: data2.info1 = pnonce(16, 13, 16) */
+		_m = 3; goto P999; /* 0 */
+	case 17: // STATE 13 - pa_2_frogs_N_9.pml:183 - [stones[12] = female] (0:0:1 - 1)
+		IfNotBlocked
 		reached[1][13] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)_this)->data2.info1;
-		((P1 *)_this)->data2.info1 = ((P1 *)_this)->pnonce;
+		(trpt+1)->bup.oval = now.stones[12];
+		now.stones[12] = 1;
 #ifdef VAR_RANGES
-		logval("Bob:data2.info1", ((P1 *)_this)->data2.info1);
+		logval("stones[12]", now.stones[12]);
 #endif
 		;
-		/* merge: data2.info2 = nonceB(16, 14, 16) */
+		_m = 3; goto P999; /* 0 */
+	case 18: // STATE 14 - pa_2_frogs_N_9.pml:184 - [stones[13] = female] (0:0:1 - 1)
+		IfNotBlocked
 		reached[1][14] = 1;
-		(trpt+1)->bup.ovals[2] = ((P1 *)_this)->data2.info2;
-		((P1 *)_this)->data2.info2 = 2;
+		(trpt+1)->bup.oval = now.stones[13];
+		now.stones[13] = 1;
 #ifdef VAR_RANGES
-		logval("Bob:data2.info2", ((P1 *)_this)->data2.info2);
+		logval("stones[13]", now.stones[13]);
 #endif
 		;
-		/* merge: data2.who_sending = agentB(16, 15, 16) */
+		_m = 3; goto P999; /* 0 */
+	case 19: // STATE 15 - pa_2_frogs_N_9.pml:185 - [stones[14] = female] (0:0:1 - 1)
+		IfNotBlocked
 		reached[1][15] = 1;
-		(trpt+1)->bup.ovals[3] = ((P1 *)_this)->data2.who_sending;
-		((P1 *)_this)->data2.who_sending = 5;
+		(trpt+1)->bup.oval = now.stones[14];
+		now.stones[14] = 1;
 #ifdef VAR_RANGES
-		logval("Bob:data2.who_sending", ((P1 *)_this)->data2.who_sending);
+		logval("stones[14]", now.stones[14]);
 #endif
 		;
-		_m = 3; goto P999; /* 4 */
-	case 57: // STATE 16 - PA2-P1-rayhanul.pml:71 - [network!msg2,partnerB,data2.key,data2.info1,data2.info2,data2.who_sending] (0:0:0 - 1)
+		_m = 3; goto P999; /* 0 */
+	case 20: // STATE 16 - pa_2_frogs_N_9.pml:186 - [stones[15] = female] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][16] = 1;
-		if (q_len(now.network))
-			continue;
-#ifdef HAS_CODE
-		if (readtrail && gui) {
-			char simtmp[64];
-			sprintf(simvals, "%d!", now.network);
-		sprintf(simtmp, "%d", 11); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", now.partnerB); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data2.key); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data2.info1); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data2.info2); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data2.who_sending); strcat(simvals, simtmp);		}
+		(trpt+1)->bup.oval = now.stones[15];
+		now.stones[15] = 1;
+#ifdef VAR_RANGES
+		logval("stones[15]", now.stones[15]);
 #endif
-		
-		qsend(now.network, 0, 11, now.partnerB, ((P1 *)_this)->data2.key, ((P1 *)_this)->data2.info1, ((P1 *)_this)->data2.info2, ((P1 *)_this)->data2.who_sending, 6);
-		{ boq = now.network; };
-		_m = 2; goto P999; /* 0 */
-	case 58: // STATE 17 - PA2-P1-rayhanul.pml:73 - [network?msg3,agentB,data.key,data.info1,data.info2,data.who_sending] (0:0:4 - 1)
+		;
+		_m = 3; goto P999; /* 0 */
+	case 21: // STATE 17 - pa_2_frogs_N_9.pml:187 - [stones[16] = female] (0:0:1 - 1)
+		IfNotBlocked
 		reached[1][17] = 1;
-		if (boq != now.network) continue;
-		if (q_len(now.network) == 0) continue;
-
-		XX=1;
-		if (10 != qrecv(now.network, 0, 0, 0)) continue;
-		if (5 != qrecv(now.network, 0, 1, 0)) continue;
-		(trpt+1)->bup.ovals = grab_ints(4);
-		(trpt+1)->bup.ovals[0] = ((P1 *)_this)->data.key;
-		(trpt+1)->bup.ovals[1] = ((P1 *)_this)->data.info1;
-		(trpt+1)->bup.ovals[2] = ((P1 *)_this)->data.info2;
-		(trpt+1)->bup.ovals[3] = ((P1 *)_this)->data.who_sending;
-		;
-		((P1 *)_this)->data.key = qrecv(now.network, XX-1, 2, 0);
+		(trpt+1)->bup.oval = now.stones[16];
+		now.stones[16] = 1;
 #ifdef VAR_RANGES
-		logval("Bob:data.key", ((P1 *)_this)->data.key);
+		logval("stones[16]", now.stones[16]);
 #endif
 		;
-		((P1 *)_this)->data.info1 = qrecv(now.network, XX-1, 3, 0);
-#ifdef VAR_RANGES
-		logval("Bob:data.info1", ((P1 *)_this)->data.info1);
-#endif
-		;
-		((P1 *)_this)->data.info2 = qrecv(now.network, XX-1, 4, 0);
-#ifdef VAR_RANGES
-		logval("Bob:data.info2", ((P1 *)_this)->data.info2);
-#endif
-		;
-		((P1 *)_this)->data.who_sending = qrecv(now.network, XX-1, 5, 1);
-#ifdef VAR_RANGES
-		logval("Bob:data.who_sending", ((P1 *)_this)->data.who_sending);
-#endif
-		;
-		
-#ifdef HAS_CODE
-		if (readtrail && gui) {
-			char simtmp[32];
-			sprintf(simvals, "%d?", now.network);
-		sprintf(simtmp, "%d", 10); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", 5); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.key); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.info1); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.info2); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P1 *)_this)->data.who_sending); strcat(simvals, simtmp);		}
-#endif
-		if (q_zero(now.network))
-		{	boq = -1;
-#ifndef NOFAIR
-			if (fairness
-			&& !(trpt->o_pm&32)
-			&& (now._a_t&2)
-			&&  now._cnt[now._a_t&1] == II+2)
-			{	now._cnt[now._a_t&1] -= 1;
-#ifdef VERI
-				if (II == 1)
-					now._cnt[now._a_t&1] = 1;
-#endif
-#ifdef DEBUG
-			printf("%3ld: proc %d fairness ", depth, II);
-			printf("Rule 2: --cnt to %d (%d)\n",
-				now._cnt[now._a_t&1], now._a_t);
-#endif
-				trpt->o_pm |= (32|64);
-			}
-#endif
-
-		};
-		_m = 4; goto P999; /* 0 */
-	case 59: // STATE 18 - PA2-P1-rayhanul.pml:74 - [(((data.key==keyB)&&(data.info1==nonceB)))] (0:0:0 - 1)
+		_m = 3; goto P999; /* 0 */
+	case 22: // STATE 18 - pa_2_frogs_N_9.pml:188 - [stones[17] = female] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][18] = 1;
-		if (!(((((P1 *)_this)->data.key==8)&&(((P1 *)_this)->data.info1==2))))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 60: // STATE 19 - PA2-P1-rayhanul.pml:75 - [statusB = ok] (0:0:1 - 1)
-		IfNotBlocked
-		reached[1][19] = 1;
-		(trpt+1)->bup.oval = now.statusB;
-		now.statusB = 14;
+		(trpt+1)->bup.oval = now.stones[17];
+		now.stones[17] = 1;
 #ifdef VAR_RANGES
-		logval("statusB", now.statusB);
+		logval("stones[17]", now.stones[17]);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 61: // STATE 20 - PA2-P1-rayhanul.pml:76 - [-end-] (0:0:0 - 1)
+	case 23: // STATE 19 - pa_2_frogs_N_9.pml:189 - [stones[18] = female] (0:0:1 - 1)
+		IfNotBlocked
+		reached[1][19] = 1;
+		(trpt+1)->bup.oval = now.stones[18];
+		now.stones[18] = 1;
+#ifdef VAR_RANGES
+		logval("stones[18]", now.stones[18]);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 24: // STATE 20 - pa_2_frogs_N_9.pml:194 - [-end-] (0:0:0 - 1)
 		IfNotBlocked
 		reached[1][20] = 1;
 		if (!delproc(1, II)) continue;
 		_m = 3; goto P999; /* 0 */
 
-		 /* PROC Alice */
-	case 62: // STATE 1 - PA2-P1-rayhanul.pml:38 - [partnerA = agentB] (0:0:1 - 1)
+		 /* PROC main_process */
+	case 25: // STATE 1 - pa_2_frogs_N_9.pml:47 - [((stones[0]==none))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[0][1] = 1;
-		(trpt+1)->bup.oval = now.partnerA;
-		now.partnerA = 5;
-#ifdef VAR_RANGES
-		logval("partnerA", now.partnerA);
-#endif
-		;
+		if (!((now.stones[0]==3)))
+			continue;
 		_m = 3; goto P999; /* 0 */
-	case 63: // STATE 2 - PA2-P1-rayhanul.pml:38 - [pkey = keyB] (0:11:5 - 1)
+	case 26: // STATE 2 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',1,0)] (0:0:0 - 1)
 		IfNotBlocked
 		reached[0][2] = 1;
-		(trpt+1)->bup.ovals = grab_ints(5);
-		(trpt+1)->bup.ovals[0] = ((P0 *)_this)->pkey;
-		((P0 *)_this)->pkey = 8;
-#ifdef VAR_RANGES
-		logval("Alice:pkey", ((P0 *)_this)->pkey);
-#endif
-		;
-		/* merge: .(goto)(11, 6, 11) */
-		reached[0][6] = 1;
-		;
-		/* merge: data.key = pkey(11, 7, 11) */
-		reached[0][7] = 1;
-		(trpt+1)->bup.ovals[1] = ((P0 *)_this)->data.key;
-		((P0 *)_this)->data.key = ((P0 *)_this)->pkey;
-#ifdef VAR_RANGES
-		logval("Alice:data.key", ((P0 *)_this)->data.key);
-#endif
-		;
-		/* merge: data.info1 = agentA(11, 8, 11) */
-		reached[0][8] = 1;
-		(trpt+1)->bup.ovals[2] = ((P0 *)_this)->data.info1;
-		((P0 *)_this)->data.info1 = 6;
-#ifdef VAR_RANGES
-		logval("Alice:data.info1", ((P0 *)_this)->data.info1);
-#endif
-		;
-		/* merge: data.info2 = nonceA(11, 9, 11) */
-		reached[0][9] = 1;
-		(trpt+1)->bup.ovals[3] = ((P0 *)_this)->data.info2;
-		((P0 *)_this)->data.info2 = 3;
-#ifdef VAR_RANGES
-		logval("Alice:data.info2", ((P0 *)_this)->data.info2);
-#endif
-		;
-		/* merge: data.who_sending = agentA(11, 10, 11) */
-		reached[0][10] = 1;
-		(trpt+1)->bup.ovals[4] = ((P0 *)_this)->data.who_sending;
-		((P0 *)_this)->data.who_sending = 6;
-#ifdef VAR_RANGES
-		logval("Alice:data.who_sending", ((P0 *)_this)->data.who_sending);
-#endif
-		;
-		_m = 3; goto P999; /* 5 */
-	case 64: // STATE 3 - PA2-P1-rayhanul.pml:39 - [partnerA = agentI] (0:0:1 - 1)
+		Printf("Female Frog jumps from %d to %d\n", 1, 0);
+		_m = 3; goto P999; /* 0 */
+	case 27: // STATE 3 - pa_2_frogs_N_9.pml:40 - [(((stones[0]==none)&&(stones[1]==female)))] (478:0:2 - 1)
 		IfNotBlocked
 		reached[0][3] = 1;
-		(trpt+1)->bup.oval = now.partnerA;
-		now.partnerA = 4;
-#ifdef VAR_RANGES
-		logval("partnerA", now.partnerA);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 65: // STATE 4 - PA2-P1-rayhanul.pml:39 - [pkey = keyI] (0:11:5 - 1)
-		IfNotBlocked
+		if (!(((now.stones[0]==3)&&(now.stones[1]==1))))
+			continue;
+		/* merge: stones[0] = female(478, 4, 478) */
 		reached[0][4] = 1;
-		(trpt+1)->bup.ovals = grab_ints(5);
-		(trpt+1)->bup.ovals[0] = ((P0 *)_this)->pkey;
-		((P0 *)_this)->pkey = 7;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[0];
+		now.stones[0] = 1;
 #ifdef VAR_RANGES
-		logval("Alice:pkey", ((P0 *)_this)->pkey);
+		logval("stones[0]", now.stones[0]);
 #endif
 		;
-		/* merge: .(goto)(11, 6, 11) */
-		reached[0][6] = 1;
-		;
-		/* merge: data.key = pkey(11, 7, 11) */
-		reached[0][7] = 1;
-		(trpt+1)->bup.ovals[1] = ((P0 *)_this)->data.key;
-		((P0 *)_this)->data.key = ((P0 *)_this)->pkey;
+		/* merge: stones[1] = none(478, 5, 478) */
+		reached[0][5] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[1];
+		now.stones[1] = 3;
 #ifdef VAR_RANGES
-		logval("Alice:data.key", ((P0 *)_this)->data.key);
+		logval("stones[1]", now.stones[1]);
 #endif
 		;
-		/* merge: data.info1 = agentA(11, 8, 11) */
-		reached[0][8] = 1;
-		(trpt+1)->bup.ovals[2] = ((P0 *)_this)->data.info1;
-		((P0 *)_this)->data.info1 = 6;
-#ifdef VAR_RANGES
-		logval("Alice:data.info1", ((P0 *)_this)->data.info1);
-#endif
-		;
-		/* merge: data.info2 = nonceA(11, 9, 11) */
-		reached[0][9] = 1;
-		(trpt+1)->bup.ovals[3] = ((P0 *)_this)->data.info2;
-		((P0 *)_this)->data.info2 = 3;
-#ifdef VAR_RANGES
-		logval("Alice:data.info2", ((P0 *)_this)->data.info2);
-#endif
-		;
-		/* merge: data.who_sending = agentA(11, 10, 11) */
-		reached[0][10] = 1;
-		(trpt+1)->bup.ovals[4] = ((P0 *)_this)->data.who_sending;
-		((P0 *)_this)->data.who_sending = 6;
-#ifdef VAR_RANGES
-		logval("Alice:data.who_sending", ((P0 *)_this)->data.who_sending);
-#endif
-		;
-		_m = 3; goto P999; /* 5 */
-	case 66: // STATE 7 - PA2-P1-rayhanul.pml:42 - [data.key = pkey] (0:11:4 - 3)
-		IfNotBlocked
-		reached[0][7] = 1;
-		(trpt+1)->bup.ovals = grab_ints(4);
-		(trpt+1)->bup.ovals[0] = ((P0 *)_this)->data.key;
-		((P0 *)_this)->data.key = ((P0 *)_this)->pkey;
-#ifdef VAR_RANGES
-		logval("Alice:data.key", ((P0 *)_this)->data.key);
-#endif
-		;
-		/* merge: data.info1 = agentA(11, 8, 11) */
-		reached[0][8] = 1;
-		(trpt+1)->bup.ovals[1] = ((P0 *)_this)->data.info1;
-		((P0 *)_this)->data.info1 = 6;
-#ifdef VAR_RANGES
-		logval("Alice:data.info1", ((P0 *)_this)->data.info1);
-#endif
-		;
-		/* merge: data.info2 = nonceA(11, 9, 11) */
-		reached[0][9] = 1;
-		(trpt+1)->bup.ovals[2] = ((P0 *)_this)->data.info2;
-		((P0 *)_this)->data.info2 = 3;
-#ifdef VAR_RANGES
-		logval("Alice:data.info2", ((P0 *)_this)->data.info2);
-#endif
-		;
-		/* merge: data.who_sending = agentA(11, 10, 11) */
-		reached[0][10] = 1;
-		(trpt+1)->bup.ovals[3] = ((P0 *)_this)->data.who_sending;
-		((P0 *)_this)->data.who_sending = 6;
-#ifdef VAR_RANGES
-		logval("Alice:data.who_sending", ((P0 *)_this)->data.who_sending);
-#endif
-		;
-		_m = 3; goto P999; /* 3 */
-	case 67: // STATE 11 - PA2-P1-rayhanul.pml:44 - [network!msg1,partnerA,data.key,data.info1,data.info2,data.who_sending] (0:0:0 - 1)
-		IfNotBlocked
-		reached[0][11] = 1;
-		if (q_len(now.network))
-			continue;
-#ifdef HAS_CODE
-		if (readtrail && gui) {
-			char simtmp[64];
-			sprintf(simvals, "%d!", now.network);
-		sprintf(simtmp, "%d", 12); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", now.partnerA); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data.key); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data.info1); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data.info2); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data.who_sending); strcat(simvals, simtmp);		}
-#endif
-		
-		qsend(now.network, 0, 12, now.partnerA, ((P0 *)_this)->data.key, ((P0 *)_this)->data.info1, ((P0 *)_this)->data.info2, ((P0 *)_this)->data.who_sending, 6);
-		{ boq = now.network; };
-		_m = 2; goto P999; /* 0 */
-	case 68: // STATE 12 - PA2-P1-rayhanul.pml:46 - [network?msg2,agentA,data2.key,data2.info1,data2.info2,data2.who_sending] (0:0:4 - 1)
-		reached[0][12] = 1;
-		if (boq != now.network) continue;
-		if (q_len(now.network) == 0) continue;
-
-		XX=1;
-		if (11 != qrecv(now.network, 0, 0, 0)) continue;
-		if (6 != qrecv(now.network, 0, 1, 0)) continue;
-		(trpt+1)->bup.ovals = grab_ints(4);
-		(trpt+1)->bup.ovals[0] = ((P0 *)_this)->data2.key;
-		(trpt+1)->bup.ovals[1] = ((P0 *)_this)->data2.info1;
-		(trpt+1)->bup.ovals[2] = ((P0 *)_this)->data2.info2;
-		(trpt+1)->bup.ovals[3] = ((P0 *)_this)->data2.who_sending;
-		;
-		((P0 *)_this)->data2.key = qrecv(now.network, XX-1, 2, 0);
-#ifdef VAR_RANGES
-		logval("Alice:data2.key", ((P0 *)_this)->data2.key);
-#endif
-		;
-		((P0 *)_this)->data2.info1 = qrecv(now.network, XX-1, 3, 0);
-#ifdef VAR_RANGES
-		logval("Alice:data2.info1", ((P0 *)_this)->data2.info1);
-#endif
-		;
-		((P0 *)_this)->data2.info2 = qrecv(now.network, XX-1, 4, 0);
-#ifdef VAR_RANGES
-		logval("Alice:data2.info2", ((P0 *)_this)->data2.info2);
-#endif
-		;
-		((P0 *)_this)->data2.who_sending = qrecv(now.network, XX-1, 5, 1);
-#ifdef VAR_RANGES
-		logval("Alice:data2.who_sending", ((P0 *)_this)->data2.who_sending);
-#endif
-		;
-		
-#ifdef HAS_CODE
-		if (readtrail && gui) {
-			char simtmp[32];
-			sprintf(simvals, "%d?", now.network);
-		sprintf(simtmp, "%d", 11); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", 6); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data2.key); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data2.info1); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data2.info2); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data2.who_sending); strcat(simvals, simtmp);		}
-#endif
-		if (q_zero(now.network))
-		{	boq = -1;
-#ifndef NOFAIR
-			if (fairness
-			&& !(trpt->o_pm&32)
-			&& (now._a_t&2)
-			&&  now._cnt[now._a_t&1] == II+2)
-			{	now._cnt[now._a_t&1] -= 1;
-#ifdef VERI
-				if (II == 1)
-					now._cnt[now._a_t&1] = 1;
-#endif
-#ifdef DEBUG
-			printf("%3ld: proc %d fairness ", depth, II);
-			printf("Rule 2: --cnt to %d (%d)\n",
-				now._cnt[now._a_t&1], now._a_t);
-#endif
-				trpt->o_pm |= (32|64);
-			}
-#endif
-
-		};
-		_m = 4; goto P999; /* 0 */
-	case 69: // STATE 13 - PA2-P1-rayhanul.pml:47 - [(((data2.key==keyA)&&(data2.info1==nonceA)))] (18:0:4 - 1)
-		IfNotBlocked
-		reached[0][13] = 1;
-		if (!(((((P0 *)_this)->data2.key==9)&&(((P0 *)_this)->data2.info1==3))))
-			continue;
-		/* merge: pnonce = data2.info2(18, 14, 18) */
-		reached[0][14] = 1;
-		(trpt+1)->bup.ovals = grab_ints(4);
-		(trpt+1)->bup.ovals[0] = ((P0 *)_this)->pnonce;
-		((P0 *)_this)->pnonce = ((P0 *)_this)->data2.info2;
-#ifdef VAR_RANGES
-		logval("Alice:pnonce", ((P0 *)_this)->pnonce);
-#endif
-		;
-		/* merge: data3.key = pkey(18, 15, 18) */
+		/* merge: .(goto)(0, 15, 478) */
 		reached[0][15] = 1;
-		(trpt+1)->bup.ovals[1] = ((P0 *)_this)->data3.key;
-		((P0 *)_this)->data3.key = ((P0 *)_this)->pkey;
-#ifdef VAR_RANGES
-		logval("Alice:data3.key", ((P0 *)_this)->data3.key);
-#endif
 		;
-		/* merge: data3.info1 = pnonce(18, 16, 18) */
-		reached[0][16] = 1;
-		(trpt+1)->bup.ovals[2] = ((P0 *)_this)->data3.info1;
-		((P0 *)_this)->data3.info1 = ((P0 *)_this)->pnonce;
-#ifdef VAR_RANGES
-		logval("Alice:data3.info1", ((P0 *)_this)->data3.info1);
-#endif
-		;
-		/* merge: data3.info2 = 0(18, 17, 18) */
-		reached[0][17] = 1;
-		(trpt+1)->bup.ovals[3] = ((P0 *)_this)->data3.info2;
-		((P0 *)_this)->data3.info2 = 0;
-#ifdef VAR_RANGES
-		logval("Alice:data3.info2", ((P0 *)_this)->data3.info2);
-#endif
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
 		;
 		_m = 3; goto P999; /* 4 */
-	case 70: // STATE 18 - PA2-P1-rayhanul.pml:51 - [network!msg3,partnerA,data3.key,data3.info1,data3.info2,data3.who_sending] (0:0:0 - 1)
+	case 28: // STATE 8 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',2,0)] (0:0:0 - 1)
 		IfNotBlocked
-		reached[0][18] = 1;
-		if (q_len(now.network))
+		reached[0][8] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 2, 0);
+		_m = 3; goto P999; /* 0 */
+	case 29: // STATE 9 - pa_2_frogs_N_9.pml:40 - [(((stones[0]==none)&&(stones[2]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][9] = 1;
+		if (!(((now.stones[0]==3)&&(now.stones[2]==1))))
 			continue;
-#ifdef HAS_CODE
-		if (readtrail && gui) {
-			char simtmp[64];
-			sprintf(simvals, "%d!", now.network);
-		sprintf(simtmp, "%d", 10); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", now.partnerA); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data3.key); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data3.info1); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data3.info2); strcat(simvals, simtmp);		strcat(simvals, ",");
-		sprintf(simtmp, "%d", ((P0 *)_this)->data3.who_sending); strcat(simvals, simtmp);		}
-#endif
-		
-		qsend(now.network, 0, 10, now.partnerA, ((P0 *)_this)->data3.key, ((P0 *)_this)->data3.info1, ((P0 *)_this)->data3.info2, ((P0 *)_this)->data3.who_sending, 6);
-		{ boq = now.network; };
-		_m = 2; goto P999; /* 0 */
-	case 71: // STATE 19 - PA2-P1-rayhanul.pml:52 - [statusA = ok] (0:0:1 - 1)
-		IfNotBlocked
-		reached[0][19] = 1;
-		(trpt+1)->bup.oval = now.statusA;
-		now.statusA = 14;
+		/* merge: stones[0] = female(478, 10, 478) */
+		reached[0][10] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[0];
+		now.stones[0] = 1;
 #ifdef VAR_RANGES
-		logval("statusA", now.statusA);
+		logval("stones[0]", now.stones[0]);
 #endif
 		;
-		_m = 3; goto P999; /* 0 */
-	case 72: // STATE 20 - PA2-P1-rayhanul.pml:53 - [-end-] (0:0:0 - 1)
+		/* merge: stones[2] = none(478, 11, 478) */
+		reached[0][11] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[2];
+		now.stones[2] = 3;
+#ifdef VAR_RANGES
+		logval("stones[2]", now.stones[2]);
+#endif
+		;
+		/* merge: .(goto)(0, 15, 478) */
+		reached[0][15] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 30: // STATE 16 - pa_2_frogs_N_9.pml:51 - [((stones[1]==none))] (0:0:0 - 1)
 		IfNotBlocked
+		reached[0][16] = 1;
+		if (!((now.stones[1]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 31: // STATE 17 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',0,1)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][17] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 0, 1);
+		_m = 3; goto P999; /* 0 */
+	case 32: // STATE 18 - pa_2_frogs_N_9.pml:33 - [(((stones[1]==none)&&(stones[0]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][18] = 1;
+		if (!(((now.stones[1]==3)&&(now.stones[0]==2))))
+			continue;
+		/* merge: stones[1] = male(478, 19, 478) */
+		reached[0][19] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[1];
+		now.stones[1] = 2;
+#ifdef VAR_RANGES
+		logval("stones[1]", now.stones[1]);
+#endif
+		;
+		/* merge: stones[0] = none(478, 20, 478) */
 		reached[0][20] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[0];
+		now.stones[0] = 3;
+#ifdef VAR_RANGES
+		logval("stones[0]", now.stones[0]);
+#endif
+		;
+		/* merge: .(goto)(0, 36, 478) */
+		reached[0][36] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 33: // STATE 23 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',2,1)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][23] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 2, 1);
+		_m = 3; goto P999; /* 0 */
+	case 34: // STATE 24 - pa_2_frogs_N_9.pml:40 - [(((stones[1]==none)&&(stones[2]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][24] = 1;
+		if (!(((now.stones[1]==3)&&(now.stones[2]==1))))
+			continue;
+		/* merge: stones[1] = female(478, 25, 478) */
+		reached[0][25] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[1];
+		now.stones[1] = 1;
+#ifdef VAR_RANGES
+		logval("stones[1]", now.stones[1]);
+#endif
+		;
+		/* merge: stones[2] = none(478, 26, 478) */
+		reached[0][26] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[2];
+		now.stones[2] = 3;
+#ifdef VAR_RANGES
+		logval("stones[2]", now.stones[2]);
+#endif
+		;
+		/* merge: .(goto)(0, 36, 478) */
+		reached[0][36] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 35: // STATE 29 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',3,1)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][29] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 3, 1);
+		_m = 3; goto P999; /* 0 */
+	case 36: // STATE 30 - pa_2_frogs_N_9.pml:40 - [(((stones[1]==none)&&(stones[3]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][30] = 1;
+		if (!(((now.stones[1]==3)&&(now.stones[3]==1))))
+			continue;
+		/* merge: stones[1] = female(478, 31, 478) */
+		reached[0][31] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[1];
+		now.stones[1] = 1;
+#ifdef VAR_RANGES
+		logval("stones[1]", now.stones[1]);
+#endif
+		;
+		/* merge: stones[3] = none(478, 32, 478) */
+		reached[0][32] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[3];
+		now.stones[3] = 3;
+#ifdef VAR_RANGES
+		logval("stones[3]", now.stones[3]);
+#endif
+		;
+		/* merge: .(goto)(0, 36, 478) */
+		reached[0][36] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 37: // STATE 37 - pa_2_frogs_N_9.pml:57 - [((stones[2]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][37] = 1;
+		if (!((now.stones[2]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 38: // STATE 38 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',0,2)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][38] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 0, 2);
+		_m = 3; goto P999; /* 0 */
+	case 39: // STATE 39 - pa_2_frogs_N_9.pml:33 - [(((stones[2]==none)&&(stones[0]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][39] = 1;
+		if (!(((now.stones[2]==3)&&(now.stones[0]==2))))
+			continue;
+		/* merge: stones[2] = male(478, 40, 478) */
+		reached[0][40] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[2];
+		now.stones[2] = 2;
+#ifdef VAR_RANGES
+		logval("stones[2]", now.stones[2]);
+#endif
+		;
+		/* merge: stones[0] = none(478, 41, 478) */
+		reached[0][41] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[0];
+		now.stones[0] = 3;
+#ifdef VAR_RANGES
+		logval("stones[0]", now.stones[0]);
+#endif
+		;
+		/* merge: .(goto)(0, 63, 478) */
+		reached[0][63] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 40: // STATE 44 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',1,2)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][44] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 1, 2);
+		_m = 3; goto P999; /* 0 */
+	case 41: // STATE 45 - pa_2_frogs_N_9.pml:33 - [(((stones[2]==none)&&(stones[1]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][45] = 1;
+		if (!(((now.stones[2]==3)&&(now.stones[1]==2))))
+			continue;
+		/* merge: stones[2] = male(478, 46, 478) */
+		reached[0][46] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[2];
+		now.stones[2] = 2;
+#ifdef VAR_RANGES
+		logval("stones[2]", now.stones[2]);
+#endif
+		;
+		/* merge: stones[1] = none(478, 47, 478) */
+		reached[0][47] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[1];
+		now.stones[1] = 3;
+#ifdef VAR_RANGES
+		logval("stones[1]", now.stones[1]);
+#endif
+		;
+		/* merge: .(goto)(0, 63, 478) */
+		reached[0][63] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 42: // STATE 50 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',3,2)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][50] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 3, 2);
+		_m = 3; goto P999; /* 0 */
+	case 43: // STATE 51 - pa_2_frogs_N_9.pml:40 - [(((stones[2]==none)&&(stones[3]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][51] = 1;
+		if (!(((now.stones[2]==3)&&(now.stones[3]==1))))
+			continue;
+		/* merge: stones[2] = female(478, 52, 478) */
+		reached[0][52] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[2];
+		now.stones[2] = 1;
+#ifdef VAR_RANGES
+		logval("stones[2]", now.stones[2]);
+#endif
+		;
+		/* merge: stones[3] = none(478, 53, 478) */
+		reached[0][53] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[3];
+		now.stones[3] = 3;
+#ifdef VAR_RANGES
+		logval("stones[3]", now.stones[3]);
+#endif
+		;
+		/* merge: .(goto)(0, 63, 478) */
+		reached[0][63] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 44: // STATE 56 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',4,2)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][56] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 4, 2);
+		_m = 3; goto P999; /* 0 */
+	case 45: // STATE 57 - pa_2_frogs_N_9.pml:40 - [(((stones[2]==none)&&(stones[4]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][57] = 1;
+		if (!(((now.stones[2]==3)&&(now.stones[4]==1))))
+			continue;
+		/* merge: stones[2] = female(478, 58, 478) */
+		reached[0][58] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[2];
+		now.stones[2] = 1;
+#ifdef VAR_RANGES
+		logval("stones[2]", now.stones[2]);
+#endif
+		;
+		/* merge: stones[4] = none(478, 59, 478) */
+		reached[0][59] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[4];
+		now.stones[4] = 3;
+#ifdef VAR_RANGES
+		logval("stones[4]", now.stones[4]);
+#endif
+		;
+		/* merge: .(goto)(0, 63, 478) */
+		reached[0][63] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 46: // STATE 64 - pa_2_frogs_N_9.pml:63 - [((stones[3]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][64] = 1;
+		if (!((now.stones[3]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 47: // STATE 65 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',1,3)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][65] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 1, 3);
+		_m = 3; goto P999; /* 0 */
+	case 48: // STATE 66 - pa_2_frogs_N_9.pml:33 - [(((stones[3]==none)&&(stones[1]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][66] = 1;
+		if (!(((now.stones[3]==3)&&(now.stones[1]==2))))
+			continue;
+		/* merge: stones[3] = male(478, 67, 478) */
+		reached[0][67] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[3];
+		now.stones[3] = 2;
+#ifdef VAR_RANGES
+		logval("stones[3]", now.stones[3]);
+#endif
+		;
+		/* merge: stones[1] = none(478, 68, 478) */
+		reached[0][68] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[1];
+		now.stones[1] = 3;
+#ifdef VAR_RANGES
+		logval("stones[1]", now.stones[1]);
+#endif
+		;
+		/* merge: .(goto)(0, 90, 478) */
+		reached[0][90] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 49: // STATE 71 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',2,3)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][71] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 2, 3);
+		_m = 3; goto P999; /* 0 */
+	case 50: // STATE 72 - pa_2_frogs_N_9.pml:33 - [(((stones[3]==none)&&(stones[2]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][72] = 1;
+		if (!(((now.stones[3]==3)&&(now.stones[2]==2))))
+			continue;
+		/* merge: stones[3] = male(478, 73, 478) */
+		reached[0][73] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[3];
+		now.stones[3] = 2;
+#ifdef VAR_RANGES
+		logval("stones[3]", now.stones[3]);
+#endif
+		;
+		/* merge: stones[2] = none(478, 74, 478) */
+		reached[0][74] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[2];
+		now.stones[2] = 3;
+#ifdef VAR_RANGES
+		logval("stones[2]", now.stones[2]);
+#endif
+		;
+		/* merge: .(goto)(0, 90, 478) */
+		reached[0][90] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 51: // STATE 77 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',4,3)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][77] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 4, 3);
+		_m = 3; goto P999; /* 0 */
+	case 52: // STATE 78 - pa_2_frogs_N_9.pml:40 - [(((stones[3]==none)&&(stones[4]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][78] = 1;
+		if (!(((now.stones[3]==3)&&(now.stones[4]==1))))
+			continue;
+		/* merge: stones[3] = female(478, 79, 478) */
+		reached[0][79] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[3];
+		now.stones[3] = 1;
+#ifdef VAR_RANGES
+		logval("stones[3]", now.stones[3]);
+#endif
+		;
+		/* merge: stones[4] = none(478, 80, 478) */
+		reached[0][80] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[4];
+		now.stones[4] = 3;
+#ifdef VAR_RANGES
+		logval("stones[4]", now.stones[4]);
+#endif
+		;
+		/* merge: .(goto)(0, 90, 478) */
+		reached[0][90] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 53: // STATE 83 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',5,3)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][83] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 5, 3);
+		_m = 3; goto P999; /* 0 */
+	case 54: // STATE 84 - pa_2_frogs_N_9.pml:40 - [(((stones[3]==none)&&(stones[5]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][84] = 1;
+		if (!(((now.stones[3]==3)&&(now.stones[5]==1))))
+			continue;
+		/* merge: stones[3] = female(478, 85, 478) */
+		reached[0][85] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[3];
+		now.stones[3] = 1;
+#ifdef VAR_RANGES
+		logval("stones[3]", now.stones[3]);
+#endif
+		;
+		/* merge: stones[5] = none(478, 86, 478) */
+		reached[0][86] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[5];
+		now.stones[5] = 3;
+#ifdef VAR_RANGES
+		logval("stones[5]", now.stones[5]);
+#endif
+		;
+		/* merge: .(goto)(0, 90, 478) */
+		reached[0][90] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 55: // STATE 91 - pa_2_frogs_N_9.pml:69 - [((stones[4]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][91] = 1;
+		if (!((now.stones[4]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 56: // STATE 92 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',3,4)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][92] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 3, 4);
+		_m = 3; goto P999; /* 0 */
+	case 57: // STATE 93 - pa_2_frogs_N_9.pml:33 - [(((stones[4]==none)&&(stones[3]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][93] = 1;
+		if (!(((now.stones[4]==3)&&(now.stones[3]==2))))
+			continue;
+		/* merge: stones[4] = male(478, 94, 478) */
+		reached[0][94] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[4];
+		now.stones[4] = 2;
+#ifdef VAR_RANGES
+		logval("stones[4]", now.stones[4]);
+#endif
+		;
+		/* merge: stones[3] = none(478, 95, 478) */
+		reached[0][95] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[3];
+		now.stones[3] = 3;
+#ifdef VAR_RANGES
+		logval("stones[3]", now.stones[3]);
+#endif
+		;
+		/* merge: .(goto)(0, 117, 478) */
+		reached[0][117] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 58: // STATE 98 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',2,4)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][98] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 2, 4);
+		_m = 3; goto P999; /* 0 */
+	case 59: // STATE 99 - pa_2_frogs_N_9.pml:33 - [(((stones[4]==none)&&(stones[2]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][99] = 1;
+		if (!(((now.stones[4]==3)&&(now.stones[2]==2))))
+			continue;
+		/* merge: stones[4] = male(478, 100, 478) */
+		reached[0][100] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[4];
+		now.stones[4] = 2;
+#ifdef VAR_RANGES
+		logval("stones[4]", now.stones[4]);
+#endif
+		;
+		/* merge: stones[2] = none(478, 101, 478) */
+		reached[0][101] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[2];
+		now.stones[2] = 3;
+#ifdef VAR_RANGES
+		logval("stones[2]", now.stones[2]);
+#endif
+		;
+		/* merge: .(goto)(0, 117, 478) */
+		reached[0][117] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 60: // STATE 104 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',5,4)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][104] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 5, 4);
+		_m = 3; goto P999; /* 0 */
+	case 61: // STATE 105 - pa_2_frogs_N_9.pml:40 - [(((stones[4]==none)&&(stones[5]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][105] = 1;
+		if (!(((now.stones[4]==3)&&(now.stones[5]==1))))
+			continue;
+		/* merge: stones[4] = female(478, 106, 478) */
+		reached[0][106] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[4];
+		now.stones[4] = 1;
+#ifdef VAR_RANGES
+		logval("stones[4]", now.stones[4]);
+#endif
+		;
+		/* merge: stones[5] = none(478, 107, 478) */
+		reached[0][107] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[5];
+		now.stones[5] = 3;
+#ifdef VAR_RANGES
+		logval("stones[5]", now.stones[5]);
+#endif
+		;
+		/* merge: .(goto)(0, 117, 478) */
+		reached[0][117] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 62: // STATE 110 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',6,4)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][110] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 6, 4);
+		_m = 3; goto P999; /* 0 */
+	case 63: // STATE 111 - pa_2_frogs_N_9.pml:40 - [(((stones[4]==none)&&(stones[6]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][111] = 1;
+		if (!(((now.stones[4]==3)&&(now.stones[6]==1))))
+			continue;
+		/* merge: stones[4] = female(478, 112, 478) */
+		reached[0][112] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[4];
+		now.stones[4] = 1;
+#ifdef VAR_RANGES
+		logval("stones[4]", now.stones[4]);
+#endif
+		;
+		/* merge: stones[6] = none(478, 113, 478) */
+		reached[0][113] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[6];
+		now.stones[6] = 3;
+#ifdef VAR_RANGES
+		logval("stones[6]", now.stones[6]);
+#endif
+		;
+		/* merge: .(goto)(0, 117, 478) */
+		reached[0][117] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 64: // STATE 118 - pa_2_frogs_N_9.pml:76 - [((stones[5]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][118] = 1;
+		if (!((now.stones[5]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 65: // STATE 119 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',4,5)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][119] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 4, 5);
+		_m = 3; goto P999; /* 0 */
+	case 66: // STATE 120 - pa_2_frogs_N_9.pml:33 - [(((stones[5]==none)&&(stones[4]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][120] = 1;
+		if (!(((now.stones[5]==3)&&(now.stones[4]==2))))
+			continue;
+		/* merge: stones[5] = male(478, 121, 478) */
+		reached[0][121] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[5];
+		now.stones[5] = 2;
+#ifdef VAR_RANGES
+		logval("stones[5]", now.stones[5]);
+#endif
+		;
+		/* merge: stones[4] = none(478, 122, 478) */
+		reached[0][122] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[4];
+		now.stones[4] = 3;
+#ifdef VAR_RANGES
+		logval("stones[4]", now.stones[4]);
+#endif
+		;
+		/* merge: .(goto)(0, 144, 478) */
+		reached[0][144] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 67: // STATE 125 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',3,5)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][125] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 3, 5);
+		_m = 3; goto P999; /* 0 */
+	case 68: // STATE 126 - pa_2_frogs_N_9.pml:33 - [(((stones[5]==none)&&(stones[3]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][126] = 1;
+		if (!(((now.stones[5]==3)&&(now.stones[3]==2))))
+			continue;
+		/* merge: stones[5] = male(478, 127, 478) */
+		reached[0][127] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[5];
+		now.stones[5] = 2;
+#ifdef VAR_RANGES
+		logval("stones[5]", now.stones[5]);
+#endif
+		;
+		/* merge: stones[3] = none(478, 128, 478) */
+		reached[0][128] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[3];
+		now.stones[3] = 3;
+#ifdef VAR_RANGES
+		logval("stones[3]", now.stones[3]);
+#endif
+		;
+		/* merge: .(goto)(0, 144, 478) */
+		reached[0][144] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 69: // STATE 131 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',6,5)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][131] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 6, 5);
+		_m = 3; goto P999; /* 0 */
+	case 70: // STATE 132 - pa_2_frogs_N_9.pml:40 - [(((stones[5]==none)&&(stones[6]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][132] = 1;
+		if (!(((now.stones[5]==3)&&(now.stones[6]==1))))
+			continue;
+		/* merge: stones[5] = female(478, 133, 478) */
+		reached[0][133] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[5];
+		now.stones[5] = 1;
+#ifdef VAR_RANGES
+		logval("stones[5]", now.stones[5]);
+#endif
+		;
+		/* merge: stones[6] = none(478, 134, 478) */
+		reached[0][134] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[6];
+		now.stones[6] = 3;
+#ifdef VAR_RANGES
+		logval("stones[6]", now.stones[6]);
+#endif
+		;
+		/* merge: .(goto)(0, 144, 478) */
+		reached[0][144] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 71: // STATE 137 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',7,5)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][137] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 7, 5);
+		_m = 3; goto P999; /* 0 */
+	case 72: // STATE 138 - pa_2_frogs_N_9.pml:40 - [(((stones[5]==none)&&(stones[7]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][138] = 1;
+		if (!(((now.stones[5]==3)&&(now.stones[7]==1))))
+			continue;
+		/* merge: stones[5] = female(478, 139, 478) */
+		reached[0][139] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[5];
+		now.stones[5] = 1;
+#ifdef VAR_RANGES
+		logval("stones[5]", now.stones[5]);
+#endif
+		;
+		/* merge: stones[7] = none(478, 140, 478) */
+		reached[0][140] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[7];
+		now.stones[7] = 3;
+#ifdef VAR_RANGES
+		logval("stones[7]", now.stones[7]);
+#endif
+		;
+		/* merge: .(goto)(0, 144, 478) */
+		reached[0][144] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 73: // STATE 145 - pa_2_frogs_N_9.pml:82 - [((stones[6]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][145] = 1;
+		if (!((now.stones[6]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 74: // STATE 146 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',5,6)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][146] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 5, 6);
+		_m = 3; goto P999; /* 0 */
+	case 75: // STATE 147 - pa_2_frogs_N_9.pml:33 - [(((stones[6]==none)&&(stones[5]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][147] = 1;
+		if (!(((now.stones[6]==3)&&(now.stones[5]==2))))
+			continue;
+		/* merge: stones[6] = male(478, 148, 478) */
+		reached[0][148] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[6];
+		now.stones[6] = 2;
+#ifdef VAR_RANGES
+		logval("stones[6]", now.stones[6]);
+#endif
+		;
+		/* merge: stones[5] = none(478, 149, 478) */
+		reached[0][149] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[5];
+		now.stones[5] = 3;
+#ifdef VAR_RANGES
+		logval("stones[5]", now.stones[5]);
+#endif
+		;
+		/* merge: .(goto)(0, 171, 478) */
+		reached[0][171] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 76: // STATE 152 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',4,6)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][152] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 4, 6);
+		_m = 3; goto P999; /* 0 */
+	case 77: // STATE 153 - pa_2_frogs_N_9.pml:33 - [(((stones[6]==none)&&(stones[4]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][153] = 1;
+		if (!(((now.stones[6]==3)&&(now.stones[4]==2))))
+			continue;
+		/* merge: stones[6] = male(478, 154, 478) */
+		reached[0][154] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[6];
+		now.stones[6] = 2;
+#ifdef VAR_RANGES
+		logval("stones[6]", now.stones[6]);
+#endif
+		;
+		/* merge: stones[4] = none(478, 155, 478) */
+		reached[0][155] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[4];
+		now.stones[4] = 3;
+#ifdef VAR_RANGES
+		logval("stones[4]", now.stones[4]);
+#endif
+		;
+		/* merge: .(goto)(0, 171, 478) */
+		reached[0][171] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 78: // STATE 158 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',7,6)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][158] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 7, 6);
+		_m = 3; goto P999; /* 0 */
+	case 79: // STATE 159 - pa_2_frogs_N_9.pml:40 - [(((stones[6]==none)&&(stones[7]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][159] = 1;
+		if (!(((now.stones[6]==3)&&(now.stones[7]==1))))
+			continue;
+		/* merge: stones[6] = female(478, 160, 478) */
+		reached[0][160] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[6];
+		now.stones[6] = 1;
+#ifdef VAR_RANGES
+		logval("stones[6]", now.stones[6]);
+#endif
+		;
+		/* merge: stones[7] = none(478, 161, 478) */
+		reached[0][161] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[7];
+		now.stones[7] = 3;
+#ifdef VAR_RANGES
+		logval("stones[7]", now.stones[7]);
+#endif
+		;
+		/* merge: .(goto)(0, 171, 478) */
+		reached[0][171] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 80: // STATE 164 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',8,6)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][164] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 8, 6);
+		_m = 3; goto P999; /* 0 */
+	case 81: // STATE 165 - pa_2_frogs_N_9.pml:40 - [(((stones[6]==none)&&(stones[8]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][165] = 1;
+		if (!(((now.stones[6]==3)&&(now.stones[8]==1))))
+			continue;
+		/* merge: stones[6] = female(478, 166, 478) */
+		reached[0][166] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[6];
+		now.stones[6] = 1;
+#ifdef VAR_RANGES
+		logval("stones[6]", now.stones[6]);
+#endif
+		;
+		/* merge: stones[8] = none(478, 167, 478) */
+		reached[0][167] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[8];
+		now.stones[8] = 3;
+#ifdef VAR_RANGES
+		logval("stones[8]", now.stones[8]);
+#endif
+		;
+		/* merge: .(goto)(0, 171, 478) */
+		reached[0][171] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 82: // STATE 172 - pa_2_frogs_N_9.pml:88 - [((stones[7]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][172] = 1;
+		if (!((now.stones[7]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 83: // STATE 173 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',6,7)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][173] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 6, 7);
+		_m = 3; goto P999; /* 0 */
+	case 84: // STATE 174 - pa_2_frogs_N_9.pml:33 - [(((stones[7]==none)&&(stones[6]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][174] = 1;
+		if (!(((now.stones[7]==3)&&(now.stones[6]==2))))
+			continue;
+		/* merge: stones[7] = male(478, 175, 478) */
+		reached[0][175] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[7];
+		now.stones[7] = 2;
+#ifdef VAR_RANGES
+		logval("stones[7]", now.stones[7]);
+#endif
+		;
+		/* merge: stones[6] = none(478, 176, 478) */
+		reached[0][176] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[6];
+		now.stones[6] = 3;
+#ifdef VAR_RANGES
+		logval("stones[6]", now.stones[6]);
+#endif
+		;
+		/* merge: .(goto)(0, 198, 478) */
+		reached[0][198] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 85: // STATE 179 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',5,7)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][179] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 5, 7);
+		_m = 3; goto P999; /* 0 */
+	case 86: // STATE 180 - pa_2_frogs_N_9.pml:33 - [(((stones[7]==none)&&(stones[5]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][180] = 1;
+		if (!(((now.stones[7]==3)&&(now.stones[5]==2))))
+			continue;
+		/* merge: stones[7] = male(478, 181, 478) */
+		reached[0][181] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[7];
+		now.stones[7] = 2;
+#ifdef VAR_RANGES
+		logval("stones[7]", now.stones[7]);
+#endif
+		;
+		/* merge: stones[5] = none(478, 182, 478) */
+		reached[0][182] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[5];
+		now.stones[5] = 3;
+#ifdef VAR_RANGES
+		logval("stones[5]", now.stones[5]);
+#endif
+		;
+		/* merge: .(goto)(0, 198, 478) */
+		reached[0][198] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 87: // STATE 185 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',8,7)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][185] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 8, 7);
+		_m = 3; goto P999; /* 0 */
+	case 88: // STATE 186 - pa_2_frogs_N_9.pml:40 - [(((stones[7]==none)&&(stones[8]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][186] = 1;
+		if (!(((now.stones[7]==3)&&(now.stones[8]==1))))
+			continue;
+		/* merge: stones[7] = female(478, 187, 478) */
+		reached[0][187] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[7];
+		now.stones[7] = 1;
+#ifdef VAR_RANGES
+		logval("stones[7]", now.stones[7]);
+#endif
+		;
+		/* merge: stones[8] = none(478, 188, 478) */
+		reached[0][188] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[8];
+		now.stones[8] = 3;
+#ifdef VAR_RANGES
+		logval("stones[8]", now.stones[8]);
+#endif
+		;
+		/* merge: .(goto)(0, 198, 478) */
+		reached[0][198] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 89: // STATE 191 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',9,7)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][191] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 9, 7);
+		_m = 3; goto P999; /* 0 */
+	case 90: // STATE 192 - pa_2_frogs_N_9.pml:40 - [(((stones[7]==none)&&(stones[9]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][192] = 1;
+		if (!(((now.stones[7]==3)&&(now.stones[9]==1))))
+			continue;
+		/* merge: stones[7] = female(478, 193, 478) */
+		reached[0][193] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[7];
+		now.stones[7] = 1;
+#ifdef VAR_RANGES
+		logval("stones[7]", now.stones[7]);
+#endif
+		;
+		/* merge: stones[9] = none(478, 194, 478) */
+		reached[0][194] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[9];
+		now.stones[9] = 3;
+#ifdef VAR_RANGES
+		logval("stones[9]", now.stones[9]);
+#endif
+		;
+		/* merge: .(goto)(0, 198, 478) */
+		reached[0][198] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 91: // STATE 199 - pa_2_frogs_N_9.pml:95 - [((stones[8]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][199] = 1;
+		if (!((now.stones[8]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 92: // STATE 200 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',7,8)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][200] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 7, 8);
+		_m = 3; goto P999; /* 0 */
+	case 93: // STATE 201 - pa_2_frogs_N_9.pml:33 - [(((stones[8]==none)&&(stones[7]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][201] = 1;
+		if (!(((now.stones[8]==3)&&(now.stones[7]==2))))
+			continue;
+		/* merge: stones[8] = male(478, 202, 478) */
+		reached[0][202] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[8];
+		now.stones[8] = 2;
+#ifdef VAR_RANGES
+		logval("stones[8]", now.stones[8]);
+#endif
+		;
+		/* merge: stones[7] = none(478, 203, 478) */
+		reached[0][203] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[7];
+		now.stones[7] = 3;
+#ifdef VAR_RANGES
+		logval("stones[7]", now.stones[7]);
+#endif
+		;
+		/* merge: .(goto)(0, 225, 478) */
+		reached[0][225] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 94: // STATE 206 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',6,8)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][206] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 6, 8);
+		_m = 3; goto P999; /* 0 */
+	case 95: // STATE 207 - pa_2_frogs_N_9.pml:33 - [(((stones[8]==none)&&(stones[6]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][207] = 1;
+		if (!(((now.stones[8]==3)&&(now.stones[6]==2))))
+			continue;
+		/* merge: stones[8] = male(478, 208, 478) */
+		reached[0][208] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[8];
+		now.stones[8] = 2;
+#ifdef VAR_RANGES
+		logval("stones[8]", now.stones[8]);
+#endif
+		;
+		/* merge: stones[6] = none(478, 209, 478) */
+		reached[0][209] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[6];
+		now.stones[6] = 3;
+#ifdef VAR_RANGES
+		logval("stones[6]", now.stones[6]);
+#endif
+		;
+		/* merge: .(goto)(0, 225, 478) */
+		reached[0][225] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 96: // STATE 212 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',9,8)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][212] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 9, 8);
+		_m = 3; goto P999; /* 0 */
+	case 97: // STATE 213 - pa_2_frogs_N_9.pml:40 - [(((stones[8]==none)&&(stones[9]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][213] = 1;
+		if (!(((now.stones[8]==3)&&(now.stones[9]==1))))
+			continue;
+		/* merge: stones[8] = female(478, 214, 478) */
+		reached[0][214] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[8];
+		now.stones[8] = 1;
+#ifdef VAR_RANGES
+		logval("stones[8]", now.stones[8]);
+#endif
+		;
+		/* merge: stones[9] = none(478, 215, 478) */
+		reached[0][215] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[9];
+		now.stones[9] = 3;
+#ifdef VAR_RANGES
+		logval("stones[9]", now.stones[9]);
+#endif
+		;
+		/* merge: .(goto)(0, 225, 478) */
+		reached[0][225] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 98: // STATE 218 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',10,8)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][218] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 10, 8);
+		_m = 3; goto P999; /* 0 */
+	case 99: // STATE 219 - pa_2_frogs_N_9.pml:40 - [(((stones[8]==none)&&(stones[10]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][219] = 1;
+		if (!(((now.stones[8]==3)&&(now.stones[10]==1))))
+			continue;
+		/* merge: stones[8] = female(478, 220, 478) */
+		reached[0][220] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[8];
+		now.stones[8] = 1;
+#ifdef VAR_RANGES
+		logval("stones[8]", now.stones[8]);
+#endif
+		;
+		/* merge: stones[10] = none(478, 221, 478) */
+		reached[0][221] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[10];
+		now.stones[10] = 3;
+#ifdef VAR_RANGES
+		logval("stones[10]", now.stones[10]);
+#endif
+		;
+		/* merge: .(goto)(0, 225, 478) */
+		reached[0][225] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 100: // STATE 226 - pa_2_frogs_N_9.pml:101 - [((stones[9]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][226] = 1;
+		if (!((now.stones[9]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 101: // STATE 227 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',8,9)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][227] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 8, 9);
+		_m = 3; goto P999; /* 0 */
+	case 102: // STATE 228 - pa_2_frogs_N_9.pml:33 - [(((stones[9]==none)&&(stones[8]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][228] = 1;
+		if (!(((now.stones[9]==3)&&(now.stones[8]==2))))
+			continue;
+		/* merge: stones[9] = male(478, 229, 478) */
+		reached[0][229] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[9];
+		now.stones[9] = 2;
+#ifdef VAR_RANGES
+		logval("stones[9]", now.stones[9]);
+#endif
+		;
+		/* merge: stones[8] = none(478, 230, 478) */
+		reached[0][230] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[8];
+		now.stones[8] = 3;
+#ifdef VAR_RANGES
+		logval("stones[8]", now.stones[8]);
+#endif
+		;
+		/* merge: .(goto)(0, 252, 478) */
+		reached[0][252] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 103: // STATE 233 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',7,9)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][233] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 7, 9);
+		_m = 3; goto P999; /* 0 */
+	case 104: // STATE 234 - pa_2_frogs_N_9.pml:33 - [(((stones[9]==none)&&(stones[7]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][234] = 1;
+		if (!(((now.stones[9]==3)&&(now.stones[7]==2))))
+			continue;
+		/* merge: stones[9] = male(478, 235, 478) */
+		reached[0][235] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[9];
+		now.stones[9] = 2;
+#ifdef VAR_RANGES
+		logval("stones[9]", now.stones[9]);
+#endif
+		;
+		/* merge: stones[7] = none(478, 236, 478) */
+		reached[0][236] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[7];
+		now.stones[7] = 3;
+#ifdef VAR_RANGES
+		logval("stones[7]", now.stones[7]);
+#endif
+		;
+		/* merge: .(goto)(0, 252, 478) */
+		reached[0][252] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 105: // STATE 239 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',10,9)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][239] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 10, 9);
+		_m = 3; goto P999; /* 0 */
+	case 106: // STATE 240 - pa_2_frogs_N_9.pml:40 - [(((stones[9]==none)&&(stones[10]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][240] = 1;
+		if (!(((now.stones[9]==3)&&(now.stones[10]==1))))
+			continue;
+		/* merge: stones[9] = female(478, 241, 478) */
+		reached[0][241] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[9];
+		now.stones[9] = 1;
+#ifdef VAR_RANGES
+		logval("stones[9]", now.stones[9]);
+#endif
+		;
+		/* merge: stones[10] = none(478, 242, 478) */
+		reached[0][242] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[10];
+		now.stones[10] = 3;
+#ifdef VAR_RANGES
+		logval("stones[10]", now.stones[10]);
+#endif
+		;
+		/* merge: .(goto)(0, 252, 478) */
+		reached[0][252] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 107: // STATE 245 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',11,9)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][245] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 11, 9);
+		_m = 3; goto P999; /* 0 */
+	case 108: // STATE 246 - pa_2_frogs_N_9.pml:40 - [(((stones[9]==none)&&(stones[11]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][246] = 1;
+		if (!(((now.stones[9]==3)&&(now.stones[11]==1))))
+			continue;
+		/* merge: stones[9] = female(478, 247, 478) */
+		reached[0][247] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[9];
+		now.stones[9] = 1;
+#ifdef VAR_RANGES
+		logval("stones[9]", now.stones[9]);
+#endif
+		;
+		/* merge: stones[11] = none(478, 248, 478) */
+		reached[0][248] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[11];
+		now.stones[11] = 3;
+#ifdef VAR_RANGES
+		logval("stones[11]", now.stones[11]);
+#endif
+		;
+		/* merge: .(goto)(0, 252, 478) */
+		reached[0][252] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 109: // STATE 253 - pa_2_frogs_N_9.pml:108 - [((stones[10]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][253] = 1;
+		if (!((now.stones[10]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 110: // STATE 254 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',9,10)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][254] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 9, 10);
+		_m = 3; goto P999; /* 0 */
+	case 111: // STATE 255 - pa_2_frogs_N_9.pml:33 - [(((stones[10]==none)&&(stones[9]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][255] = 1;
+		if (!(((now.stones[10]==3)&&(now.stones[9]==2))))
+			continue;
+		/* merge: stones[10] = male(478, 256, 478) */
+		reached[0][256] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[10];
+		now.stones[10] = 2;
+#ifdef VAR_RANGES
+		logval("stones[10]", now.stones[10]);
+#endif
+		;
+		/* merge: stones[9] = none(478, 257, 478) */
+		reached[0][257] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[9];
+		now.stones[9] = 3;
+#ifdef VAR_RANGES
+		logval("stones[9]", now.stones[9]);
+#endif
+		;
+		/* merge: .(goto)(0, 279, 478) */
+		reached[0][279] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 112: // STATE 260 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',8,10)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][260] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 8, 10);
+		_m = 3; goto P999; /* 0 */
+	case 113: // STATE 261 - pa_2_frogs_N_9.pml:33 - [(((stones[10]==none)&&(stones[8]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][261] = 1;
+		if (!(((now.stones[10]==3)&&(now.stones[8]==2))))
+			continue;
+		/* merge: stones[10] = male(478, 262, 478) */
+		reached[0][262] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[10];
+		now.stones[10] = 2;
+#ifdef VAR_RANGES
+		logval("stones[10]", now.stones[10]);
+#endif
+		;
+		/* merge: stones[8] = none(478, 263, 478) */
+		reached[0][263] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[8];
+		now.stones[8] = 3;
+#ifdef VAR_RANGES
+		logval("stones[8]", now.stones[8]);
+#endif
+		;
+		/* merge: .(goto)(0, 279, 478) */
+		reached[0][279] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 114: // STATE 266 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',11,10)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][266] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 11, 10);
+		_m = 3; goto P999; /* 0 */
+	case 115: // STATE 267 - pa_2_frogs_N_9.pml:40 - [(((stones[10]==none)&&(stones[11]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][267] = 1;
+		if (!(((now.stones[10]==3)&&(now.stones[11]==1))))
+			continue;
+		/* merge: stones[10] = female(478, 268, 478) */
+		reached[0][268] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[10];
+		now.stones[10] = 1;
+#ifdef VAR_RANGES
+		logval("stones[10]", now.stones[10]);
+#endif
+		;
+		/* merge: stones[11] = none(478, 269, 478) */
+		reached[0][269] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[11];
+		now.stones[11] = 3;
+#ifdef VAR_RANGES
+		logval("stones[11]", now.stones[11]);
+#endif
+		;
+		/* merge: .(goto)(0, 279, 478) */
+		reached[0][279] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 116: // STATE 272 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',12,10)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][272] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 12, 10);
+		_m = 3; goto P999; /* 0 */
+	case 117: // STATE 273 - pa_2_frogs_N_9.pml:40 - [(((stones[10]==none)&&(stones[12]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][273] = 1;
+		if (!(((now.stones[10]==3)&&(now.stones[12]==1))))
+			continue;
+		/* merge: stones[10] = female(478, 274, 478) */
+		reached[0][274] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[10];
+		now.stones[10] = 1;
+#ifdef VAR_RANGES
+		logval("stones[10]", now.stones[10]);
+#endif
+		;
+		/* merge: stones[12] = none(478, 275, 478) */
+		reached[0][275] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[12];
+		now.stones[12] = 3;
+#ifdef VAR_RANGES
+		logval("stones[12]", now.stones[12]);
+#endif
+		;
+		/* merge: .(goto)(0, 279, 478) */
+		reached[0][279] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 118: // STATE 280 - pa_2_frogs_N_9.pml:114 - [((stones[11]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][280] = 1;
+		if (!((now.stones[11]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 119: // STATE 281 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',10,11)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][281] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 10, 11);
+		_m = 3; goto P999; /* 0 */
+	case 120: // STATE 282 - pa_2_frogs_N_9.pml:33 - [(((stones[11]==none)&&(stones[10]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][282] = 1;
+		if (!(((now.stones[11]==3)&&(now.stones[10]==2))))
+			continue;
+		/* merge: stones[11] = male(478, 283, 478) */
+		reached[0][283] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[11];
+		now.stones[11] = 2;
+#ifdef VAR_RANGES
+		logval("stones[11]", now.stones[11]);
+#endif
+		;
+		/* merge: stones[10] = none(478, 284, 478) */
+		reached[0][284] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[10];
+		now.stones[10] = 3;
+#ifdef VAR_RANGES
+		logval("stones[10]", now.stones[10]);
+#endif
+		;
+		/* merge: .(goto)(0, 306, 478) */
+		reached[0][306] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 121: // STATE 287 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',9,11)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][287] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 9, 11);
+		_m = 3; goto P999; /* 0 */
+	case 122: // STATE 288 - pa_2_frogs_N_9.pml:33 - [(((stones[11]==none)&&(stones[9]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][288] = 1;
+		if (!(((now.stones[11]==3)&&(now.stones[9]==2))))
+			continue;
+		/* merge: stones[11] = male(478, 289, 478) */
+		reached[0][289] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[11];
+		now.stones[11] = 2;
+#ifdef VAR_RANGES
+		logval("stones[11]", now.stones[11]);
+#endif
+		;
+		/* merge: stones[9] = none(478, 290, 478) */
+		reached[0][290] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[9];
+		now.stones[9] = 3;
+#ifdef VAR_RANGES
+		logval("stones[9]", now.stones[9]);
+#endif
+		;
+		/* merge: .(goto)(0, 306, 478) */
+		reached[0][306] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 123: // STATE 293 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',12,11)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][293] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 12, 11);
+		_m = 3; goto P999; /* 0 */
+	case 124: // STATE 294 - pa_2_frogs_N_9.pml:40 - [(((stones[11]==none)&&(stones[12]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][294] = 1;
+		if (!(((now.stones[11]==3)&&(now.stones[12]==1))))
+			continue;
+		/* merge: stones[11] = female(478, 295, 478) */
+		reached[0][295] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[11];
+		now.stones[11] = 1;
+#ifdef VAR_RANGES
+		logval("stones[11]", now.stones[11]);
+#endif
+		;
+		/* merge: stones[12] = none(478, 296, 478) */
+		reached[0][296] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[12];
+		now.stones[12] = 3;
+#ifdef VAR_RANGES
+		logval("stones[12]", now.stones[12]);
+#endif
+		;
+		/* merge: .(goto)(0, 306, 478) */
+		reached[0][306] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 125: // STATE 299 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',13,11)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][299] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 13, 11);
+		_m = 3; goto P999; /* 0 */
+	case 126: // STATE 300 - pa_2_frogs_N_9.pml:40 - [(((stones[11]==none)&&(stones[13]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][300] = 1;
+		if (!(((now.stones[11]==3)&&(now.stones[13]==1))))
+			continue;
+		/* merge: stones[11] = female(478, 301, 478) */
+		reached[0][301] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[11];
+		now.stones[11] = 1;
+#ifdef VAR_RANGES
+		logval("stones[11]", now.stones[11]);
+#endif
+		;
+		/* merge: stones[13] = none(478, 302, 478) */
+		reached[0][302] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[13];
+		now.stones[13] = 3;
+#ifdef VAR_RANGES
+		logval("stones[13]", now.stones[13]);
+#endif
+		;
+		/* merge: .(goto)(0, 306, 478) */
+		reached[0][306] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 127: // STATE 307 - pa_2_frogs_N_9.pml:120 - [((stones[12]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][307] = 1;
+		if (!((now.stones[12]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 128: // STATE 308 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',11,12)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][308] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 11, 12);
+		_m = 3; goto P999; /* 0 */
+	case 129: // STATE 309 - pa_2_frogs_N_9.pml:33 - [(((stones[12]==none)&&(stones[11]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][309] = 1;
+		if (!(((now.stones[12]==3)&&(now.stones[11]==2))))
+			continue;
+		/* merge: stones[12] = male(478, 310, 478) */
+		reached[0][310] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[12];
+		now.stones[12] = 2;
+#ifdef VAR_RANGES
+		logval("stones[12]", now.stones[12]);
+#endif
+		;
+		/* merge: stones[11] = none(478, 311, 478) */
+		reached[0][311] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[11];
+		now.stones[11] = 3;
+#ifdef VAR_RANGES
+		logval("stones[11]", now.stones[11]);
+#endif
+		;
+		/* merge: .(goto)(0, 333, 478) */
+		reached[0][333] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 130: // STATE 314 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',10,12)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][314] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 10, 12);
+		_m = 3; goto P999; /* 0 */
+	case 131: // STATE 315 - pa_2_frogs_N_9.pml:33 - [(((stones[12]==none)&&(stones[10]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][315] = 1;
+		if (!(((now.stones[12]==3)&&(now.stones[10]==2))))
+			continue;
+		/* merge: stones[12] = male(478, 316, 478) */
+		reached[0][316] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[12];
+		now.stones[12] = 2;
+#ifdef VAR_RANGES
+		logval("stones[12]", now.stones[12]);
+#endif
+		;
+		/* merge: stones[10] = none(478, 317, 478) */
+		reached[0][317] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[10];
+		now.stones[10] = 3;
+#ifdef VAR_RANGES
+		logval("stones[10]", now.stones[10]);
+#endif
+		;
+		/* merge: .(goto)(0, 333, 478) */
+		reached[0][333] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 132: // STATE 320 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',13,12)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][320] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 13, 12);
+		_m = 3; goto P999; /* 0 */
+	case 133: // STATE 321 - pa_2_frogs_N_9.pml:40 - [(((stones[12]==none)&&(stones[13]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][321] = 1;
+		if (!(((now.stones[12]==3)&&(now.stones[13]==1))))
+			continue;
+		/* merge: stones[12] = female(478, 322, 478) */
+		reached[0][322] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[12];
+		now.stones[12] = 1;
+#ifdef VAR_RANGES
+		logval("stones[12]", now.stones[12]);
+#endif
+		;
+		/* merge: stones[13] = none(478, 323, 478) */
+		reached[0][323] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[13];
+		now.stones[13] = 3;
+#ifdef VAR_RANGES
+		logval("stones[13]", now.stones[13]);
+#endif
+		;
+		/* merge: .(goto)(0, 333, 478) */
+		reached[0][333] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 134: // STATE 326 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',14,12)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][326] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 14, 12);
+		_m = 3; goto P999; /* 0 */
+	case 135: // STATE 327 - pa_2_frogs_N_9.pml:40 - [(((stones[12]==none)&&(stones[14]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][327] = 1;
+		if (!(((now.stones[12]==3)&&(now.stones[14]==1))))
+			continue;
+		/* merge: stones[12] = female(478, 328, 478) */
+		reached[0][328] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[12];
+		now.stones[12] = 1;
+#ifdef VAR_RANGES
+		logval("stones[12]", now.stones[12]);
+#endif
+		;
+		/* merge: stones[14] = none(478, 329, 478) */
+		reached[0][329] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[14];
+		now.stones[14] = 3;
+#ifdef VAR_RANGES
+		logval("stones[14]", now.stones[14]);
+#endif
+		;
+		/* merge: .(goto)(0, 333, 478) */
+		reached[0][333] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 136: // STATE 334 - pa_2_frogs_N_9.pml:126 - [((stones[13]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][334] = 1;
+		if (!((now.stones[13]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 137: // STATE 335 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',12,13)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][335] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 12, 13);
+		_m = 3; goto P999; /* 0 */
+	case 138: // STATE 336 - pa_2_frogs_N_9.pml:33 - [(((stones[13]==none)&&(stones[12]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][336] = 1;
+		if (!(((now.stones[13]==3)&&(now.stones[12]==2))))
+			continue;
+		/* merge: stones[13] = male(478, 337, 478) */
+		reached[0][337] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[13];
+		now.stones[13] = 2;
+#ifdef VAR_RANGES
+		logval("stones[13]", now.stones[13]);
+#endif
+		;
+		/* merge: stones[12] = none(478, 338, 478) */
+		reached[0][338] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[12];
+		now.stones[12] = 3;
+#ifdef VAR_RANGES
+		logval("stones[12]", now.stones[12]);
+#endif
+		;
+		/* merge: .(goto)(0, 360, 478) */
+		reached[0][360] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 139: // STATE 341 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',11,13)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][341] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 11, 13);
+		_m = 3; goto P999; /* 0 */
+	case 140: // STATE 342 - pa_2_frogs_N_9.pml:33 - [(((stones[13]==none)&&(stones[11]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][342] = 1;
+		if (!(((now.stones[13]==3)&&(now.stones[11]==2))))
+			continue;
+		/* merge: stones[13] = male(478, 343, 478) */
+		reached[0][343] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[13];
+		now.stones[13] = 2;
+#ifdef VAR_RANGES
+		logval("stones[13]", now.stones[13]);
+#endif
+		;
+		/* merge: stones[11] = none(478, 344, 478) */
+		reached[0][344] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[11];
+		now.stones[11] = 3;
+#ifdef VAR_RANGES
+		logval("stones[11]", now.stones[11]);
+#endif
+		;
+		/* merge: .(goto)(0, 360, 478) */
+		reached[0][360] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 141: // STATE 347 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',14,13)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][347] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 14, 13);
+		_m = 3; goto P999; /* 0 */
+	case 142: // STATE 348 - pa_2_frogs_N_9.pml:40 - [(((stones[13]==none)&&(stones[14]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][348] = 1;
+		if (!(((now.stones[13]==3)&&(now.stones[14]==1))))
+			continue;
+		/* merge: stones[13] = female(478, 349, 478) */
+		reached[0][349] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[13];
+		now.stones[13] = 1;
+#ifdef VAR_RANGES
+		logval("stones[13]", now.stones[13]);
+#endif
+		;
+		/* merge: stones[14] = none(478, 350, 478) */
+		reached[0][350] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[14];
+		now.stones[14] = 3;
+#ifdef VAR_RANGES
+		logval("stones[14]", now.stones[14]);
+#endif
+		;
+		/* merge: .(goto)(0, 360, 478) */
+		reached[0][360] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 143: // STATE 353 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',15,13)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][353] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 15, 13);
+		_m = 3; goto P999; /* 0 */
+	case 144: // STATE 354 - pa_2_frogs_N_9.pml:40 - [(((stones[13]==none)&&(stones[15]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][354] = 1;
+		if (!(((now.stones[13]==3)&&(now.stones[15]==1))))
+			continue;
+		/* merge: stones[13] = female(478, 355, 478) */
+		reached[0][355] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[13];
+		now.stones[13] = 1;
+#ifdef VAR_RANGES
+		logval("stones[13]", now.stones[13]);
+#endif
+		;
+		/* merge: stones[15] = none(478, 356, 478) */
+		reached[0][356] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[15];
+		now.stones[15] = 3;
+#ifdef VAR_RANGES
+		logval("stones[15]", now.stones[15]);
+#endif
+		;
+		/* merge: .(goto)(0, 360, 478) */
+		reached[0][360] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 145: // STATE 361 - pa_2_frogs_N_9.pml:133 - [((stones[14]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][361] = 1;
+		if (!((now.stones[14]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 146: // STATE 362 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',13,14)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][362] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 13, 14);
+		_m = 3; goto P999; /* 0 */
+	case 147: // STATE 363 - pa_2_frogs_N_9.pml:33 - [(((stones[14]==none)&&(stones[13]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][363] = 1;
+		if (!(((now.stones[14]==3)&&(now.stones[13]==2))))
+			continue;
+		/* merge: stones[14] = male(478, 364, 478) */
+		reached[0][364] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[14];
+		now.stones[14] = 2;
+#ifdef VAR_RANGES
+		logval("stones[14]", now.stones[14]);
+#endif
+		;
+		/* merge: stones[13] = none(478, 365, 478) */
+		reached[0][365] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[13];
+		now.stones[13] = 3;
+#ifdef VAR_RANGES
+		logval("stones[13]", now.stones[13]);
+#endif
+		;
+		/* merge: .(goto)(0, 387, 478) */
+		reached[0][387] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 148: // STATE 368 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',12,14)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][368] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 12, 14);
+		_m = 3; goto P999; /* 0 */
+	case 149: // STATE 369 - pa_2_frogs_N_9.pml:33 - [(((stones[14]==none)&&(stones[12]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][369] = 1;
+		if (!(((now.stones[14]==3)&&(now.stones[12]==2))))
+			continue;
+		/* merge: stones[14] = male(478, 370, 478) */
+		reached[0][370] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[14];
+		now.stones[14] = 2;
+#ifdef VAR_RANGES
+		logval("stones[14]", now.stones[14]);
+#endif
+		;
+		/* merge: stones[12] = none(478, 371, 478) */
+		reached[0][371] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[12];
+		now.stones[12] = 3;
+#ifdef VAR_RANGES
+		logval("stones[12]", now.stones[12]);
+#endif
+		;
+		/* merge: .(goto)(0, 387, 478) */
+		reached[0][387] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 150: // STATE 374 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',15,14)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][374] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 15, 14);
+		_m = 3; goto P999; /* 0 */
+	case 151: // STATE 375 - pa_2_frogs_N_9.pml:40 - [(((stones[14]==none)&&(stones[15]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][375] = 1;
+		if (!(((now.stones[14]==3)&&(now.stones[15]==1))))
+			continue;
+		/* merge: stones[14] = female(478, 376, 478) */
+		reached[0][376] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[14];
+		now.stones[14] = 1;
+#ifdef VAR_RANGES
+		logval("stones[14]", now.stones[14]);
+#endif
+		;
+		/* merge: stones[15] = none(478, 377, 478) */
+		reached[0][377] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[15];
+		now.stones[15] = 3;
+#ifdef VAR_RANGES
+		logval("stones[15]", now.stones[15]);
+#endif
+		;
+		/* merge: .(goto)(0, 387, 478) */
+		reached[0][387] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 152: // STATE 380 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',16,14)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][380] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 16, 14);
+		_m = 3; goto P999; /* 0 */
+	case 153: // STATE 381 - pa_2_frogs_N_9.pml:40 - [(((stones[14]==none)&&(stones[16]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][381] = 1;
+		if (!(((now.stones[14]==3)&&(now.stones[16]==1))))
+			continue;
+		/* merge: stones[14] = female(478, 382, 478) */
+		reached[0][382] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[14];
+		now.stones[14] = 1;
+#ifdef VAR_RANGES
+		logval("stones[14]", now.stones[14]);
+#endif
+		;
+		/* merge: stones[16] = none(478, 383, 478) */
+		reached[0][383] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[16];
+		now.stones[16] = 3;
+#ifdef VAR_RANGES
+		logval("stones[16]", now.stones[16]);
+#endif
+		;
+		/* merge: .(goto)(0, 387, 478) */
+		reached[0][387] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 154: // STATE 388 - pa_2_frogs_N_9.pml:139 - [((stones[15]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][388] = 1;
+		if (!((now.stones[15]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 155: // STATE 389 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',14,15)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][389] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 14, 15);
+		_m = 3; goto P999; /* 0 */
+	case 156: // STATE 390 - pa_2_frogs_N_9.pml:33 - [(((stones[15]==none)&&(stones[14]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][390] = 1;
+		if (!(((now.stones[15]==3)&&(now.stones[14]==2))))
+			continue;
+		/* merge: stones[15] = male(478, 391, 478) */
+		reached[0][391] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[15];
+		now.stones[15] = 2;
+#ifdef VAR_RANGES
+		logval("stones[15]", now.stones[15]);
+#endif
+		;
+		/* merge: stones[14] = none(478, 392, 478) */
+		reached[0][392] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[14];
+		now.stones[14] = 3;
+#ifdef VAR_RANGES
+		logval("stones[14]", now.stones[14]);
+#endif
+		;
+		/* merge: .(goto)(0, 414, 478) */
+		reached[0][414] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 157: // STATE 395 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',13,15)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][395] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 13, 15);
+		_m = 3; goto P999; /* 0 */
+	case 158: // STATE 396 - pa_2_frogs_N_9.pml:33 - [(((stones[15]==none)&&(stones[13]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][396] = 1;
+		if (!(((now.stones[15]==3)&&(now.stones[13]==2))))
+			continue;
+		/* merge: stones[15] = male(478, 397, 478) */
+		reached[0][397] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[15];
+		now.stones[15] = 2;
+#ifdef VAR_RANGES
+		logval("stones[15]", now.stones[15]);
+#endif
+		;
+		/* merge: stones[13] = none(478, 398, 478) */
+		reached[0][398] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[13];
+		now.stones[13] = 3;
+#ifdef VAR_RANGES
+		logval("stones[13]", now.stones[13]);
+#endif
+		;
+		/* merge: .(goto)(0, 414, 478) */
+		reached[0][414] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 159: // STATE 401 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',16,15)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][401] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 16, 15);
+		_m = 3; goto P999; /* 0 */
+	case 160: // STATE 402 - pa_2_frogs_N_9.pml:40 - [(((stones[15]==none)&&(stones[16]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][402] = 1;
+		if (!(((now.stones[15]==3)&&(now.stones[16]==1))))
+			continue;
+		/* merge: stones[15] = female(478, 403, 478) */
+		reached[0][403] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[15];
+		now.stones[15] = 1;
+#ifdef VAR_RANGES
+		logval("stones[15]", now.stones[15]);
+#endif
+		;
+		/* merge: stones[16] = none(478, 404, 478) */
+		reached[0][404] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[16];
+		now.stones[16] = 3;
+#ifdef VAR_RANGES
+		logval("stones[16]", now.stones[16]);
+#endif
+		;
+		/* merge: .(goto)(0, 414, 478) */
+		reached[0][414] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 161: // STATE 407 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',17,15)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][407] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 17, 15);
+		_m = 3; goto P999; /* 0 */
+	case 162: // STATE 408 - pa_2_frogs_N_9.pml:40 - [(((stones[15]==none)&&(stones[17]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][408] = 1;
+		if (!(((now.stones[15]==3)&&(now.stones[17]==1))))
+			continue;
+		/* merge: stones[15] = female(478, 409, 478) */
+		reached[0][409] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[15];
+		now.stones[15] = 1;
+#ifdef VAR_RANGES
+		logval("stones[15]", now.stones[15]);
+#endif
+		;
+		/* merge: stones[17] = none(478, 410, 478) */
+		reached[0][410] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[17];
+		now.stones[17] = 3;
+#ifdef VAR_RANGES
+		logval("stones[17]", now.stones[17]);
+#endif
+		;
+		/* merge: .(goto)(0, 414, 478) */
+		reached[0][414] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 163: // STATE 415 - pa_2_frogs_N_9.pml:145 - [((stones[16]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][415] = 1;
+		if (!((now.stones[16]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 164: // STATE 416 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',15,16)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][416] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 15, 16);
+		_m = 3; goto P999; /* 0 */
+	case 165: // STATE 417 - pa_2_frogs_N_9.pml:33 - [(((stones[16]==none)&&(stones[15]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][417] = 1;
+		if (!(((now.stones[16]==3)&&(now.stones[15]==2))))
+			continue;
+		/* merge: stones[16] = male(478, 418, 478) */
+		reached[0][418] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[16];
+		now.stones[16] = 2;
+#ifdef VAR_RANGES
+		logval("stones[16]", now.stones[16]);
+#endif
+		;
+		/* merge: stones[15] = none(478, 419, 478) */
+		reached[0][419] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[15];
+		now.stones[15] = 3;
+#ifdef VAR_RANGES
+		logval("stones[15]", now.stones[15]);
+#endif
+		;
+		/* merge: .(goto)(0, 441, 478) */
+		reached[0][441] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 166: // STATE 422 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',14,16)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][422] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 14, 16);
+		_m = 3; goto P999; /* 0 */
+	case 167: // STATE 423 - pa_2_frogs_N_9.pml:33 - [(((stones[16]==none)&&(stones[14]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][423] = 1;
+		if (!(((now.stones[16]==3)&&(now.stones[14]==2))))
+			continue;
+		/* merge: stones[16] = male(478, 424, 478) */
+		reached[0][424] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[16];
+		now.stones[16] = 2;
+#ifdef VAR_RANGES
+		logval("stones[16]", now.stones[16]);
+#endif
+		;
+		/* merge: stones[14] = none(478, 425, 478) */
+		reached[0][425] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[14];
+		now.stones[14] = 3;
+#ifdef VAR_RANGES
+		logval("stones[14]", now.stones[14]);
+#endif
+		;
+		/* merge: .(goto)(0, 441, 478) */
+		reached[0][441] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 168: // STATE 428 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',17,16)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][428] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 17, 16);
+		_m = 3; goto P999; /* 0 */
+	case 169: // STATE 429 - pa_2_frogs_N_9.pml:40 - [(((stones[16]==none)&&(stones[17]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][429] = 1;
+		if (!(((now.stones[16]==3)&&(now.stones[17]==1))))
+			continue;
+		/* merge: stones[16] = female(478, 430, 478) */
+		reached[0][430] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[16];
+		now.stones[16] = 1;
+#ifdef VAR_RANGES
+		logval("stones[16]", now.stones[16]);
+#endif
+		;
+		/* merge: stones[17] = none(478, 431, 478) */
+		reached[0][431] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[17];
+		now.stones[17] = 3;
+#ifdef VAR_RANGES
+		logval("stones[17]", now.stones[17]);
+#endif
+		;
+		/* merge: .(goto)(0, 441, 478) */
+		reached[0][441] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 170: // STATE 434 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',18,16)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][434] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 18, 16);
+		_m = 3; goto P999; /* 0 */
+	case 171: // STATE 435 - pa_2_frogs_N_9.pml:40 - [(((stones[16]==none)&&(stones[18]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][435] = 1;
+		if (!(((now.stones[16]==3)&&(now.stones[18]==1))))
+			continue;
+		/* merge: stones[16] = female(478, 436, 478) */
+		reached[0][436] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[16];
+		now.stones[16] = 1;
+#ifdef VAR_RANGES
+		logval("stones[16]", now.stones[16]);
+#endif
+		;
+		/* merge: stones[18] = none(478, 437, 478) */
+		reached[0][437] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[18];
+		now.stones[18] = 3;
+#ifdef VAR_RANGES
+		logval("stones[18]", now.stones[18]);
+#endif
+		;
+		/* merge: .(goto)(0, 441, 478) */
+		reached[0][441] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 172: // STATE 442 - pa_2_frogs_N_9.pml:152 - [((stones[17]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][442] = 1;
+		if (!((now.stones[17]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 173: // STATE 443 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',16,17)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][443] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 16, 17);
+		_m = 3; goto P999; /* 0 */
+	case 174: // STATE 444 - pa_2_frogs_N_9.pml:33 - [(((stones[17]==none)&&(stones[16]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][444] = 1;
+		if (!(((now.stones[17]==3)&&(now.stones[16]==2))))
+			continue;
+		/* merge: stones[17] = male(478, 445, 478) */
+		reached[0][445] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[17];
+		now.stones[17] = 2;
+#ifdef VAR_RANGES
+		logval("stones[17]", now.stones[17]);
+#endif
+		;
+		/* merge: stones[16] = none(478, 446, 478) */
+		reached[0][446] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[16];
+		now.stones[16] = 3;
+#ifdef VAR_RANGES
+		logval("stones[16]", now.stones[16]);
+#endif
+		;
+		/* merge: .(goto)(0, 462, 478) */
+		reached[0][462] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 175: // STATE 449 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',15,17)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][449] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 15, 17);
+		_m = 3; goto P999; /* 0 */
+	case 176: // STATE 450 - pa_2_frogs_N_9.pml:33 - [(((stones[17]==none)&&(stones[15]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][450] = 1;
+		if (!(((now.stones[17]==3)&&(now.stones[15]==2))))
+			continue;
+		/* merge: stones[17] = male(478, 451, 478) */
+		reached[0][451] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[17];
+		now.stones[17] = 2;
+#ifdef VAR_RANGES
+		logval("stones[17]", now.stones[17]);
+#endif
+		;
+		/* merge: stones[15] = none(478, 452, 478) */
+		reached[0][452] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[15];
+		now.stones[15] = 3;
+#ifdef VAR_RANGES
+		logval("stones[15]", now.stones[15]);
+#endif
+		;
+		/* merge: .(goto)(0, 462, 478) */
+		reached[0][462] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 177: // STATE 455 - pa_2_frogs_N_9.pml:39 - [printf('Female Frog jumps from %d to %d\\n',18,17)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][455] = 1;
+		Printf("Female Frog jumps from %d to %d\n", 18, 17);
+		_m = 3; goto P999; /* 0 */
+	case 178: // STATE 456 - pa_2_frogs_N_9.pml:40 - [(((stones[17]==none)&&(stones[18]==female)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][456] = 1;
+		if (!(((now.stones[17]==3)&&(now.stones[18]==1))))
+			continue;
+		/* merge: stones[17] = female(478, 457, 478) */
+		reached[0][457] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[17];
+		now.stones[17] = 1;
+#ifdef VAR_RANGES
+		logval("stones[17]", now.stones[17]);
+#endif
+		;
+		/* merge: stones[18] = none(478, 458, 478) */
+		reached[0][458] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[18];
+		now.stones[18] = 3;
+#ifdef VAR_RANGES
+		logval("stones[18]", now.stones[18]);
+#endif
+		;
+		/* merge: .(goto)(0, 462, 478) */
+		reached[0][462] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 179: // STATE 463 - pa_2_frogs_N_9.pml:157 - [((stones[18]==none))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][463] = 1;
+		if (!((now.stones[18]==3)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 180: // STATE 464 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',17,18)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][464] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 17, 18);
+		_m = 3; goto P999; /* 0 */
+	case 181: // STATE 465 - pa_2_frogs_N_9.pml:33 - [(((stones[18]==none)&&(stones[17]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][465] = 1;
+		if (!(((now.stones[18]==3)&&(now.stones[17]==2))))
+			continue;
+		/* merge: stones[18] = male(478, 466, 478) */
+		reached[0][466] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[18];
+		now.stones[18] = 2;
+#ifdef VAR_RANGES
+		logval("stones[18]", now.stones[18]);
+#endif
+		;
+		/* merge: stones[17] = none(478, 467, 478) */
+		reached[0][467] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[17];
+		now.stones[17] = 3;
+#ifdef VAR_RANGES
+		logval("stones[17]", now.stones[17]);
+#endif
+		;
+		/* merge: .(goto)(0, 477, 478) */
+		reached[0][477] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 182: // STATE 470 - pa_2_frogs_N_9.pml:32 - [printf('Male Frog jumps from %d to %d\\n',16,18)] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][470] = 1;
+		Printf("Male Frog jumps from %d to %d\n", 16, 18);
+		_m = 3; goto P999; /* 0 */
+	case 183: // STATE 471 - pa_2_frogs_N_9.pml:33 - [(((stones[18]==none)&&(stones[16]==male)))] (478:0:2 - 1)
+		IfNotBlocked
+		reached[0][471] = 1;
+		if (!(((now.stones[18]==3)&&(now.stones[16]==2))))
+			continue;
+		/* merge: stones[18] = male(478, 472, 478) */
+		reached[0][472] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = now.stones[18];
+		now.stones[18] = 2;
+#ifdef VAR_RANGES
+		logval("stones[18]", now.stones[18]);
+#endif
+		;
+		/* merge: stones[16] = none(478, 473, 478) */
+		reached[0][473] = 1;
+		(trpt+1)->bup.ovals[1] = now.stones[16];
+		now.stones[16] = 3;
+#ifdef VAR_RANGES
+		logval("stones[16]", now.stones[16]);
+#endif
+		;
+		/* merge: .(goto)(0, 477, 478) */
+		reached[0][477] = 1;
+		;
+		/* merge: .(goto)(0, 479, 478) */
+		reached[0][479] = 1;
+		;
+		_m = 3; goto P999; /* 4 */
+	case 184: // STATE 481 - pa_2_frogs_N_9.pml:163 - [-end-] (0:0:0 - 1)
+		IfNotBlocked
+		reached[0][481] = 1;
 		if (!delproc(1, II)) continue;
 		_m = 3; goto P999; /* 0 */
 	case  _T5:	/* np_ */

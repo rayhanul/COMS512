@@ -1,54 +1,16 @@
-/** 
-The steps of moving male frog to the place of female frog and moving female frog to the male frog's place. 
 
-      Male Frog jumps from 2 to 3
-      Female Frog jumps from 4 to 2
-      Female Frog jumps from 5 to 4
-      Male Frog jumps from 3 to 5
-      Male Frog jumps from 1 to 3
-      Male Frog jumps from 0 to 1
-      Female Frog jumps from 2 to 0
-      Female Frog jumps from 4 to 2
-      Female Frog jumps from 6 to 4
-      Male Frog jumps from 5 to 6
-      Male Frog jumps from 3 to 5
-      Male Frog jumps from 1 to 3
-      Female Frog jumps from 2 to 1
-      Female Frog jumps from 4 to 2
-      Male Frog jumps from 3 to 4
-
-
-
-The time needed for different value of N is provided below:
-N    Time (sec) 
-3    0
-4    0
-5    0
-6    0
-7    0
-8    0
-9    0.01
-10   0.02
-
- 
-
-From the pattern of N and Time, it is clear that the needed time for verifying a given property along with 
-the number of states and memory increase as N increases. Therefore, DFS algorithm takes more time to find solution 
-from the high volumn of state space, which results the increase in the time of verifying any property. 
-*/
-
-
-
-#define STONES 7
+#define STONES 9
 
 #define success (\
 	(stones[0]==female) && \
 	(stones[1]==female) && \
 	(stones[2]==female) && \
-	(stones[4]==male)   && \
+	(stones[3]==female)   && \
 	(stones[5]==male)   && \
-	(stones[6]==male)      \
-	)
+	(stones[6]==male) && \
+	(stones[7]==male) && \
+	(stones[8]==male) \
+)
 
 mtype = { none, male, female }
 mtype stones[STONES];
@@ -81,6 +43,7 @@ do
 							:: move_female(1,2)
 							:: move_female(1,3)
 							fi 
+		
 	:: stones[2] == none -> if 
 							:: move_male(0,2);
 							:: move_male(1,2);
@@ -99,14 +62,28 @@ do
 							:: move_female(4,5)
 							:: move_female(4,6)
 							fi 
+
 	:: stones[5] == none -> if 
-							:: move_male(3,5);
 							:: move_male(4,5);
+							:: move_male(3,5);
 							:: move_female(5,6)
-							fi 	
+							:: move_female(5,7)
+							fi 
 	:: stones[6] == none -> if 
 							:: move_male(5,6);
-							:: move_male(4,6)
+							:: move_male(4,6);
+							:: move_female(6,7)
+							:: move_female(6,8)
+							fi 
+
+	:: stones[7] == none -> if 
+							:: move_male(6,7);
+							:: move_male(5,7);
+							:: move_female(7,8)
+							fi 	
+	:: stones[8] == none -> if 
+							:: move_male(7,8);
+							:: move_male(6,8)
 							fi 	
 od 
 	
@@ -119,10 +96,11 @@ init {
 		stones[0] = male;
 		stones[1] = male;
 		stones[2] = male;
-		stones[3] = none;
-		stones[4] = female;
+		stones[3] = male;
+		stones[4] = none;
 		stones[5] = female;
 		stones[6] = female;
-
+		stones[7] = female;
+		stones[8] = female;
 
 }

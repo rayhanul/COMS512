@@ -1,6 +1,4 @@
 
-
-
 #define STONES 7
 
 #define success (\
@@ -12,61 +10,65 @@
 	(stones[6]==male)      \
 	)
 
-
-
 mtype = { none, male, female }
 mtype stones[STONES];
 
 ltl { []!success }
 
-inline jump_one_step_male_Frog(position){
-	
+inline move_male(prev, current){
 	atomic{
-		printf("Male Frog jumps from %d to %d\n", position, position+1);
-		(position < STONES-1) && (stones[position+1]==none) -> stones[position]=none; stones[position+1]=male; position=position+1;  
+		printf("Male Frog jumps from %d to %d\n", prev, current);
+		(stones[current]==none) && (stones[prev]==male)-> stones[current]= male; stones[prev]=none;
 	}
 }
 
-inline jump_two_step_male_Frog(position){
-	
+inline move_female(current, next){
 	atomic{
-		printf("Male Frog jumps from %d to %d\n", position, position+2);
-		(position < STONES-2) && (stones[position+1] != none) &&  (stones[position+2]==none) -> stones[position]=none; stones[position+2]=male; position=position+2;  
+		printf("Female Frog jumps from %d to %d\n", next, current);
+		(stones[current]==none) && (stones[next]==female)-> stones[current]= female; stones[next]=none;
 	}
 }
 
-inline jump_one_step_female_Frog(position){
-	
-	atomic{
-		printf("Female Frog jumps from %d to %d\n", position, position-1);
-		(position > 0) && (stones[position-1] == none) -> stones[position] = none; stones[position-1] = female; position = position - 1;
-	}
-}
+active proctype main_process(){
 
-inline jump_two_step_female_Frog(position){
-	
-	atomic{
-		printf("Female Frog jumps from %d to %d\n", position, position-2);
-		(position > 1) && (stones[position-1] != none) && (stones[position-2] == none) -> stones[position] = none; stones[position-2] = female; position = position - 2;
-	}
-}
-
-proctype maleFrog(byte position){
-	if
-		:: jump_one_step_male_Frog(position)
-		:: jump_two_step_male_Frog(position)
-	fi 
-}
-
-proctype femaleFrog(byte position){
-	if 
-		:: jump_one_step_female_Frog(position)
-		:: jump_two_step_female_Frog(position)
-	fi 
-}
-
-proctype main_prc(byte position){
-
+do 
+	:: stones[0] == none -> if 
+							:: move_female(0,1)
+							:: move_female(0,2)
+							fi 
+	:: stones[1] == none -> if 
+							:: move_male(0,1);
+							:: move_female(1,2)
+							:: move_female(1,3)
+							fi 
+	:: stones[2] == none -> if 
+							:: move_male(0,2);
+							:: move_male(1,2);
+							:: move_female(2,3)
+							:: move_female(2,4)
+							fi 
+	:: stones[3] == none -> if 
+							:: move_male(1,3);
+							:: move_male(2,3);
+							:: move_female(3,4)
+							:: move_female(3,5)
+							fi 
+	:: stones[4] == none -> if 
+							:: move_male(3,4);
+							:: move_male(2,4);
+							:: move_female(4,5)
+							:: move_female(4,6)
+							fi 
+	:: stones[5] == none -> if 
+							:: move_male(3,5);
+							:: move_male(4,5);
+							:: move_female(5,6)
+							fi 	
+	:: stones[6] == none -> if 
+							:: move_male(5,6);
+							:: move_male(4,6)
+							fi 	
+od 
 	
 }
 
@@ -82,16 +84,5 @@ init {
 		stones[5] = female;
 		stones[6] = female;
 
-	atomic {
-		do 
-		:: stones[0]==none -> run maleFrog(0); run femaleFrog(0);
-		:: stones[1]==none -> run maleFrog(1); run femaleFrog(1);
-		:: stones[2]==none -> run maleFrog(2); run femaleFrog(2);
-		:: stones[3]==none -> run maleFrog(3); run femaleFrog(3);
-		:: stones[4]==none -> run maleFrog(4); run femaleFrog(4);
-		:: stones[5]==none -> run maleFrog(5); run femaleFrog(5);
-		:: stones[6]==none -> run maleFrog(6); run femaleFrog(6);
-		od 
 
-	}
 }

@@ -1,5 +1,5 @@
 
-#define STONES 17
+#define STONES 15
 
 #define success (\
 	(stones[0]==female) && \
@@ -9,15 +9,12 @@
 	(stones[4]==female)   && \
 	(stones[5]==female)   && \
 	(stones[6]==female) && \
-	(stones[7]==female) && \
+	(stones[8]==male) && \
 	(stones[9]==male) && \
 	(stones[10]==male)   && \
 	(stones[11]==male)   && \
 	(stones[12]==male)    &&  \
-	(stones[13]==male) && \
-	(stones[14]==male) && \
-	(stones[15]==male) && \
-	(stones[16]==male)   \
+	(stones[13]==male) \
 )
 
 mtype = { none, male, female }
@@ -121,28 +118,15 @@ do
 							:: move_female(12,13)
 							:: move_female(12,14)
 							fi 
+
 	:: stones[13] == none -> if 
 							:: move_male(12,13);
 							:: move_male(11,13);
 							:: move_female(13,14)
-							:: move_female(13,15)
-							fi 
-
+							fi 	
 	:: stones[14] == none -> if 
 							:: move_male(13,14);
-							:: move_male(12,14);
-							:: move_female(14,15)
-							:: move_female(14,16)
-							fi 
-
-	:: stones[15] == none -> if 
-							:: move_male(14,15);
-							:: move_male(13,15);
-							:: move_female(15,16)
-							fi 	
-	:: stones[16] == none -> if 
-							:: move_male(15,16);
-							:: move_male(14,16)
+							:: move_male(12,14)
 							fi 	
 od 
 	
@@ -159,15 +143,14 @@ init {
 		stones[4] = male;
 		stones[5] = male;
 		stones[6] = male;
-		stones[7] = male;
-		stones[8] = none;
+		stones[7] = none;
+		stones[8] = female;
 		stones[9] = female;
 		stones[10] =female;
 		stones[11] = female
 		stones[12] = female;
 		stones[13] = female;
 		stones[14] = female;
-		stones[15] = female;
-		stones[16] = female;
+
 
 }
