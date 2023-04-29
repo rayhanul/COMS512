@@ -12,7 +12,8 @@ protocol, agent, Bob's informationcan be added to the message like (B, N_A, N_B)
  to Alice. Now, when Alice receives this message, it needs to check if N_B matches with the B's nonce.
 Therefore, whenever any agent (Alice or Bob) receives message, it should checks the senders 
  information in addition to checking nonce to decide if it is communicating with an intruder 
- or not. This is how we can ensure that all three formulas hold in the communication protocol. 
+ or not. 
+This is how we can ensure that all three formulas hold in the communication protocol. 
  */
 
 

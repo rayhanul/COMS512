@@ -1,23 +1,24 @@
 /** 
-The output steps of moving male frog to the place of female frog and moving female 
+The steps of moving male frog to the place of female frog and moving female 
 frog to the male frog's place are provided below- 
 
 
-      Male Frog jumps from 2 to 3
-      Female Frog jumps from 4 to 2
-      Female Frog jumps from 5 to 4
-      Male Frog jumps from 3 to 5
-      Male Frog jumps from 1 to 3
-      Male Frog jumps from 0 to 1
-      Female Frog jumps from 2 to 0
-      Female Frog jumps from 4 to 2
-      Female Frog jumps from 6 to 4
-      Male Frog jumps from 5 to 6
-      Male Frog jumps from 3 to 5
-      Male Frog jumps from 1 to 3
-      Female Frog jumps from 2 to 1
-      Female Frog jumps from 4 to 2
-      Male Frog jumps from 3 to 4
+      Male Frog jumps from stone 2 to stone 3
+      Female Frog jumps from stone 4 to stone 2
+      Female Frog jumps from stone 5 to stone 4
+      Male Frog jumps from stone 3 to stone 5
+      Male Frog jumps from stone 1 to stone 3
+      Male Frog jumps from stone 0 to stone 1
+      Female Frog jumps from stone 2 to stone 0
+      Female Frog jumps from stone 4 to stone 2
+      Female Frog jumps from stone 6 to stone 4
+      Male Frog jumps from stone 5 to stone 6
+      Male Frog jumps from stone 3 to stone 5
+      Male Frog jumps from stone 1 to stone 3
+      Female Frog jumps from stone 2 to stone 1
+      Female Frog jumps from stone 4 to stone 2
+      Male Frog jumps from stone 3 to stone 4
+
 
 
 
@@ -36,11 +37,17 @@ N    Time (sec)
 Although, the recorded time for different N value (3 to 8) 0 here, but the running
 time increase as N increases, for example, the running time for N=11 is higher than N=10. 
 From the pattern of N and Time, it is clear that the needed time for verifying a 
-given property along with the number of states and memory increase as N increases. 
+given property increases along with the number of states and memory as N increases. 
 Due to high number of states, DFS algorithm takes more time to find the counter 
 example or examples satisfying the specification for higher value of N. 
 Which results the increase in the time of verifying any property of interest.  
+
+The SPIN model for different value of N 
+is available here: https://github.com/rayhanul/COMS512/tree/main/pa2. Please visit the link if you are
+interested. 
+
 */
+
 
 
 
@@ -62,14 +69,14 @@ ltl { []!success }
 
 inline move_male(prev, current){
 	atomic{
-		printf("Male Frog jumps from %d to %d\n", prev, current);
+		printf("Male Frog jumps from stone %d to stone %d\n", prev, current);
 		(stones[current]==none) && (stones[prev]==male)-> stones[current]= male; stones[prev]=none;
 	}
 }
 
 inline move_female(current, next){
 	atomic{
-		printf("Female Frog jumps from %d to %d\n", next, current);
+		printf("Female Frog jumps from stone %d to stone %d\n", next, current);
 		(stones[current]==none) && (stones[next]==female)-> stones[current]= female; stones[next]=none;
 	}
 }

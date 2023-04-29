@@ -30,9 +30,9 @@ active proctype Alice(){
     network ! msg1, partnerA, data;
 
     network ? msg2, agentA, data2;
-    (data2.key==pkey) && (data2.info1==nonceA) ;
+    (data2.key==pkey) && (data2.info1==nonceA) && (msg2==nonceB);
     pnonce=data2.info2;
-// && (data2.info2==nonceB)
+
     data3.key=pkey; data3.info1=pnonce; data3.info2=0;
     network ! msg3, partnerA, data3;
     statusA = ok;
@@ -54,7 +54,7 @@ active proctype Bob() {
     fi;
     Crypt data2;
     data2.key = pkey; data2.info1 = pnonce; data2.info2 = nonceB; 
-    network ! msg2, partnerB, data2;
+    network ! nonceB, partnerB, data2;
 
     network ? msg3, agentB, data;
     (data.key == keyB) && (data.info1 == nonceB);
