@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+
+\usepackage{fullpage}
+
+\begin{document}
+\title{COMS 512 Review report}
+\author{Ratmousen}
+\date{}
+\maketitle
+
+A review of a paper should include the summary of the paper followed
+by the strengths and weaknesses of the paper.  The review should not
+simply rephrase the text of the paper and/or use the text from the
+paper unless it is absolutely necessary to convey a specific
+point. For instance, if the authors have made a claim and you would
+like to counter that claim, you can quote the authors' claim to
+present your argument.
+
+You can use the following outline to develop your review. You can use
+different section headings, organize the sections into subsections,
+paragraphs, use examples, remarks, etc. as you see fit.
+
+
+
+\section{Summary/Introduction}
+\label{sec:intro}
+
+In this section, you will present the basic outline of the paper.
+\begin{enumerate}
+\item What problem is being addressed in the paper? What is the
+  context of the problem? Why is this problem challenging to solve and
+  why is the problem important/interesting to address?
+
+\item What is the solution strategy proposed in the paper? What the
+properties of the strategy -- does it have theoretical guarantees?
+Is it a heuristics -- what are the characteristics of the heuristics?
+
+\item 
+Is there some evaluation presented by the authors -- for some
+theoretical papers, it is not necessary to have experimental
+evaluation, in which case, it is important for the reviewer to
+recognize that and explain why the solution strategy can be considered
+to be a viable option to explore.
+
+\paragraph 
+Neural networks (NN) have been increasingly popular recently, from safety-critical systems to day-to-day applications. Due to the large size and non-linear activation functions of NN, it lacks automated analysis and explainability and needs lots of resources to train the large and complex NN model. This paper proposes an approximate-based bisimulation approach to reduce NN's size while maintaining the semantics equivalence. Unlike the bisimulation technique for other systems, NN-bisimulation is very challenging because of having multiple parallel threads of computation with branching and merging at each step of computation, which makes it difficult to establish global equivalence between neural networks. Furthermore, reducing the size of NN requires a formal proof, which is challenging to develop. The problem addressed in this paper is important because smaller NNs are easy to train, more efficient, and easier to deploy compared to larger NN. Additionally, a larger NN requires more computational resources, which is, therefore, impossible to run on mobile-like devices. Thus, the reduction of NN while maintaining the semantic equivalence significantly impacts the explainability and efficiency of NN. 
+
+\end{enumerate}
+
+\section{Technical Contribution}
+\label{sec:strengths}
+
+In this section, you will describe the main solution strategy
+presented in the paper. In order to do so (in your own words), you
+will have to place the solution in the context of related work - i.e.,
+you will have follow some of the citations presented in the paper,
+have a high-level understanding of why they are cited and include
+them as part of your explanation of the context. 
+
+To explain the solution strategy proposed in the paper, you may need
+to develop new examples or re-examine the examples presented in the
+paper. This will help in explaining the definitions and concepts used
+in the paper without copying them in your report.  It may also be
+necessary to bring in concepts that are not explained in the paper
+(may have been cited) but are necessary component of the solution
+presented in the paper. That means you may need to explain those
+concepts using examples (which are not present in the paper).
+
+Finally, you will have write at least a paragraph explaining the
+strengths of the paper, i.e., the contributions. The authors may list
+some set of contributions but here you are presenting your opinion
+about the contributions. It may be the case there are theorems that
+are proved in the paper and the proof strategy is interesting and/or
+the theorems, themselves, are unexpected.  It may be case that there
+are experimental results, which reveal some phenomena in practical
+settings (probably making the limits of theoretical guarantees
+palatable!).
+
+\section{Weakness and/or Future Directions}
+\label{sec:future}
+
+In most cases, a paper opens up new problems to solve (and in the best
+case, opens up a new research area). This may be deduced from the
+weaknesses of the paper. For instance, a paper may propose an
+approximation algorithm and has not discussed whether the
+approximation ratio is ``tight'' or not.  That can be part of future
+challenge. The authors will present some future work but your report
+should not simply mimic the authors future work.
+
+
+\bigskip
+\hrule
+\medskip
+Your report should be at least 2 pages (I don't think you can explain
+everything 2 pages with full page format and 11pt font) - this is the
+least you can do. You should not write more than 10 pages (I think you
+can explain everything in 5 pages).  And finally, plese spelchekc
+using some automatci spellchecker before submiting.
+
+\textbf{Submission deadline: May 5th, 11:59pm}
+
+
+
+
+
+
+
+\end{document}
