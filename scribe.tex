@@ -21,14 +21,20 @@
 
 \begin{document}
 
-Let's first expand the two LTL formulas:
 
-$\lu{(\neg q)}{(\neg p \land \neg q)}$ means that at some point in the future, $\neg q$ holds and until that point, both $\neg p$ and $\neg q$ hold.
-$\neg \lu{p}{q}$ means that it is not the case that $p$ holds until $q$ holds.
-Now, let's assume that a state satisfies $\lu{(\neg q)}{(\neg p \land \neg q)}$. This means that there exists a future time $t$ at which $\neg q$ holds and until that time, both $\neg p$ and $\neg q$ hold.
+The expression $\mathtt{P}_{\geq 1}(\lf{\neg q})$ represents the probability of observing at least one event where the proposition $\lf{\neg q}$ is true. Here, $\lf{\neg q}$ denotes the negation of the proposition $q$.
 
-Suppose for the sake of contradiction that the state also satisfies $\lu{p}{q}$, which means that $p$ holds until $q$ holds. Since $\neg p$ holds until the time $t$ and $p$ holds until $q$ holds, we have that $\neg q$ holds until $q$ holds. But this contradicts the fact that at time $t$, $\neg q$ holds. Therefore, the state cannot satisfy $\lu{p}{q}$.
+To compute this probability, we would need additional information about the probability distribution of the events in question. Without this information, we cannot compute the probability.
 
-In conclusion, if a state satisfies $\lu{(\neg q)}{(\neg p \land \neg q)}$, then it satisfies $\neg \lu{p}{q}$.
+Assuming we have a probability distribution, one possible method to compute this probability is to use the complement rule of probability, which states that:
 
+$\mathtt{P}_{\geq 1}(A) = 1 - \mathtt{P}_0(A)$
+
+where $A$ is an event, $\mathtt{P}_{\geq 1}(A)$ is the probability of observing at least one occurrence of $A$, and $\mathtt{P}_0(A)$ is the probability of observing no occurrences of $A$.
+
+Using this rule and the fact that $\neg q$ is the negation of $q$, we can write:
+
+$\mathtt{P}_{\geq 1}(\lf{\neg q}) = 1 - \mathtt{P}_0(\lf{\neg q})$
+
+where $\mathtt{P}_0(\lf{\neg q})$ is the probability of observing no occurrence of $\lf{\neg q}$.
 \end{document}
